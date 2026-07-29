@@ -5,13 +5,13 @@
    can be re-read even if the CSS changes. */
 (function () {
   /* ---- groups (les statuts du jeu) ---- */
-  const GROUPS = ['Ascendants', 'Ancrés', 'Brisés', 'Éveillés', 'Killers'];
+  const GROUPS = ["Couronne de cendre", "Vigile du Seuil", "Colporteur de l'ombre", "Arpenteur du vide", "Heraut silencieux"];
   const GROUP_META = {
-    'Ascendants': { color: '#5CA35E', tag: 'Où la majorité apprend à survivre… Ils ont choisi de lutter.' },
-    'Ancrés':     { color: '#6FBEBD', tag: 'Quand le chaos a frappé, tous n’ont pas choisi de courir vers le danger' },
-    'Brisés':     { color: '#9285D1', tag: 'Tout le monde ne survit pas à Aetherion' },
-    'Éveillés':   { color: '#DBAE61', tag: 'Ils ont tourné leur regard vers une autre vérité' },
-    'Killers':    { color: '#DD5555', tag: 'Dans ce monde, la morale est un luxe' }
+    'Couronne de cendre': { color: '#D43535', tag: "Le pouvoir comme unique vérité" },
+    'Vigile du Seuil':     { color: '#6E93B8', tag: "L'ordre comme rédemption" },
+    "Colporteur de l'ombre":     { color: '#8E7BB0', tag: 'Tout se négocie, y compris la loyauté' },
+    'Arpenteur du vide':   { color: '#4F8A5B', tag: 'La vérité est ailleurs, plus loin' },
+    'Heraut silencieux':    { color: '#4A5C8F', tag: 'Ceux qui écoutent ce que le monde tait' }
   };
   function groupColor(g) { return (GROUP_META[g] || {}).color || '#C25C3A'; }
   function groupTag(g) { return (GROUP_META[g] || {}).tag || ''; }
