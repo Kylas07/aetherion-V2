@@ -4511,14 +4511,6 @@ form[name="form_login"] .content {
   box-shadow: 7px 0 0 var(--accent-clair);
   margin-right: 8px;
 }
-.hero-kicker .live {
-  flex: none;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #FF4B3E;
-  box-shadow: 0 0 10px #FF4B3E;
-}
 .hero-titre {
   display: flex;
   flex-direction: column;
