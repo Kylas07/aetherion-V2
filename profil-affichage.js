@@ -50,16 +50,34 @@ var PA_REGLAGES = {
    ──────────────────────────────────────────────────────────────────────── */
 
 /* Démarrage : le bloc des champs n'existe pas toujours au moment où le
-   script est lu (selon l'endroit où Forumactif l'insère). On essaie donc
-   tout de suite, puis au chargement de la page, puis pendant 5 secondes. */
-(function demarrer(essai) {
-  essai = essai || 0;
-  if (remplirLeProfil()) return;
-  if (essai === 0 && document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function () { demarrer(1); });
+   script est lu (Forumactif recharge parfois le profil sans recharger la
+   page : changement d'onglet, retour en arrière…). On essaie donc tout de
+   suite, au chargement, pendant 5 secondes — puis on SURVEILLE la page en
+   permanence pour re-remplir dès qu'un nouveau profil apparaît. */
+(function () {
+  var trouveUneFois = false;
+
+  function essayer() { if (remplirLeProfil()) trouveUneFois = true; return trouveUneFois; }
+
+  essayer();
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', essayer);
+  window.addEventListener('load', essayer);
+  window.addEventListener('pageshow', essayer);   /* retour en arrière du navigateur */
+
+  var essais = 0;
+  var minuteur = setInterval(function () {
+    essayer();
+    if (++essais > 25) clearInterval(minuteur);
+    if (essais === 25 && !trouveUneFois && window.console) {
+      console.warn('[profil] Bloc des champs introuvable : vérifie que {PROFILE_INFOS} est bien dans la template profile_view_body.');
+    }
+  }, 200);
+
+  /* surveillance permanente : si le forum réinjecte le profil, on re-remplit */
+  if (window.MutationObserver) {
+    new MutationObserver(function () { essayer(); })
+      .observe(document.documentElement, { childList: true, subtree: true });
   }
-  if (essai < 25) { setTimeout(function () { demarrer(essai + 1); }, 200); return; }
-  if (window.console) console.warn('[profil] Bloc des champs introuvable : vérifie que {PROFILE_INFOS} est bien dans la template profile_view_body.');
 })();
 
 function remplirLeProfil() {
