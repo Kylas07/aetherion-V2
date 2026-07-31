@@ -49,34 +49,14 @@ var PA_REGLAGES = {
    Mécanique — normalement rien à modifier en dessous.
    ──────────────────────────────────────────────────────────────────────── */
 
-/* Démarrage : le bloc des champs n'existe pas toujours au moment où le
-   script est lu (Forumactif recharge parfois le profil sans recharger la
-   page : changement d'onglet, retour en arrière…). On essaie donc tout de
-   suite, au chargement, pendant 5 secondes — puis on SURVEILLE la page en
-   permanence pour re-remplir dès qu'un nouveau profil apparaît. */
+/* Démarrage : on remplit UNE SEULE FOIS.
+   Le bloc des champs n'existe pas toujours au moment où le script est lu ;
+   on attend donc simplement que la page soit prête, puis on remplit. */
 (function () {
-  var trouveUneFois = false;
-
-  function essayer() { if (remplirLeProfil()) trouveUneFois = true; return trouveUneFois; }
-
-  essayer();
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', essayer);
-  window.addEventListener('load', essayer);
-  window.addEventListener('pageshow', essayer);   /* retour en arrière du navigateur */
-
-  var essais = 0;
-  var minuteur = setInterval(function () {
-    essayer();
-    if (++essais > 25) clearInterval(minuteur);
-    if (essais === 25 && !trouveUneFois && window.console) {
-      console.warn('[profil] Bloc des champs introuvable : vérifie que {PROFILE_INFOS} est bien dans la template profile_view_body.');
-    }
-  }, 200);
-
-  /* surveillance permanente : si le forum réinjecte le profil, on re-remplit */
-  if (window.MutationObserver) {
-    new MutationObserver(function () { essayer(); })
-      .observe(document.documentElement, { childList: true, subtree: true });
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', remplirLeProfil);
+  } else {
+    remplirLeProfil();
   }
 })();
 
@@ -86,10 +66,11 @@ function remplirLeProfil() {
      champ « .info.field-… », quel qu'il soit. */
   var premier = document.querySelector('div.info[class*="field-"]');
   var source = document.querySelector('.profile-infos') || (premier && premier.parentNode);
-  if (!source) return false;                      /* pas encore là : on réessaiera */
-  if (source.getAttribute('data-pa')) return true; /* déjà fait */
-  /* la coquille doit être là aussi (sinon on remplirait dans le vide) */
-  if (!document.getElementById('pr_team_corps') && !document.getElementById('pr_minis')) return false;
+  if (!source) {
+    if (window.console) console.warn('[profil] Bloc des champs introuvable : vérifie que {PROFILE_INFOS} est bien dans la template profile_view_body.');
+    return;
+  }
+  if (source.getAttribute('data-pa')) return;   /* déjà rempli */
   source.setAttribute('data-pa', '1');
 
   /* on garde le bloc d'origine dans la page (l'édition en ligne du forum
@@ -242,6 +223,4 @@ function remplirLeProfil() {
       });
     }
   })();
-
-  return true;
 }
