@@ -48,14 +48,37 @@ var PA_REGLAGES = {
 /* ────────────────────────────────────────────────────────────────────────
    Mécanique — normalement rien à modifier en dessous.
    ──────────────────────────────────────────────────────────────────────── */
-(function () {
-  var source = document.querySelector('.profile-infos');
-  if (!source || source.getAttribute('data-pa')) return;
+
+/* Démarrage : le bloc des champs n'existe pas toujours au moment où le
+   script est lu (selon l'endroit où Forumactif l'insère). On essaie donc
+   tout de suite, puis au chargement de la page, puis pendant 5 secondes. */
+(function demarrer(essai) {
+  essai = essai || 0;
+  if (remplirLeProfil()) return;
+  if (essai === 0 && document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { demarrer(1); });
+  }
+  if (essai < 25) { setTimeout(function () { demarrer(essai + 1); }, 200); return; }
+  if (window.console) console.warn('[profil] Bloc des champs introuvable : vérifie que {PROFILE_INFOS} est bien dans la template profile_view_body.');
+})();
+
+function remplirLeProfil() {
+  /* Selon la version du forum, les champs sont dans un bloc « .profile-infos »
+     ou dans un simple <div> masqué. On repère donc le PARENT du premier
+     champ « .info.field-… », quel qu'il soit. */
+  var premier = document.querySelector('div.info[class*="field-"]');
+  var source = document.querySelector('.profile-infos') || (premier && premier.parentNode);
+  if (!source) return false;                      /* pas encore là : on réessaiera */
+  if (source.getAttribute('data-pa')) return true; /* déjà fait */
+  /* la coquille doit être là aussi (sinon on remplirait dans le vide) */
+  if (!document.getElementById('pr_team_corps') && !document.getElementById('pr_minis')) return false;
   source.setAttribute('data-pa', '1');
 
   /* on garde le bloc d'origine dans la page (l'édition en ligne du forum
      continue de fonctionner) mais on ne l'affiche plus */
   source.style.display = 'none';
+  source.style.visibility = '';
+  source.style.fontSize = '';
 
   /* — lecture d'un champ : « field-1 », « field--6 »… — */
   function bloc(num) {
@@ -86,13 +109,18 @@ var PA_REGLAGES = {
     }
   }
 
-  /* — couleur du groupe : le forum la met en style sur les champs — */
-  var teinte = source.querySelector('.info[style*="border-color"]');
-  if (teinte) {
-    var couleur = teinte.style.borderColor || teinte.style.backgroundColor;
+  /* — couleur du groupe : celle du pseudo, sinon celle posée sur les champs — */
+  (function () {
     var racine = document.getElementById('wombat');
-    if (couleur && racine) racine.style.setProperty('--groupe', couleur);
-  }
+    if (!racine) return;
+    var pseudo = document.querySelector('.pr-tete .usr_grp_clr, .pr-tete span[style*="color"]');
+    var couleur = pseudo && pseudo.style.color;
+    if (!couleur) {
+      var teinte = source.querySelector('.info[style*="border-color"]');
+      if (teinte) couleur = teinte.style.borderColor || teinte.style.backgroundColor;
+    }
+    if (couleur) racine.style.setProperty('--groupe', couleur);
+  })();
 
   /* — 1. Team Pokémon : on reprend les images telles quelles — */
   poser('pr_team_corps', valeurHtml(PA_REGLAGES.team));
@@ -196,4 +224,6 @@ var PA_REGLAGES = {
       });
     }
   })();
-})();
+
+  return true;
+}
