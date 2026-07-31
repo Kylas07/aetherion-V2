@@ -1933,12 +1933,7 @@ blockquote cite a {
 .pagination > * {
     transform: skewX(-8deg)
 }
-/*****/
-.userlist {
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-gap: 10px;
-}
+
 .userlist_profil {
   display: grid;
   grid-template-columns: 95px auto;
@@ -1948,13 +1943,6 @@ blockquote cite a {
   border: 1px solid var(--bordure);
   border-radius: 14px;
   box-shadow: var(--shadowCard);
-}
-.userlist_avatar img {
-  width: 75px;
-  height: 120px;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 10px;
 }
 .userlist_pseudo {
   font-size: var(--medium-size);
@@ -4267,15 +4255,6 @@ form[name="form_login"] .content {
   width: 100%;
   aspect-ratio: 1/1;
   background: var(--beige);
-}
-.userlist_avatar img {
-  width: 100% !important;
-  height: 100% !important;
-  max-width: none !important;
-  max-height: none !important;
-  object-fit: cover;
-  object-position: center;
-  display: block;
 }
 /* — Flèche profil — */
 .ml-arrow {
