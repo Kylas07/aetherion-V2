@@ -210,16 +210,16 @@ function remplirLeProfil() {
       contact.appendChild(a);
     } else if (contact) contact.style.display = 'none';
 
-    var liens = document.getElementById('pr_liens');
-    var stats = source.querySelectorAll('.profile-stats-post a');
-    if (liens) {
-      if (!stats.length) { liens.style.display = 'none'; return; }
-      liens.innerHTML = '';
-      stats.forEach(function (s) {
-        var a = document.createElement('a');
-        a.href = s.getAttribute('href');
-        a.textContent = s.textContent.replace(/\s+/g, ' ').trim();
-        liens.appendChild(a);
+    // var liens = document.getElementById('pr_liens');
+    // var stats = source.querySelectorAll('.profile-stats-post a');
+    // if (liens) {
+    //   if (!stats.length) { liens.style.display = 'none'; return; }
+    //   liens.innerHTML = '';
+    //   stats.forEach(function (s) {
+    //     var a = document.createElement('a');
+    //     a.href = s.getAttribute('href');
+    //     a.textContent = s.textContent.replace(/\s+/g, ' ').trim();
+    //     liens.appendChild(a);
       });
     }
   })();
