@@ -19,115 +19,125 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap');
 
-/* ════════ 1. VARIABLES ════════ */
-:root {
+/* ════════ 1. VARIABLES — palette Etherium ════════ */
+:root, html[data-theme="jour"] {
   color-scheme: light;
-  --header: url('https://images2.imgbox.com/e5/fb/TTqPoDcu_o.png');
 
-  /* — palette Etherium · JOUR (feu) — */
-  --headerImg: url('https://2img.net/i.imgur.com/jL1oKHY.jpeg');
-  --PAImg: url('https://2img.net/i.imgur.com/OFVi7Ze.jpeg');
-  --fond: var(--fond);
-  --fondPa:var(--encre);
+  /* — images — */
+  --headerImg: url('https://2img.net/i.imgur.com/4RbG3Df.jpeg');
+  --PAImg:     url('https://2img.net/i.imgur.com/QHA6wXe.jpeg');
+  --renderImg: url('https://2img.net/i.imgur.com/xnitjf3.png');
+  --ontopImg:  url('https://2img.net/i.imgur.com/emem9VP.png');
+  --lightsImg: url('https://2img.net/i.imgur.com/y6uyazh.png');
+  --illuForum: var(--PAImg);
+  --illuEnLigne: var(--PAImg);
+  --header: var(--headerImg);
+
+  /* — palette JOUR · Lugia — */
+  --fond: #E6EBEF;
+  --fondPa: #1D2733;
   --carte: #FFFFFF;
   --blanc: #FFFFFF;
-  --beige: var(--beige);
-  --beige-bordure: var(--bordure);
-  --beige-band: var(--beige-band);
-  --encre: var(--encre);
-  --encre-doux: var(--encre-doux);
-  --titre: var(--titre);
-  --texte: var(--texte);
-  --texte-doux: var(--texte-doux);
-  --muet: var(--muet);
-  --muet-clair: var(--muet-clair);
-  --bordure: var(--bordure);
-  --filet: var(--filet);
+  --beige: #EEF2F6;
+  --beige-bordure: #DCE4EC;
+  --beige-band: #F5F8FB;
+  --encre: #1D2733;
+  --encre-doux: #4A5B6D;
+  --titre: #18222E;
+  --texte: #2E3B49;
+  --texte-doux: #4A5B6D;
+  --muet: #8695A5;
+  --muet-clair: #AEBBC7;
+  --bordure: rgba(24,34,46,.13);
+  --filet: #E7EDF3;
 
-  --accent: var(--accent);          /* rouge feu */
-  --accent-clair: var(--accent-clair);    /* rouge */
-  --accent-fonce: var(--accent-fonce);
-  --accent-pale: var(--accent-pale);
+  --accent: #4A7EA8;          /* bleu Lugia */
+  --accent-clair: #7FB0D4;
+  --accent-fonce: #2F5C7D;
+  --accent-pale: #E3EDF5;
 
-  --valide: var(--valide);
-  --valide-clair: var(--valide-clair);
+  --valide: #4FAE9F;
+  --valide-clair: #7FCBC0;
+
+  /* hordes / groupes */
+  --t1: #7D9FC0; --t2: #8FA87A; --t3: #C39A55;
+  --t4: #C07F92; --t5: #9B8BC4; --t6: #4FAE9F;
   --g-killers: var(--t4);
-  --g-killers-clair: var(--g-killers-clair);
-  --g-ancres: var(--t3);        /* or chaud */
+  --g-killers-clair: #DCA9B7;
+  --g-ancres: var(--t1);
   --g-eveilles: var(--t3);
-  --g-pnj: var(--encre);
-  --t1: var(--t3); --t2: var(--muet); --t3: var(--t3);
-  --groupe: var(--g-killers);
+  --g-pnj: var(--titre);
+  --groupe: var(--t1);
   --groupe-clair: var(--g-killers-clair);
 
-  /* remapping BlankTheme (inchangé) */
+  /* remapping BlankTheme */
   --neutral: var(--carte); --neutralDark: var(--fond); --neutralDarker: var(--beige);
   --contrast: var(--encre); --contrastLight: var(--titre); --contrastLighter: var(--beige-bordure);
   --accentClr: var(--accent); --accentClrDark: var(--accent-fonce);
   --textColor: var(--texte); --textColorAccent: var(--titre);
   --border: 1px solid var(--bordure);
-  --shadowBox: 0 18px 40px -18px rgba(24, 40, 60, .18);
-  --shadowCard: 0 1px 2px rgba(24,40,60,.04), 0 18px 40px -18px rgba(24,40,60,.18);
+  --shadowBox: 0 14px 34px rgba(24,40,60,.10);
+  --shadowCard: 0 1px 2px rgba(24,40,60,.05), 0 14px 34px -8px rgba(24,40,60,.16);
 
   --little-size: 12px; --normal-size: 14px; --medium-size: 16px; --large-size: 18px; --title-size: 22px;
-  --font: 'Archivo';
+  --font: 'Karla';
+  --font-titre: 'Cormorant Garamond';
+  --font-label: 'Karla';
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-bounce: cubic-bezier(0.43, 0.09, 0.38, 2.56);
 }
 
-/* — MODE NUIT · forêt bioluminescente —
-   Activé via data-color-scheme="dark" sur html> ou body>. */
-[data-color-scheme="dark"] {
+/* — MODE NUIT · Lugia obscur — */
+[data-color-scheme="dark"], html[data-theme="nuit"] {
   color-scheme: dark;
 
-  /* fonds : vert-noir profond */
-   --headerImg: url('https://2img.net/i.imgur.com/9QNgRgB.jpeg');
-  --PAImg: url('https://2img.net/i.imgur.com/uABDg4Q.jpeg');
-  --fond: var(--fond);
-  --fondPa: var(--fond);
-  --carte: var(--carte);
-  --beige: var(--beige);
-  --beige-bordure: var(--beige-bordure);
-  --beige-band: var(--beige-band);
+  --headerImg: url('https://2img.net/i.imgur.com/9QNgRgB.jpeg');
+  --PAImg:     url('https://2img.net/i.imgur.com/uABDg4Q.jpeg');
 
-  --encre: var(--encre);           /* bandeaux plus sombres que les cartes */
-  --encre-doux: var(--encre-doux);
+  --fond: #0D0A14;
+  --fondPa: #0D0A14;
+  --carte: #1A1425;
+  --beige: #221A30;
+  --beige-bordure: #2E2440;
+  --beige-band: #1F1830;
 
-  --titre: var(--titre);
-  --texte: var(--texte);
-  --texte-doux: var(--texte-doux);
-  --muet: var(--muet);
-  --muet-clair: var(--muet-clair);
+  --encre: #0A0710;
+  --encre-doux: #B0A2C8;
 
-  --bordure: var(--beige-bordure);
-  --filet: var(--filet);
+  --titre: #ECE7F7;
+  --texte: #D6CEE8;
+  --texte-doux: #B0A2C8;
+  --muet: #8C7EA8;
+  --muet-clair: #6B5F85;
 
-  /* accent : vert bioluminescent + glow pâle */
-  --accent: var(--accent);
-  --accent-clair: var(--accent-clair);
-  --accent-fonce: var(--accent-fonce);
-  --accent-pale: var(--accent-pale);
+  --bordure: rgba(236,231,247,.13);
+  --filet: #2A2140;
 
-  --valide: var(--valide);
-  --valide-clair: var(--valide-clair);
+  --accent: #9B6BD8;          /* violet spectral */
+  --accent-clair: #C9AAF0;
+  --accent-fonce: #6E45A0;
+  --accent-pale: #241A36;
 
-  /* groupes éclaircis pour le sombre */
+  --valide: #4AD4BD;
+  --valide-clair: #8CE6D8;
+
+  --t1: #9FBEDC; --t2: #A6BE8E; --t3: #E0BE7C;
+  --t4: #DE9AAC; --t5: #B9A8E4; --t6: #4AD4BD;
   --g-killers: var(--t4);
-  --g-ancres: var(--t6);
+  --g-ancres: var(--t1);
   --g-eveilles: var(--t3);
   --g-pnj: var(--titre);
 
-  --shadowBox: 0 18px 40px -18px rgba(0, 0, 0, .55);
-  --shadowCard: 0 1px 2px rgba(0,0,0,.25), 0 18px 40px -18px rgba(0,0,0,.55);
+  --shadowBox: 0 16px 40px rgba(0,0,0,.45);
+  --shadowCard: 0 1px 2px rgba(0,0,0,.25), 0 18px 40px -12px rgba(0,0,0,.55);
 }
-/* fond papier pointillé version nuit — piqueté vert pâle */
-[data-color-scheme="dark"] body {
+
+/* fond piqueté version nuit */
+[data-color-scheme="dark"] body, html[data-theme="nuit"] body {
   background-color: var(--fond);
-  background-image: radial-gradient(rgba(200, 180, 245, .05) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(200,180,245,.06) 1px, transparent 1px);
 }
-[data-color-scheme="dark"] .forum-num {
-  background: repeating-linear-gradient(135deg, var(--beige), var(--beige) 10px, var(--beige) 10px, var(--beige) 20px);
-}
+[data-color-scheme="dark"] .forum-num { background: color-mix(in srgb, var(--beige) 70%, transparent); }
 [data-color-scheme="dark"] .fd-avatar,
 [data-color-scheme="dark"] .s-dernier .avatar,
 [data-color-scheme="dark"] .topicslist-avatar-lastpost img { border-color: var(--carte); }
@@ -135,7 +145,7 @@
 [data-color-scheme="dark"] .card.dark { background: var(--encre); }
 [data-color-scheme="dark"] .nom td span { background: var(--beige); }
 [data-color-scheme="dark"] .pstat b { color: var(--titre); }
-[data-color-scheme="dark"] .monomer-overlay { background: rgba(0, 0, 0, 0.6); }
+[data-color-scheme="dark"] .monomer-overlay { background: rgba(0,0,0,.6); }
 /* ════════ 2. SOCLE ════════ */
 * {
   box-sizing: border-box;
