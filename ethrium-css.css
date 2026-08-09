@@ -527,6 +527,7 @@ html[data-theme="nuit"] .eth-hero__veil, html[data-theme="nuit"] .aeth-hero__vei
 }
 .eth-hero__content, .aeth-hero__content { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; padding: 6vh 32px 40px; text-align: center; }
 .eth-hero__title, .aeth-hero__title {
+  justify-self: center;
   margin: 0 0 14px; font-family: var(--font-titre), serif; font-weight: 700;
   text-transform: uppercase; font-size: clamp(58px, 9vw, 128px);
   line-height: .84; letter-spacing: .03em;
