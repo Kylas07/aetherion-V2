@@ -2208,7 +2208,7 @@ a.groups:hover{ background:rgba(255,255,255,.08); box-shadow:0 0 14px -4px var(-
   filter: drop-shadow(0 26px 48px rgba(4,6,14,.55));
 }
 .eth-hero__render-rot, .aeth-hero__render-rot { position: absolute; inset: 0;
-  transition: transform 1.4s cubic-bezier(.62,.02,.24,1); }
+  transition: transform 1.4s cubic-bezier(.62,.02,.24,1);    width: 1000px; }
 [data-color-scheme="dark"] .eth-hero__render-rot,
 html[data-theme="nuit"] .eth-hero__render-rot, html[data-theme="nuit"] .aeth-hero__render-rot { transform: rotate(180deg); }
 .eth-hero__render img, .aeth-hero__render img { width: 100%; height: 100%; object-fit: contain; display: block;
