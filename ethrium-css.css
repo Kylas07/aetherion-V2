@@ -494,7 +494,7 @@ html[data-nav="off"] .eth-decor, html[data-nav="off"] .aeth-decor { left: var(--
 }
 
 /* ── héros ── */
-.eth-hero, .aeth-hero { position: relative; z-index: 1; width: 100%; height: 84vh; min-height: 620px; isolation: isolate; }
+.eth-hero, .aeth-hero { position: relative; z-index: 1; width: 100%; height: 110vh; min-height: 620px; isolation: isolate; }
 .eth-hero__ontop, .aeth-hero__ontop { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: var(--ontopImg) center/cover no-repeat; }
 .eth-hero__lights, .aeth-hero__lights { position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: .55; background: var(--lightsImg) center/cover no-repeat; mix-blend-mode: plus-lighter; }
 .eth-hero__render, .aeth-hero__render {
@@ -514,7 +514,7 @@ html[data-nav="off"] .eth-decor, html[data-nav="off"] .aeth-decor { left: var(--
 [data-color-scheme="dark"] .eth-hero__render-rot,
 html[data-theme="nuit"] .eth-hero__render-rot,
 html[data-theme="nuit"] .aeth-hero__render-rot { transform: rotate(180deg); }
-.eth-hero__render img, .aeth-hero__render img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.eth-hero__render img, .aeth-hero__render img { width: 100%;max-width: 1000px; height: 100%; object-fit: contain; display: block; }
 .eth-hero__veil, .aeth-hero__veil {
   position: absolute; inset: 0; transition: background 1.4s ease;
   -webkit-mask: var(--renderImg) center/contain no-repeat;
