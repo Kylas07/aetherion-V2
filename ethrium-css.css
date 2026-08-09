@@ -498,7 +498,7 @@ html[data-nav="off"] .eth-decor, html[data-nav="off"] .aeth-decor { left: var(--
 .eth-hero__ontop, .aeth-hero__ontop { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: var(--ontopImg) center/cover no-repeat; }
 .eth-hero__lights, .aeth-hero__lights { position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: .55; background: var(--lightsImg) center/cover no-repeat; mix-blend-mode: plus-lighter; }
 .eth-hero__render, .aeth-hero__render {
-  position: absolute; left: 0; right: 0; margin-inline: auto;
+  position: absolute; left: 50%; right: 0; margin-inline: auto;
   translate: none; transform: none;
   bottom: -24%; z-index: 1;
   width: min(104vw, 1320px); aspect-ratio: 1;
