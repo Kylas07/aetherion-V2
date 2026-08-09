@@ -2368,7 +2368,7 @@ html[data-nav="off"] .eth-rail #search_menu .overview, html[data-nav="off"] .aet
 }
 html[data-nav="off"] .eth-rail__links, html[data-nav="off"] .aeth-rail__links { font-size: 0; padding: 14px 0 !important; }
 html[data-nav="off"] .eth-rail__links::before, html[data-nav="off"] .aeth-rail__links::before { content: "\2726"; font-size: 15px; }
-.eth-rail .menu-btn, .eth-rail .menu-icon, .eth-sitedesc-wrap, .pa-theme, .aeth-rail .menu-btn,  .aeth-rail .menu-icon,  .aeth-sitedesc-wrap { display: none !important; }
+.eth-rail .menu-btn, .eth-rail .menu-icon, .eth-sitedesc-wrap, .aeth-rail .menu-btn,  .aeth-rail .menu-icon,  .aeth-sitedesc-wrap { display: none !important; }
 
 /* ── panneau « liens utiles » ── */
 .eth-drawer, .aeth-drawer { position: fixed; inset: 0; z-index: 1200; display: flex;
