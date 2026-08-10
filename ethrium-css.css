@@ -577,7 +577,7 @@ html[data-theme="nuit"] .eth-hero__veil, html[data-theme="nuit"] .aeth-hero__vei
 
 /* ── barre utilitaire (bandeau pleine largeur) ── */
 .eth-utilbar, .aeth-utilbar {
-  position: relative; z-index: 3; max-width: none; margin: 0;
+  position: relative; z-index: 2; max-width: none; margin: 0;
   background: var(--encre); color: var(--encre-texte);
   border-top: 1px solid rgba(255,255,255,.14);
   border-bottom: 1px solid rgba(255,255,255,.14);
