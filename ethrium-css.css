@@ -103,10 +103,6 @@
 /* — MODE NUIT — */
 [data-color-scheme="dark"], html[data-theme="nuit"] {
   color-scheme: dark;
-
-  --headerImg: url('https://2img.net/i.imgur.com/9QNgRgB.jpeg');
-  --PAImg:     url('https://2img.net/i.imgur.com/uABDg4Q.jpeg');
-
   --fond: #0D0A14;
   --fond-2: #140F1E;
   --fondPa: #0D0A14;
