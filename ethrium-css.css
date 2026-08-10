@@ -166,20 +166,19 @@ html[data-nav="off"] body { padding-left: var(--railWmin); }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--muet-clair); border-radius: 99px; }
 
-.main_forum {
-       background: var(--illuForum);
-    background-attachment: fixed;
-}
 /* le corps du forum est posé sur le décor sombre */
 #page-body, .main_forum {
   position: relative; z-index: 2;
   width: auto;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   padding: 0;
   background: transparent;
 }
 #page-body { padding: 34px 0 60px; }
-
+#main-content {
+    width: 1360px;
+    justify-self: center;
+}
 .panel {
   background: var(--verre);
   backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
