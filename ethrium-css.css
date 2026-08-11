@@ -937,10 +937,6 @@ a.fd-titre:hover, .fd-titre:hover { color: var(--accent-fonce); }
     margin: 0 auto 46px;
     border-radius: 28px;
 }
-.eth-home-wrap::before {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(180deg, rgba(255,255,255,.12) 0%, rgba(255,255,255,0) 60%);
-}
 
 /* ── grille ── */
 .eth-home {
