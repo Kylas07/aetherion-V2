@@ -1021,17 +1021,6 @@ a.fd-titre:hover, .fd-titre:hover { color: var(--accent-fonce); }
   font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase;
 }
 
-/* ── nouveautés du mois ── */
-.eth-news p {
-  display: flex; gap: 11px; align-items: baseline; margin: 0 0 10px;
-  font-size: 13.5px; color: var(--texte-doux);
-}
-.eth-news p b, .eth-news p .date {
-  flex: none; background: var(--t1); color: var(--blanc);
-  font-size: 9.5px; font-weight: 700; letter-spacing: .1em;
-  padding: 3px 8px; border-radius: 6px;
-}
-
 /* ── top sites ── */
 .eth-topsites__nums { display: flex; gap: 8px; margin-bottom: 12px; }
 .eth-topsites__nums a {
@@ -1074,20 +1063,6 @@ a.fd-titre:hover, .fd-titre:hover { color: var(--accent-fonce); }
   font-size: 24px; line-height: 1.1; font-weight: 600; color: var(--titre);
 }
 .eth-item__price { display: block; font-size: 13px; color: var(--texte-doux); }
-
-/* ── staff ── */
-.eth-staff { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.eth-staff a { display: flex; gap: 10px; align-items: center; color: var(--titre); font-weight: 400; }
-.eth-staff img, .eth-staff .av {
-  flex: none; width: 40px; height: 40px; border-radius: 50%; object-fit: cover;
-  background: linear-gradient(140deg, var(--img-c), var(--img-b));
-}
-.eth-staff b { display: block; font-size: 13.5px; font-weight: 600; }
-.eth-staff i {
-  display: block; font-style: normal;
-  font-family: var(--font-label), sans-serif;
-  font-size: 9.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--muet);
-}
 
 /* ── guide + météo (blocs sombres) ── */
 .eth-guide, .eth-meteo {
@@ -1172,11 +1147,19 @@ a.fd-titre:hover, .fd-titre:hover { color: var(--accent-fonce); }
 @media (max-width: 980px) {
   .eth-home-wrap { padding: 16px; border-radius: 22px; }
   .eth-home { grid-template-columns: 1fr; }
-  .eth-home__row, .eth-home__left, .eth-home__center, .eth-home__right {
-    grid-column: auto; grid-row: auto;
-  }
   .eth-staff { grid-template-columns: 1fr; }
 }
+
+/* la rangée haute n'a plus que 3 blocs, ils prennent plus d'air */
+.eth-home__row { grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); }
+
+/* colonne gauche : plus de staff, guide et météo se partagent la hauteur */
+.eth-home__left { justify-content: stretch; }
+.eth-home__left > * { flex: 1; }
+.eth-guide, .eth-meteo { min-height: 168px; }
+
+/* les dernières discussions gagnent la hauteur libérée */
+.eth-lastposts { grid-template-columns: minmax(0,1fr); max-height: 420px; }
 
 /* ════════ 8. QEEL / EN LIGNE ════════ */
 .qeel, .eth-online, .aeth-online {
