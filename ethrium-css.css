@@ -493,7 +493,7 @@ html[data-nav="off"] .eth-decor, html[data-nav="off"] .aeth-decor { left: var(--
 }
 
 /* ── héros ── */
-.eth-hero, .aeth-hero { position: relative; z-index: 1; width: 100%; height: 110vh; min-height: 620px; isolation: isolate; }
+/* .eth-hero, .aeth-hero { position: relative; z-index: 1; width: 100%; height: 110vh; min-height: 620px; isolation: isolate; }
 .eth-hero__ontop, .aeth-hero__ontop { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: var(--ontopImg) center/cover no-repeat; }
 .eth-hero__lights, .aeth-hero__lights { position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: .55; background: var(--lightsImg) center/cover no-repeat; mix-blend-mode: plus-lighter; }
 .eth-hero__render, .aeth-hero__render {
@@ -568,12 +568,12 @@ html[data-theme="nuit"] .eth-hero__veil, html[data-theme="nuit"] .aeth-hero__vei
 .eth-link-serif, .aeth-link-serif { font-family: var(--font-titre), serif; font-size: 20px; color: rgba(255,255,255,.92) !important; border-bottom: 1px solid rgba(255,255,255,.45); padding-bottom: 2px; }
 
 /* étincelles */
-.eth-spark, .aeth-spark { position: absolute; z-index: 2; width: 10px; height: 10px; background: var(--blanc); opacity: .5; transform: rotate(45deg); animation: eth-twinkle 5s ease-in-out infinite; pointer-events: none; }
+/* .eth-spark, .aeth-spark { position: absolute; z-index: 2; width: 10px; height: 10px; background: var(--blanc); opacity: .5; transform: rotate(45deg); animation: eth-twinkle 5s ease-in-out infinite; pointer-events: none; }
 .eth-spark.p1, .aeth-spark.p1 { right: 9%; top: 16%; width: 12px; height: 12px; animation-duration: 4s; }
 .eth-spark.p2, .aeth-spark.p2 { right: 24%; top: 44%; width: 7px; height: 7px; animation-duration: 5.5s; }
 .eth-spark.p3, .aeth-spark.p3 { right: 15%; bottom: 22%; width: 9px; height: 9px; animation-duration: 6.5s; }
 @keyframes eth-floaty  { 0%,100% { translate: 0 0 } 50% { translate: 0 -14px } }
-@keyframes eth-twinkle { 0%,100% { opacity:.25; transform: rotate(45deg) scale(.8) } 50% { opacity:.9; transform: rotate(45deg) scale(1.15) } }
+@keyframes eth-twinkle { 0%,100% { opacity:.25; transform: rotate(45deg) scale(.8) } 50% { opacity:.9; transform: rotate(45deg) scale(1.15) } } */
 
 /* ── barre utilitaire (bandeau pleine largeur) ── */
 .eth-utilbar, .aeth-utilbar {
