@@ -932,11 +932,10 @@ a.fd-titre:hover, .fd-titre:hover { color: var(--accent-fonce); }
 /* ════════ 7. BLOCS D'ACCUEIL (PA) ════════ */
 /* ── cadre : l'illustration se voit entre les blocs ── */
 .eth-home-wrap {
-  position: relative; overflow: hidden;
-  max-width: 1360px; margin: 0 auto 46px;
-  border: 1px solid var(--bordure); border-radius: 28px;
-  padding: 24px;
-  background: var(--illuForum) center/cover no-repeat, var(--encre);
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto 46px;
+    border-radius: 28px;
 }
 .eth-home-wrap::before {
   content: ""; position: absolute; inset: 0; pointer-events: none;
