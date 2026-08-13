@@ -1753,55 +1753,7 @@ form[name="form_login"] .content { display: grid; justify-content: center; justi
 
 .module { border-radius: 18px; border: var(--border); background: var(--carte); margin: 10px 0; padding: 10px 14px; }
 
-/* ════════ 12. PARTENAIRES · PIED DE PAGE ════════ */
-.partenaire_footer, .eth-partners, .aeth-partners {
-  position: relative; overflow: hidden;
-  max-width: 1360px; margin: 0 auto;
-  background: var(--verre-sombre); color: var(--encre-texte);
-  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-  border-radius: 24px; box-shadow: var(--shadowCard);
-  padding: 26px 28px;
-}
-.partenaire_footer .echo { display: none; }
-.parto-hero { position: relative; display: flex; flex-direction: column; gap: 2px; margin-bottom: 18px; }
-.parto-sur { font-family: var(--font-label), sans-serif; font-size: 10.5px; letter-spacing: .26em; text-transform: uppercase; color: rgba(255,255,255,.6); }
-.parto-t1, .parto-t2 { font-family: var(--font-titre), serif; font-weight: 600; font-size: 36px; line-height: 1; letter-spacing: 0; text-transform: none; color: var(--encre-texte); -webkit-text-stroke: 0; }
-.parto-t2 { font-style: italic; font-weight: 400; }
-.parto-panneau, .eth-partners__grid, .aeth-partners__grid {
-  position: relative; background: rgba(255,255,255,.06);
-  border: 1px solid rgba(255,255,255,.12); border-radius: 16px; padding: 16px;
-  display: flex; gap: 10px; flex-wrap: wrap;
-}
-.parto-label {
-  display: flex; align-items: center; gap: 9px; margin-bottom: 14px; width: 100%;
-  font-family: var(--font-label), sans-serif; font-size: 10.5px;
-  letter-spacing: .26em; text-transform: uppercase; color: rgba(255,255,255,.6);
-}
-.parto-label::before { content: none; }
-.parto-label b { color: var(--encre-texte); font-weight: 700; margin-left: auto; }
-.parto-liste { display: flex; flex-wrap: wrap; gap: 10px; }
-.parto-liste a { position: relative; display: block; line-height: 0; border: 0; border-radius: 8px; overflow: hidden; background: rgba(255,255,255,.06); transition: transform .15s; }
-.parto-liste a:hover { transform: translateY(-2px); }
-.parto-liste img, .eth-partners__grid img, .aeth-partners__grid img { display: block; width: 60px; height: 36px; object-fit: cover; border-radius: 8px; filter: none; }
-.parto-liste a span {
-  position: absolute; left: 50%; top: calc(100% + 8px); transform: translateX(-50%) scale(.96);
-  background: var(--encre); color: var(--encre-texte);
-  font-family: var(--font-label), sans-serif; font-size: 9px; font-weight: 700;
-  letter-spacing: .12em; text-transform: uppercase; line-height: 1;
-  padding: 6px 11px; border-radius: 999px; white-space: nowrap;
-  opacity: 0; pointer-events: none; transition: opacity .14s, transform .14s; z-index: 3;
-}
-.parto-liste a span::after { content: none; }
-.parto-liste a:hover span { opacity: 1; transform: translateX(-50%) scale(1); }
-.parto-pied { position: relative; margin: 16px 0 0; border-top: 0; padding: 0; display: flex; align-items: center; justify-content: space-between; gap: 14px; }
-.parto-pied span { font-family: var(--font-label), sans-serif; font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.6); }
-.parto-pied a, .eth-partners .eth-btn-ghost {
-  font-family: var(--font-label), sans-serif; font-size: 10.5px; font-weight: 400;
-  letter-spacing: .18em; text-transform: uppercase; color: var(--encre-texte);
-  background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.25);
-  border-radius: 999px; padding: 10px 20px;
-}
-.parto-pied a:hover { background: rgba(255,255,255,.22); color: var(--blanc); }
+/* ════════ 12. PIED DE PAGE ════════ */
 
 .eth-footer, .aeth-footer {
   display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px;
