@@ -300,7 +300,13 @@ html#sceditor_smilies, body#sce_smilies_body { background: transparent !importan
 .page-topic span a:last-child, .pag-img { display: none; }
 
 /* éléments esthétiques */
-.container { background: var(--beige); padding: 14px; border-radius: 16px; }
+.container { 
+    background: var(--contrastLighter);
+    padding: 14px;
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    }
+
 .separator { padding-bottom: 6px; margin-bottom: 6px; border-bottom: 1px solid var(--filet); clear: both; height: 1px; width: 100%; }
 hr { border: none; border-top: var(--border); }
 summary { cursor: pointer; }
@@ -1928,27 +1934,293 @@ form[name="form_login"] .content { display: grid; justify-content: center; justi
 }
 
 /* ============================================================
-   PROFIL AETHERION — vue profil (aucune modif HTML)
-   Même vocabulaire que le QEEL : encre, illustration voilée,
-   filigrane ajouré, panneaux vitrés, pastilles contour.
+   SUJET AETHERION — affichage d'un message
+   ============================================================ */
+.post.post_row{
+  --po-img: var(--PAImg, url('https://i.imgur.com/QHA6wXe.jpeg'));
+  --po-voile: .86;                /* 0 = illustration nette, 1 = fond plein */
+  --po-encre: var(--encre, #1D2733);
+  --po-texte: var(--encre-texte, #EEF3F7);
+  --po-accent: var(--accent-clair, #7FB0D4);
+  --po-filet: color-mix(in srgb, var(--po-texte) 14%, transparent);
+  --po-vitre: color-mix(in srgb, var(--po-texte) 6%, transparent);
+  --po-vitre-2: color-mix(in srgb, var(--po-texte) 4%, transparent);
+  --po-accent-voile: color-mix(in srgb, var(--po-accent) 12%, transparent);
+  --po-stroke: color-mix(in srgb, var(--po-texte) 13%, transparent);
+  --po-titre: var(--font-titre, 'Cormorant Garamond'), Georgia, serif;
+  --po-corps: var(--font, 'Karla'), system-ui, sans-serif;
+  --po-doux: color-mix(in srgb, var(--po-texte) 62%, transparent);
+
+  position:relative; isolation:isolate; overflow:hidden;
+  margin:0 0 22px;
+  border:1px solid var(--po-filet); border-radius:6px;
+  background:var(--po-encre); color:var(--po-texte);
+  font-family:var(--po-corps);
+  box-shadow:var(--shadowCard, 0 14px 34px rgba(0,0,0,.35));
+  container-type:inline-size;
+
+  display:grid; gap:0;
+  grid-template-columns:minmax(220px, 280px) 1fr;
+  grid-template-areas:
+    "banderole banderole"
+    "profil    message"
+    "talents   talents";
+  align-items:start;
+}
+.post.post_row::after{                            /* illustration voilée */
+  content:""; position:absolute; inset:0; z-index:-2;
+  background:var(--po-img) center/cover no-repeat;
+  opacity:calc(1 - var(--po-voile)); filter:saturate(.7) contrast(1.05);
+}
+.post.post_row::before{                           /* dégradé de lisibilité */
+  content:""; position:absolute; inset:0; z-index:-1;
+  background:
+    radial-gradient(120% 70% at 100% 0%, color-mix(in srgb, var(--po-accent) 16%, transparent), transparent 60%),
+    linear-gradient(160deg, color-mix(in srgb, var(--po-encre) 60%, transparent) 0%, color-mix(in srgb, var(--po-encre) 95%, transparent) 60%);
+}
+.post.post_row a{ text-decoration:none; }
+
+/* titre du sujet */
+h1.page-title{
+  margin:0 0 20px; font-family:var(--font-titre, 'Cormorant Garamond'), Georgia, serif;
+  font-size:clamp(32px, 4vw, 46px); font-weight:700; line-height:1;
+  text-transform:uppercase; letter-spacing:-.01em;
+  color:var(--encre-texte, #EEF3F7);
+}
+
+/* ---------- banderole : pseudo filigrane + team + illustration ---------- */
+.post.post_row .post-team{
+  grid-area:banderole; position:relative; min-height:132px;
+  display:flex; align-items:center; gap:20px;
+  padding:18px 22px; overflow:hidden;
+  border-bottom:1px solid var(--po-filet);
+  background:linear-gradient(90deg, var(--po-vitre), transparent);
+}
+.post.post_row .post-team-echo{
+  position:absolute; left:20px; top:50%; transform:translateY(-50%);
+  pointer-events:none; user-select:none; z-index:0;
+  font-family:var(--po-titre); font-size:clamp(42px, 8cqi, 86px); line-height:1;
+  font-weight:700; text-transform:uppercase; white-space:nowrap;
+}
+.post.post_row .post-team-echo a{
+  color:transparent !important;
+  -webkit-text-stroke:1px var(--po-stroke);
+}
+.post.post_row .post-team-slots{
+  position:relative; z-index:1; margin-left:auto;
+  display:flex; flex-wrap:wrap; gap:8px; justify-content:flex-end;
+}
+.post.post_row .post-team-slots img{
+  width:42px; height:42px; object-fit:contain; padding:6px;
+  border-radius:50%; border:1px solid var(--po-filet);
+  background:color-mix(in srgb, var(--po-encre) 60%, transparent); backdrop-filter:blur(4px);
+  transition:border-color .25s ease, transform .25s ease;
+}
+.post.post_row .post-team-slots img:hover{
+  border-color:var(--po-accent); transform:translateY(-2px);
+}
+.post.post_row .post-illu{
+  position:relative; z-index:1; flex:0 0 auto;
+  width:190px; height:100px; overflow:hidden;
+  border-radius:4px; border:1px solid var(--po-filet);
+}
+.post.post_row .post-illu img{
+  width:100%; height:100%; object-fit:cover; display:block;
+}
+
+/* ---------- colonne profil ---------- */
+.post.post_row .post_profile{
+  grid-area:profil; align-self:stretch;
+  display:flex; flex-direction:column; gap:10px;
+  padding:22px; border-right:1px solid var(--po-filet);
+  background:var(--po-vitre-2);
+}
+.post.post_row .post_profile > br{ display:none; }
+.post.post_row .post_pseudo{ display:block; }
+.post.post_row .post_pseudo a,
+.post.post_row .post_pseudo strong{
+  font-family:var(--po-titre); font-size:24px; font-weight:700; line-height:1.05;
+  letter-spacing:.01em; color:var(--po-texte) !important;
+}
+.post.post_row .post_pseudo a:hover{ color:var(--po-accent) !important; }
+.post.post_row .post_rank{
+  display:block; margin-top:-6px;
+  font-size:9px; font-weight:700; letter-spacing:.24em; text-transform:uppercase;
+  color:var(--po-accent);
+}
+.post.post_row .post_rank br{ display:none; }
+
+.post.post_row .post_avatar{
+  padding:6px; border:1px solid var(--po-filet); border-radius:4px;
+  background:var(--po-vitre-2);
+}
+.post.post_row .post_avatar img{
+  display:block; width:100%; height:auto;
+  max-width:100% !important; max-height:none !important; border-radius:2px;
+}
+
+.post.post_row .post_userinfo{ display:flex; flex-direction:column; gap:6px; }
+.post.post_row .user_field{
+  display:flex; align-items:baseline; justify-content:space-between; gap:10px;
+  padding:8px 12px; border-radius:4px;
+  border:1px solid var(--po-filet); background:var(--po-vitre-2);
+}
+.post.post_row .user_field .label{
+  font-size:9px; font-weight:700; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--po-doux);
+}
+.post.post_row .user_field .field_content{
+  font-family:var(--po-titre); font-size:17px; font-weight:700;
+  color:var(--po-texte);
+}
+
+.post.post_row .post_contact{ margin-top:auto; display:flex; gap:8px; }
+.post.post_row .post_contact a{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:9px 16px; border-radius:999px; flex:1;
+  border:1px solid var(--po-filet); background:var(--po-vitre-2);
+  font-size:10px; font-weight:700; letter-spacing:.18em; text-transform:uppercase;
+  color:color-mix(in srgb, var(--po-texte) 72%, transparent) !important;
+  transition:color .25s ease, border-color .25s ease, background .25s ease;
+}
+.post.post_row .post_contact a:hover{
+  color:var(--po-accent) !important;
+  border-color:color-mix(in oklab, var(--po-accent) 55%, transparent);
+  background:var(--po-accent-voile);
+}
+.post.post_row .profile-infos-sujet{ display:none !important; }
+
+/* ---------- colonne message ---------- */
+.post.post_row > .post_message{
+  grid-area:message; min-width:0;
+  display:flex; flex-direction:column;
+}
+.post.post_row .post_details{
+  display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+  padding:16px 22px; border-bottom:1px solid var(--po-filet);
+}
+.post.post_row .post_details > a{
+  font-family:var(--po-titre); font-size:18px; font-weight:700;
+  color:var(--po-texte) !important;
+}
+.post.post_row .post_details > a:hover{ color:var(--po-accent) !important; }
+.post.post_row .post_date{
+  font-size:9px; font-weight:700; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--po-doux);
+}
+.post.post_row .profile-icons{
+  list-style:none; margin:0 0 0 auto; padding:0;
+  display:flex; flex-wrap:wrap; gap:6px;
+}
+.post.post_row .profile-icons li{ margin:0; }
+.post.post_row .profile-icons a{
+  display:inline-block; padding:5px 11px; border-radius:999px;
+  border:1px solid var(--po-filet); background:var(--po-vitre-2);
+  font-size:9px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+  color:color-mix(in srgb, var(--po-texte) 60%, transparent) !important;
+  transition:color .25s ease, border-color .25s ease, background .25s ease;
+}
+.post.post_row .profile-icons a:hover{
+  color:var(--po-accent) !important;
+  border-color:color-mix(in oklab, var(--po-accent) 50%, transparent);
+  background:var(--po-accent-voile);
+}
+.post.post_row .postbody.content{
+  flex:1; min-height:160px;
+  padding:22px; font-size:13.5px; line-height:1.85;
+  color:color-mix(in srgb, var(--po-texte) 82%, transparent); text-wrap:pretty;
+}
+.post.post_row .postbody.content a{ color:var(--po-accent) !important; }
+.post.post_row .postbody.content a:hover{ color:var(--po-texte) !important; }
+.post.post_row .postbody.content img{ max-width:100%; height:auto; }
+.post.post_row .postbody.content blockquote,
+.post.post_row .postbody.content .quote{
+  margin:14px 0; padding:12px 16px;
+  border-left:2px solid var(--po-accent); border-radius:3px;
+  background:var(--po-vitre-2); color:color-mix(in srgb, var(--po-texte) 74%, transparent);
+}
+.post.post_row .signature_div{
+  margin-top:20px; padding-top:14px; border-top:1px solid var(--po-filet);
+  font-size:12px; color:var(--po-doux);
+}
+
+/* ---------- talents en pied de post ---------- */
+.post.post_row .post-talents{
+  grid-area:talents;
+  padding:14px 22px; border-top:1px solid var(--po-filet);
+  background:linear-gradient(90deg, var(--po-vitre), transparent);
+}
+.post.post_row .post-talents::before{
+  content:"Talents"; display:block; margin-bottom:10px;
+  font-size:9px; font-weight:700; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--po-doux);
+}
+.post.post_row .post-talents table{
+  display:flex; flex-wrap:wrap; gap:8px; width:auto; border:0;
+}
+.post.post_row .post-talents tbody,
+.post.post_row .post-talents tr{ display:contents; }
+.post.post_row .post-talents td{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:6px 8px 6px 13px; border-radius:999px;
+  border:1px solid var(--po-filet); background:var(--po-vitre-2);
+  font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  color:color-mix(in srgb, var(--po-texte) 74%, transparent); white-space:nowrap;
+}
+/* pastille de palier : la couleur reste celle posée en inline (--t1/--t2/--t3) */
+.post.post_row .post-talents td span,
+.post.post_row .post-talents td font{
+  padding:2px 8px; border-radius:999px;
+  font-size:9px; font-weight:800; letter-spacing:.06em;
+  color:var(--po-encre) !important;
+}
+
+/* ---------- responsive (largeur réelle du post) ---------- */
+@container (max-width: 780px){
+  .post.post_row{
+    grid-template-columns:1fr;
+    grid-template-areas:"banderole" "profil" "message" "talents";
+  }
+  .post.post_row .post_profile{
+    border-right:0; border-bottom:1px solid var(--po-filet);
+  }
+  .post.post_row .post_avatar{ max-width:280px; }
+  .post.post_row .post-illu{ width:140px; height:82px; }
+}
+@container (max-width: 520px){
+  .post.post_row .post-team{ flex-wrap:wrap; min-height:0; }
+  .post.post_row .post-team-echo{ display:none; }
+  .post.post_row .post-illu{ width:100%; height:110px; }
+  .post.post_row .post-team-slots{ margin-left:0; justify-content:flex-start; }
+  .post.post_row .post_profile,
+  .post.post_row .post_details,
+  .post.post_row .postbody.content,
+  .post.post_row .post-talents{ padding:16px; }
+}
+/* ============================================================
+   PROFIL AETHERION — vue profil
    ============================================================ */
 #wombat{
-  --pr-img: var(--PAImg, url('https://2img.net/i.imgur.com/QHA6wXe.jpeg'));
+  --pr-img: var(--PAImg, url('https://i.imgur.com/QHA6wXe.jpeg'));
   --pr-voile: .86;                /* 0 = illustration nette, 1 = fond plein */
   --pr-encre: var(--encre, #1D2733);
   --pr-texte: var(--encre-texte, #EEF3F7);
   --pr-accent: var(--accent-clair, #7FB0D4);
-  --pr-filet: rgba(255,255,255,.10);
+  --pr-filet: color-mix(in srgb, var(--pr-texte) 14%, transparent);
+  --pr-vitre: color-mix(in srgb, var(--pr-texte) 6%, transparent);
+  --pr-vitre-2: color-mix(in srgb, var(--pr-texte) 4%, transparent);
+  --pr-accent-voile: color-mix(in srgb, var(--pr-accent) 12%, transparent);
+  --pr-stroke: color-mix(in srgb, var(--pr-texte) 13%, transparent);
   --pr-titre: var(--font-titre, 'Cormorant Garamond'), Georgia, serif;
   --pr-corps: var(--font, 'Karla'), system-ui, sans-serif;
-  --pr-doux: rgba(238,243,247,.62);
+  --pr-doux: color-mix(in srgb, var(--pr-texte) 62%, transparent);
 
   position:relative; isolation:isolate; overflow:hidden;
   border:1px solid var(--pr-filet); border-radius:6px;
   background:var(--pr-encre); color:var(--pr-texte);
   font-family:var(--pr-corps);
   padding:0 0 26px;
-  box-shadow:var(--shadowCard, 0 14px 34px rgba(6,10,20,.30));
+  box-shadow:var(--shadowCard, 0 14px 34px rgba(0,0,0,.35));
   container-type:inline-size;
 }
 #wombat::after{                                   /* illustration voilée */
@@ -1959,8 +2231,8 @@ form[name="form_login"] .content { display: grid; justify-content: center; justi
 #wombat::before{                                  /* dégradé de lisibilité */
   content:""; position:absolute; inset:0; z-index:-1;
   background:
-    radial-gradient(120% 80% at 100% 0%, rgba(127,176,212,.16), transparent 60%),
-    linear-gradient(160deg, rgba(29,39,51,.55) 0%, rgba(29,39,51,.94) 60%);
+    radial-gradient(120% 80% at 100% 0%, color-mix(in srgb, var(--pr-accent) 16%, transparent), transparent 60%),
+    linear-gradient(160deg, color-mix(in srgb, var(--pr-encre) 60%, transparent) 0%, color-mix(in srgb, var(--pr-encre) 95%, transparent) 60%);
 }
 #wombat a{ text-decoration:none; }
 
@@ -1976,7 +2248,7 @@ form[name="form_login"] .content { display: grid; justify-content: center; justi
   content:"Profil"; position:absolute; top:-16px; right:22px;
   font-family:var(--pr-titre); font-size:108px; line-height:1; font-weight:700;
   text-transform:uppercase; color:transparent;
-  -webkit-text-stroke:1px rgba(255,255,255,.09);
+  -webkit-text-stroke:1px var(--pr-stroke);
   pointer-events:none; user-select:none;
 }
 #wombat .pr-identite{ display:flex; flex-direction:column; gap:6px; }
@@ -2017,7 +2289,7 @@ form[name="form_login"] .content { display: grid; justify-content: center; justi
 #wombat .pr-gauche{ display:flex; flex-direction:column; gap:12px; }
 #wombat .profile_avatar{
   padding:8px; border:1px solid var(--pr-filet); border-radius:4px;
-  background:rgba(255,255,255,.04);
+  background:var(--pr-vitre-2);
 }
 #wombat .profile_avatar img{
   display:block; width:100%; height:auto; max-width:100% !important;
@@ -2028,7 +2300,7 @@ form[name="form_login"] .content { display: grid; justify-content: center; justi
 #wombat .pr-mini{
   display:flex; flex-direction:column; gap:2px;
   padding:10px 12px; border-radius:4px;
-  border:1px solid var(--pr-filet); background:rgba(255,255,255,.045);
+  border:1px solid var(--pr-filet); background:var(--pr-vitre);
 }
 #wombat .pr-mini b{
   font-size:9px; font-weight:700; letter-spacing:.18em; text-transform:uppercase;
@@ -2054,15 +2326,15 @@ form[name="form_login"] .content { display: grid; justify-content: center; justi
 }
 #wombat .pr-liens > span:nth-child(n+2) a{
   padding:9px 14px; border-radius:999px; text-align:center;
-  border:1px solid var(--pr-filet); background:rgba(255,255,255,.03);
+  border:1px solid var(--pr-filet); background:var(--pr-vitre-2);
   font-size:10px; font-weight:700; letter-spacing:.16em; text-transform:uppercase;
-  color:rgba(238,243,247,.72) !important;
+  color:color-mix(in srgb, var(--pr-texte) 72%, transparent) !important;
   transition:color .25s ease, border-color .25s ease, background .25s ease;
 }
 #wombat .pr-liens > span:nth-child(n+2) a:hover{
   color:var(--pr-accent) !important;
   border-color:color-mix(in oklab, var(--pr-accent) 55%, transparent);
-  background:rgba(127,176,212,.08);
+  background:var(--pr-accent-voile);
 }
 
 /* ---------- colonne droite : onglets ---------- */
@@ -2074,9 +2346,9 @@ form[name="form_login"] .content { display: grid; justify-content: center; justi
 #wombat .pr-onglet{
   appearance:none; cursor:pointer;
   padding:9px 18px; border-radius:999px;
-  border:1px solid var(--pr-filet); background:rgba(255,255,255,.03);
+  border:1px solid var(--pr-filet); background:var(--pr-vitre-2);
   font-family:var(--pr-corps); font-size:10px; font-weight:700;
-  letter-spacing:.18em; text-transform:uppercase; color:rgba(238,243,247,.66);
+  letter-spacing:.18em; text-transform:uppercase; color:color-mix(in srgb, var(--pr-texte) 66%, transparent);
   transition:color .25s ease, border-color .25s ease, background .25s ease;
 }
 #wombat .pr-onglet:hover{
@@ -2097,12 +2369,12 @@ form[name="form_login"] .content { display: grid; justify-content: center; justi
 }
 #wombat .pr-carte{
   border:1px solid var(--pr-filet); border-radius:4px;
-  background:rgba(255,255,255,.045);
+  background:var(--pr-vitre);
   overflow:hidden;
 }
 #wombat .pr-carte-tete{
   padding:12px 16px; border-bottom:1px solid var(--pr-filet);
-  background:linear-gradient(90deg, rgba(255,255,255,.05), rgba(255,255,255,0));
+  background:linear-gradient(90deg, var(--pr-vitre), transparent);
 }
 #wombat .pr-carte-tete span{
   font-size:10px; font-weight:700; letter-spacing:.22em; text-transform:uppercase;
@@ -2113,7 +2385,7 @@ form[name="form_login"] .content { display: grid; justify-content: center; justi
   letter-spacing:.02em; text-transform:none; color:var(--pr-accent);
 }
 #wombat .pr-carte-corps{
-  padding:16px; font-size:12.5px; line-height:1.7; color:rgba(238,243,247,.78);
+  padding:16px; font-size:12.5px; line-height:1.7; color:color-mix(in srgb, var(--pr-texte) 78%, transparent);
   text-wrap:pretty;
 }
 
@@ -2125,7 +2397,7 @@ form[name="form_login"] .content { display: grid; justify-content: center; justi
 #wombat #pr_team_corps img{
   width:100%; aspect-ratio:1; object-fit:cover;
   border-radius:50%; border:1px solid var(--pr-filet);
-  background:rgba(255,255,255,.05);
+  background:var(--pr-vitre);
   transition:border-color .25s ease, transform .25s ease;
 }
 #wombat #pr_team_corps img:hover{
@@ -2140,9 +2412,9 @@ form[name="form_login"] .content { display: grid; justify-content: center; justi
 #wombat #pr_talents_corps tr{ display:contents; }
 #wombat #pr_talents_corps td{
   padding:6px 12px; border-radius:999px;
-  border:1px solid var(--pr-filet); background:rgba(255,255,255,.03);
+  border:1px solid var(--pr-filet); background:var(--pr-vitre-2);
   font-size:10px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
-  color:rgba(238,243,247,.72); white-space:nowrap;
+  color:color-mix(in srgb, var(--pr-texte) 72%, transparent); white-space:nowrap;
 }
 #wombat #pr_talents_corps td font{ font-weight:800; letter-spacing:.04em; }
 
@@ -2156,7 +2428,7 @@ form[name="form_login"] .content { display: grid; justify-content: center; justi
   padding:12px 14px; border-radius:4px;
   border:1px solid var(--pr-filet);
   border-left:2px solid color-mix(in oklab, var(--pr-accent) 60%, transparent);
-  background:linear-gradient(90deg, rgba(255,255,255,.05), rgba(255,255,255,0));
+  background:linear-gradient(90deg, var(--pr-vitre), transparent);
 }
 #wombat .pr-champ b{
   font-size:9px; font-weight:700; letter-spacing:.18em; text-transform:uppercase;
@@ -2170,12 +2442,12 @@ form[name="form_login"] .content { display: grid; justify-content: center; justi
 #wombat .pr-rp{
   display:flex; align-items:center; gap:12px; flex-wrap:wrap;
   padding:10px 12px; border-radius:3px;
-  border:1px solid var(--pr-filet); background:rgba(255,255,255,.03);
+  border:1px solid var(--pr-filet); background:var(--pr-vitre-2);
   transition:border-color .25s ease, background .25s ease;
 }
 #wombat .pr-rp:hover{
   border-color:color-mix(in oklab, var(--pr-accent) 45%, transparent);
-  background:rgba(127,176,212,.07);
+  background:var(--pr-accent-voile);
 }
 #wombat .pr-rp a{
   font-family:var(--pr-titre); font-size:16px; font-weight:700;
