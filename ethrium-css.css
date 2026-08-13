@@ -842,7 +842,12 @@ html[data-nav="off"] .eth-rail__links::before, html[data-nav="off"] .aeth-rail__
 }
 
 /* ── top sites ── */
-.eth-topsites__nums { display: flex; gap: 8px; margin-bottom: 12px; }
+.eth-card.topsite {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.eth-topsites__nums { display: flex; gap: 8px; }
 .eth-topsites__nums a {
   width: 38px; height: 38px; border-radius: 12px;
   background: var(--beige); border: 1px solid var(--bordure);
