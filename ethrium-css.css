@@ -996,7 +996,7 @@ html[data-nav="off"] .eth-rail__links::before, html[data-nav="off"] .aeth-rail__
 /* ════════ 8. QEEL / EN LIGNE ════════ */
 
 .qeel, .partenaire_footer{
-  --qeel-img: var(--PAImg, url('https://2img.net/i.imgur.com/hZFIwvw.png'));
+  --qeel-img: url('https://2img.net/i.imgur.com/hZFIwvw.png');
   --qeel-voile: .82;          
   --qeel-radius: 6px;
   --qeel-encre: var(--encre, #1D2733);
@@ -1037,9 +1037,7 @@ html[data-nav="off"] .eth-rail__links::before, html[data-nav="off"] .aeth-rail__
 }
 .qeel::before, .partenaire_footer::before{      /* dégradé de lisibilité */
   content:""; position:absolute; inset:0; z-index:-1;
-  background:
-    radial-gradient(120% 90% at 100% 0%, rgba(127,176,212,.16), transparent 60%),
-    linear-gradient(160deg, rgba(29,39,51,.55) 0%, rgba(29,39,51,.92) 62%);
+linear-gradient(to top, var(--encre) 0%, transparent 40%),linear-gradient(100deg, color-mix(in srgb,var(--encre) 55%,transparent) 0%, color-mix(in srgb,var(--encre) 92%,transparent) 46%, var(--encre) 72%),var(--qeel-img)
 }
 .partenaire_footer{ margin-top:18px; }
 
