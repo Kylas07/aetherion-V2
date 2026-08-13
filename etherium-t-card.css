@@ -1,12 +1,248 @@
-/* ============================================================
-   T-card Aetherion — palette du forum
-   Aucune couleur en dur : tout dérive des variables du thème,
-   la carte suit donc le mode jour / nuit.
-   La variable posée en inline sur la carte reste maîtresse :
-     --acc  accent de la carte (défaut : --accent)
-   Les couleurs de types et de balls (--bt / --bb) restent
-   celles passées en inline par l'éditeur.
-   ============================================================ */
+
+.aeth-fiche{
+  --af-carte: var(--carte, #FFFFFF);
+  --af-band: var(--beige-band, var(--beige, #F8F5F0));
+  --af-bordure: var(--bordure, rgba(24,34,46,.13));
+  --af-filet: var(--filet, rgba(24,34,46,.10));
+  --af-titre: var(--titre, #18222E);
+  --af-texte: var(--texte, #2E3B49);
+  --af-doux: var(--texte-doux, #4A5B6D);
+  --af-muet: var(--muet, #8695A5);
+  --af-encre: var(--encre, #1D2733);
+  --af-encre-texte: var(--encre-texte, #EEF3F7);
+  --af-acc: var(--acc, var(--accent, #4A7EA8));
+  --af-gc: var(--gc, var(--groupe, var(--accent, #4A7EA8)));
+  --af-titrage: var(--font-titre, 'Cormorant Garamond'), Georgia, serif;
+  --af-label: var(--font-label, var(--font, 'Karla')), system-ui, sans-serif;
+  --af-corps: var(--font, 'Karla'), system-ui, sans-serif;
+
+  width:650px; max-width:100%; margin:0 auto;
+  font-family:var(--af-corps);
+  background:var(--af-carte);
+  border:1px solid var(--af-bordure); border-radius:16px; overflow:hidden;
+  box-shadow:var(--shadowCard, 0 18px 44px -22px rgba(45,38,30,.38));
+  color:var(--af-texte);
+}
+.aeth-fiche *{ box-sizing:border-box; }
+.aeth-fiche .ph{
+  font-family:var(--af-label); font-size:10px; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--af-muet);
+}
+
+/* ---------- bandeau ---------- */
+.aeth-fiche .af-banner{
+  position:relative; height:240px; overflow:hidden;
+  background:
+    linear-gradient(160deg, color-mix(in srgb, var(--af-encre) 88%, transparent), var(--af-encre)),
+    var(--af-encre);
+}
+.aeth-fiche .af-banner-img{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+}
+.aeth-fiche .af-banner-ph{
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  font-family:var(--af-label); font-size:10px; letter-spacing:.16em; text-transform:uppercase;
+  color:color-mix(in srgb, var(--af-encre-texte) 45%, transparent);
+}
+.aeth-fiche .af-banner-grad{
+  position:absolute; inset:0;
+  background:linear-gradient(180deg,
+    color-mix(in srgb, var(--af-encre) 18%, transparent) 0%,
+    transparent 35%,
+    color-mix(in srgb, var(--af-encre) 90%, transparent) 100%);
+}
+.aeth-fiche .af-kick{
+  position:absolute; left:26px; top:18px;
+  font-family:var(--af-label); font-size:10px; font-weight:700;
+  letter-spacing:.24em; text-transform:uppercase;
+  color:color-mix(in srgb, var(--af-encre-texte) 80%, transparent);
+}
+.aeth-fiche .af-groupchip{
+  position:absolute; right:26px; top:14px;
+  padding:6px 16px; border-radius:999px;
+  background:color-mix(in srgb, var(--af-gc) 22%, transparent);
+  border:1px solid color-mix(in srgb, var(--af-gc) 62%, transparent);
+  backdrop-filter:blur(6px);
+  color:var(--af-encre-texte);
+}
+.aeth-fiche .af-groupname{
+  font-family:var(--af-label); font-size:10px; font-weight:700;
+  letter-spacing:.22em; text-transform:uppercase;
+}
+.aeth-fiche .af-headline{ position:absolute; left:26px; right:26px; bottom:18px; }
+.aeth-fiche .af-name{
+  font-family:var(--af-titrage); font-size:44px; font-weight:700;
+  line-height:.95; letter-spacing:-.01em; text-transform:uppercase;
+  color:var(--af-encre-texte);
+  text-shadow:0 2px 12px color-mix(in srgb, var(--af-encre) 70%, transparent);
+}
+.aeth-fiche .af-alias{
+  margin-top:6px; font-family:var(--af-titrage); font-style:italic; font-size:17px;
+  color:color-mix(in srgb, var(--af-encre-texte) 82%, transparent);
+}
+.aeth-fiche .af-grouptag{
+  font-family:var(--af-label); font-style:normal; font-weight:700;
+  font-size:10px; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--af-encre-texte);
+}
+.aeth-fiche .af-accentbar{
+  height:3px;
+  background:linear-gradient(90deg, var(--af-acc) 0 250px, var(--af-gc) 250px);
+}
+
+/* ---------- corps : colonne d'identité + texte ---------- */
+.aeth-fiche .af-body{ display:flex; align-items:stretch; }
+.aeth-fiche .af-side{
+  width:250px; flex:none; display:flex; flex-direction:column;
+  background:var(--af-band); border-right:1px solid var(--af-bordure);
+}
+.aeth-fiche .af-portrait{
+  width:250px; height:350px; overflow:hidden;
+  display:flex; align-items:center; justify-content:center;
+  border-bottom:1px solid var(--af-bordure);
+  background:color-mix(in srgb, var(--af-titre) 7%, transparent);
+}
+.aeth-fiche .af-portrait img{ width:100%; height:100%; object-fit:cover; display:block; }
+.aeth-fiche .af-idlist{ padding:16px 20px 6px; display:grid; gap:12px; }
+.aeth-fiche .af-idlabel{
+  font-family:var(--af-label); font-size:9px; font-weight:700;
+  letter-spacing:.18em; text-transform:uppercase; color:var(--af-muet);
+}
+.aeth-fiche .af-idval{
+  margin-top:2px; font-size:13.5px; font-weight:600; color:var(--af-titre);
+}
+.aeth-fiche .af-sidetraits{ padding:14px 20px 20px; margin-top:auto; }
+.aeth-fiche .af-sidetraits .af-idlabel{ margin-bottom:8px; }
+.aeth-fiche .af-traits{ display:flex; flex-wrap:wrap; gap:6px; }
+.aeth-fiche .af-trait{
+  padding:4px 11px; border-radius:999px;
+  background:var(--af-carte); border:1px solid var(--af-bordure);
+  font-size:11px; font-weight:600; letter-spacing:.04em; color:var(--af-doux);
+}
+
+.aeth-fiche .af-main{
+  flex:1; min-width:0; padding:22px 26px;
+  display:grid; gap:22px; align-content:start;
+}
+.aeth-fiche .af-sech{
+  display:flex; align-items:center; gap:12px; margin-bottom:11px;
+  font-family:var(--af-label); font-size:10px; font-weight:700;
+  letter-spacing:.22em; text-transform:uppercase; color:var(--af-acc);
+}
+.aeth-fiche .af-sech::after{
+  content:""; flex:1; height:1px; border-radius:2px;
+  background:color-mix(in srgb, var(--af-acc) 40%, transparent);
+}
+.aeth-fiche .af-scroll{ max-height:300px; overflow-y:auto; padding-right:8px; }
+.aeth-fiche .af-txt p{ margin:0 0 12px; font-size:13.5px; line-height:1.75; text-wrap:pretty; }
+.aeth-fiche .af-txt p:last-child{ margin-bottom:0; }
+.aeth-fiche .af-txt a{ color:var(--af-acc); }
+
+/* ---------- histoire ---------- */
+.aeth-fiche .af-histsec{ padding:22px 26px; border-top:1px solid var(--af-bordure); }
+.aeth-fiche .af-histrow{ display:flex; gap:20px; align-items:flex-start; }
+.aeth-fiche .af-photo{
+  width:220px; height:220px; flex:none; overflow:hidden;
+  display:flex; align-items:center; justify-content:center;
+  border-radius:13px; border:1px solid var(--af-bordure);
+  background:color-mix(in srgb, var(--af-titre) 7%, transparent);
+}
+.aeth-fiche .af-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+.aeth-fiche .af-histtxt{ flex:1; min-width:0; }
+
+/* ---------- bande Pokémon (encre) ---------- */
+.aeth-fiche .af-pkmn{
+  display:flex; gap:18px; align-items:center;
+  padding:20px 26px; background:var(--af-encre); color:var(--af-encre-texte);
+}
+.aeth-fiche .af-pkmn-sprite{
+  width:104px; height:104px; flex:none; overflow:hidden;
+  display:flex; align-items:center; justify-content:center; border-radius:12px;
+  background:color-mix(in srgb, var(--af-encre-texte) 6%, transparent);
+  border:1px solid color-mix(in srgb, var(--af-encre-texte) 14%, transparent);
+}
+.aeth-fiche .af-pkmn-sprite img{
+  max-width:100%; max-height:100%; object-fit:contain; image-rendering:pixelated;
+}
+.aeth-fiche .af-pkmn-sprite .ph{
+  color:color-mix(in srgb, var(--af-encre-texte) 45%, transparent);
+}
+.aeth-fiche .af-pkmn-body{ flex:1; min-width:0; }
+.aeth-fiche .af-pkmn-kick{
+  margin-bottom:5px; font-family:var(--af-label); font-size:9px; font-weight:700;
+  letter-spacing:.22em; text-transform:uppercase;
+  color:color-mix(in srgb, var(--af-acc) 70%, var(--af-encre-texte));
+}
+.aeth-fiche .af-pkmn-top{ display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; }
+.aeth-fiche .af-pkmn-name{
+  font-family:var(--af-titrage); font-size:26px; font-weight:700; line-height:1;
+  letter-spacing:.01em; color:var(--af-encre-texte);
+}
+.aeth-fiche .af-pkmn-meta{
+  font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+  color:color-mix(in srgb, var(--af-encre-texte) 62%, transparent);
+}
+.aeth-fiche .af-pkmn-type{
+  padding:3px 10px; border-radius:999px;
+  font-size:9px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--af-encre-texte);
+}
+.aeth-fiche .af-pkmn-desc{
+  margin:8px 0 0; font-family:var(--af-titrage); font-style:italic;
+  font-size:15px; line-height:1.6;
+  color:color-mix(in srgb, var(--af-encre-texte) 82%, transparent);
+}
+
+/* ---------- pied joueur ---------- */
+.aeth-fiche .af-player{
+  display:flex; gap:8px 26px; align-items:baseline; flex-wrap:wrap;
+  padding:16px 26px; background:var(--af-band);
+  border-top:1px solid var(--af-bordure);
+}
+.aeth-fiche .af-player-kick{
+  font-family:var(--af-label); font-size:9px; font-weight:700;
+  letter-spacing:.2em; text-transform:uppercase; color:var(--af-muet);
+}
+.aeth-fiche .af-plc{ font-size:13px; color:var(--af-titre); }
+.aeth-fiche .af-plc .l{
+  margin-right:5px; font-family:var(--af-label); font-size:9px; font-weight:700;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--af-muet);
+}
+.aeth-fiche .af-player-note{
+  width:100%; margin:2px 0 0; font-size:12.5px; line-height:1.6;
+  font-style:italic; color:var(--af-doux);
+}
+.aeth-fiche .af-empty{ font-size:12px; font-style:italic; color:var(--af-muet); }
+
+/* ---------- responsive ---------- */
+@media (max-width: 700px){
+  .aeth-fiche .af-body{ flex-direction:column; }
+  .aeth-fiche .af-side{ width:100%; border-right:0; border-bottom:1px solid var(--af-bordure); }
+  .aeth-fiche .af-portrait{ width:100%; height:300px; }
+  .aeth-fiche .af-histrow{ flex-direction:column; }
+  .aeth-fiche .af-photo{ width:100%; height:220px; }
+  .aeth-fiche .af-name{ font-size:34px; }
+}
+
+.aeth-fiche{ --af-teinte: .22; }
+.aeth-fiche .ty,
+.aeth-fiche .mvbar,
+.aeth-fiche .af-pkmn-type{
+  background-image:linear-gradient(
+    color-mix(in srgb, var(--af-encre) calc(var(--af-teinte) * 100%), transparent),
+    color-mix(in srgb, var(--af-encre) calc(var(--af-teinte) * 100%), transparent));
+  background-blend-mode:multiply;
+}
+.aeth-fiche .ball{ position:relative; }
+.aeth-fiche .ball::after{
+  content:""; position:absolute; inset:0; border-radius:50%; pointer-events:none;
+  background:color-mix(in srgb, var(--af-encre) calc(var(--af-teinte) * 60%), transparent);
+}
+/* sexe : ♂ sur l'accent, ♀ sur la teinte rosée de la palette */
+.aeth-fiche .gd{ color:var(--t4, #C07F92) !important; }
+.aeth-fiche .gd[style*="2F7BE6"],
+.aeth-fiche .gd[style*="2f7be6"]{ color:var(--af-acc) !important; }
+
 .tc{
   --tc-carte: var(--carte, #FFFFFF);
   --tc-band: var(--beige, #F5F1EA);
@@ -181,3 +417,23 @@
   .tc .sb.lg{ width:120px; height:120px; }
   .tc .nm{ font-size:23px; }
 }
+
+
+.tc{ --tc-teinte: .22; }
+.tc .ty,
+.tc .mvbar,
+.tc .af-pkmn-type{
+  background-image:linear-gradient(
+    color-mix(in srgb, var(--tc-encre) calc(var(--tc-teinte) * 100%), transparent),
+    color-mix(in srgb, var(--tc-encre) calc(var(--tc-teinte) * 100%), transparent));
+  background-blend-mode:multiply;
+}
+.tc .ball{ position:relative; }
+.tc .ball::after{
+  content:""; position:absolute; inset:0; border-radius:50%; pointer-events:none;
+  background:color-mix(in srgb, var(--tc-encre) calc(var(--tc-teinte) * 60%), transparent);
+}
+
+.tc .gd{ color:var(--t4, #C07F92) !important; }
+.tc .gd[style*="2F7BE6"],
+.tc .gd[style*="2f7be6"]{ color:var(--tc-acc) !important; }
