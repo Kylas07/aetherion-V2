@@ -772,7 +772,7 @@ html[data-nav="off"] .eth-rail__links::before, html[data-nav="off"] .aeth-rail__
 .eth-home__row {
   grid-column: 1 / -1;
   display: grid; gap: 18px;
-  grid-template-columns: repeat(auto-fit, minmax(228px,1fr));
+  grid-template-columns: 2fr 1fr 2fr;
 }
 .eth-home__left   { grid-column: 1; grid-row: 2; align-self: stretch; display: flex; flex-direction: column; gap: 18px; }
 .eth-home__center { grid-column: 2; grid-row: 2; }
@@ -870,7 +870,7 @@ html[data-nav="off"] .eth-rail__links::before, html[data-nav="off"] .aeth-rail__
 /* ── objet du mois ── */
 .eth-item { display: flex; gap: 14px; align-items: center; }
 .eth-item__img {
-  position: relative; flex: none; width: 58px; height: 58px; border-radius: 16px;
+  position: relative; flex: none; width: 150px; height: 150px; border-radius: 16px;
   background: linear-gradient(150deg, var(--img-a), var(--img-b)) center/cover no-repeat;
 }
 .eth-item__img b {
@@ -969,9 +969,6 @@ html[data-nav="off"] .eth-rail__links::before, html[data-nav="off"] .aeth-rail__
   .eth-home { grid-template-columns: 1fr; }
   .eth-staff { grid-template-columns: 1fr; }
 }
-
-/* la rangée haute n'a plus que 3 blocs, ils prennent plus d'air */
-.eth-home__row { grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); }
 
 /* colonne gauche : plus de staff, guide et météo se partagent la hauteur */
 .eth-home__left { justify-content: stretch; }
