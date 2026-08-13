@@ -598,7 +598,7 @@ html[data-theme="nuit"] .eth-hero__veil, html[data-theme="nuit"] .aeth-hero__vei
 .eth-login__reg, .aeth-login__reg { font-family: var(--font-label), sans-serif; font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.7) !important; margin-left: 6px; }
 .eth-theme, .aeth-theme { display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.2); border-radius: 999px; padding: 4px; }
 .eth-theme .color-scheme-toggle, .aeth-theme .color-scheme-toggle {
-  width: auto; height: auto; background: transparent; border: 0;
+  width: auto; height: auto; background: var(--accent-clair); border: 0;
   padding: 8px 15px !important; border-radius: 999px;
   font-family: var(--font-label), sans-serif; font-size: 10.5px;
   letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.7);
