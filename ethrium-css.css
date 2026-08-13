@@ -931,13 +931,23 @@ html[data-nav="off"] .eth-rail__links::before, html[data-nav="off"] .aeth-rail__
 .eth-hordes .eth-kicker { margin: 0 0 12px; font-size: 10px; color: rgba(255,255,255,.72); }
 .eth-hordes .eth-kicker span { color: var(--blanc); }
 .eth-hordes__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(34px,1fr)); gap: 6px; }
-.eth-hordes__grid span, .eth-hordes__grid a {
+.eth-hordes__grid span {
   aspect-ratio: 1; border-radius: 12px;
   background: rgba(255,255,255,.16) center/cover no-repeat;
   border: 1px solid rgba(255,255,255,.22);
   transition: transform .15s ease, border-color .15s ease;
 }
-.eth-hordes__grid a:hover { transform: translateY(-3px); border-color: var(--blanc); }
+.eth-hordes__grid img {     
+    width: 40px;
+    height: 40px;
+    border-radius: 11px;
+    background: rgba(255, 255, 255, .08);
+    border: 1px solid rgba(255, 255, 255, .16);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform .15s, border-color .15s; }
+.eth-hordes__grid img:hover { transform: translateY(-3px); border-color: var(--blanc); }
 .eth-hordes__hint { margin: 12px 0 0; font-size: 11.5px; color: rgba(255,255,255,.78); }
 
 /* ── dernières discussions ── */
