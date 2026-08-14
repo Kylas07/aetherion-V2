@@ -1,4 +1,4 @@
-/* Shared data + helpers for the Aetherion "fiche de présentation" editor — v2 layout.
+/* Shared data + helpers for the Etheriuù "fiche de présentation" editor — v2 layout.
    Exposes everything on window.FICHE.
    Récupération = scan of a pasted/fetched fiche DOM (no base64 blob):
    every field lives in a semantic class or a data-* attribute so the sheet
@@ -241,7 +241,7 @@
       (withCss ? '<style>' + FICHE_CSS + '</style>' : '') +
       '<div class="af-banner">' + banner +
         '<div class="af-banner-grad"></div>' +
-        '<div class="af-kick">Aetherion · Fiche de présentation</div>' +
+        '<div class="af-kick">Etherium · Fiche de présentation</div>' +
         '<div class="af-groupchip"><span class="af-groupname">' + esc(d.group) + '</span></div>' +
         '<div class="af-headline"><div class="af-name">' + esc(d.name || 'Sans nom') + '</div>' + aliasLine + '</div>' +
       '</div>' +
@@ -326,7 +326,7 @@
     }
     const doc = new DOMParser().parseFromString(String(htmlOrEl || ''), 'text/html');
     const root = doc.querySelector('.aeth-fiche');
-    if (!root) throw new Error('Aucune fiche Aetherion détectée dans ce code');
+    if (!root) throw new Error('Aucune fiche Etherium détectée dans ce code');
     return scanRoot(root);
   }
 
