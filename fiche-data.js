@@ -111,67 +111,67 @@
   }
 
   /* ================= BUILD (layout v2 : bannière + portrait latéral + scrolls) ================= */
-  // const FICHE_CSS =
-  //   "@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');" +
-  //   '.aeth-fiche{width:650px;max-width:100%;margin:0 auto;font-family:' + BODYF + ';background:#FFFFFF;border:1px solid #E7E2DA;border-radius:16px;overflow:hidden;box-shadow:0 18px 44px -22px rgba(45,38,30,.38);color:#4E483F}' +
-  //   '.aeth-fiche *{box-sizing:border-box}' +
-  //   '.aeth-fiche .ph{font-family:monospace;font-size:11px;color:#948B7F}' +
-  //   /* bannière */
-  //   '.aeth-fiche .af-banner{position:relative;height:240px;background:' + STRIPE_D + ';overflow:hidden}' +
-  //   '.aeth-fiche .af-banner-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}' +
-  //   '.aeth-fiche .af-banner-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:11px;color:#8B837A}' +
-  //   '.aeth-fiche .af-banner-grad{position:absolute;inset:0;background:linear-gradient(180deg,rgba(33,28,24,.15) 0%,rgba(33,28,24,0) 35%,rgba(33,28,24,.88) 100%)}' +
-  //   '.aeth-fiche .af-kick{position:absolute;left:26px;top:18px;font-family:' + DISP + ';font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#FFFFFF;font-weight:600;opacity:.85}' +
-  //   '.aeth-fiche .af-groupchip{position:absolute;right:26px;top:14px;background:var(--gc);border-radius:999px;padding:6px 16px;color:#FFFFFF}' +
-  //   '.aeth-fiche .af-groupname{font-family:' + DISP + ';letter-spacing:3px;text-transform:uppercase;font-weight:700;font-size:12px}' +
-  //   '.aeth-fiche .af-headline{position:absolute;left:26px;right:26px;bottom:18px}' +
-  //   '.aeth-fiche .af-name{font-family:' + DISP + ';font-size:40px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#FFFFFF;line-height:1;text-shadow:0 2px 10px rgba(0,0,0,.5)}' +
-  //   '.aeth-fiche .af-alias{font-style:italic;color:#EDE6DD;font-size:14px;margin-top:7px;opacity:.95}' +
-  //   '.aeth-fiche .af-grouptag{font-style:normal;font-weight:600;color:#FFFFFF}' +
-  //   '.aeth-fiche .af-accentbar{height:4px;background:linear-gradient(90deg,var(--acc) 0 250px,var(--gc) 250px)}' +
-  //   /* corps : colonne portrait + textes */
-  //   '.aeth-fiche .af-body{display:flex;align-items:stretch}' +
-  //   '.aeth-fiche .af-side{width:250px;flex:none;background:#F8F5F0;border-right:1px solid #ECE6DD;display:flex;flex-direction:column}' +
-  //   '.aeth-fiche .af-portrait{width:250px;height:350px;background:' + STRIPE_L + ';display:flex;align-items:center;justify-content:center;border-bottom:1px solid #ECE6DD;overflow:hidden}' +
-  //   '.aeth-fiche .af-portrait img{width:100%;height:100%;object-fit:cover;display:block}' +
-  //   '.aeth-fiche .af-idlist{padding:16px 20px 6px;display:grid;gap:12px}' +
-  //   '.aeth-fiche .af-idlabel{font-size:9px;letter-spacing:1.4px;text-transform:uppercase;color:#948B7F;font-weight:700}' +
-  //   '.aeth-fiche .af-idval{font-size:13.5px;font-weight:600;color:#26221D;margin-top:2px}' +
-  //   '.aeth-fiche .af-sidetraits{padding:14px 20px 20px;margin-top:auto}' +
-  //   '.aeth-fiche .af-sidetraits .af-idlabel{margin-bottom:8px}' +
-  //   '.aeth-fiche .af-traits{display:flex;flex-wrap:wrap;gap:6px}' +
-  //   '.aeth-fiche .af-trait{background:#FFFFFF;border:1px solid #ECE6DD;border-radius:6px;padding:4px 10px;font-size:11.5px;font-weight:600;color:#4E483F}' +
-  //   '.aeth-fiche .af-main{flex:1;min-width:0;padding:22px 26px;display:grid;gap:22px;align-content:start}' +
-  //   /* sections */
-  //   '.aeth-fiche .af-sech{font-family:' + DISP + ';font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--acc);font-weight:600;display:flex;align-items:center;gap:12px;margin-bottom:11px}' +
-  //   '.aeth-fiche .af-sech::after{content:"";flex:1;height:2px;background:var(--acc);opacity:.28;border-radius:2px}' +
-  //   '.aeth-fiche .af-scroll{max-height:300px;overflow-y:auto;padding-right:8px}' +
-  //   '.aeth-fiche .af-txt p{margin:0 0 12px;font-size:13.5px;line-height:1.7}.aeth-fiche .af-txt p:last-child{margin-bottom:0}' +
-  //   /* histoire : image carrée + texte */
-  //   '.aeth-fiche .af-histsec{padding:22px 26px;border-top:1px solid #E7E2DA}' +
-  //   '.aeth-fiche .af-histrow{display:flex;gap:20px;align-items:flex-start}' +
-  //   '.aeth-fiche .af-photo{width:220px;height:220px;flex:none;border-radius:13px;overflow:hidden;border:1px solid #E7E2DA;background:' + STRIPE_L + ';display:flex;align-items:center;justify-content:center}' +
-  //   '.aeth-fiche .af-photo img{width:100%;height:100%;object-fit:cover;display:block}' +
-  //   '.aeth-fiche .af-histtxt{flex:1;min-width:0}' +
-  //   /* pokémon fétiche */
-  //   '.aeth-fiche .af-pkmn{background:#211C18;padding:20px 26px;display:flex;gap:18px;align-items:center}' +
-  //   '.aeth-fiche .af-pkmn-sprite{width:104px;height:104px;flex:none;border-radius:12px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12)}' +
-  //   '.aeth-fiche .af-pkmn-sprite img{max-width:100%;max-height:100%;object-fit:contain;image-rendering:pixelated}' +
-  //   '.aeth-fiche .af-pkmn-sprite .ph{font-size:10px;color:#8B837A}' +
-  //   '.aeth-fiche .af-pkmn-body{flex:1;min-width:0}' +
-  //   '.aeth-fiche .af-pkmn-kick{font-family:' + DISP + ';font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:#E8B49A;font-weight:600;margin-bottom:5px}' +
-  //   '.aeth-fiche .af-pkmn-top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}' +
-  //   '.aeth-fiche .af-pkmn-name{font-family:' + DISP + ';font-size:22px;font-weight:700;letter-spacing:.5px;color:var(--acc)}' +
-  //   '.aeth-fiche .af-pkmn-meta{font-size:12px;color:#EDE6DD}' +
-  //   '.aeth-fiche .af-pkmn-type{color:#fff;font-size:10.5px;font-weight:700;padding:3px 10px;border-radius:6px;letter-spacing:.3px}' +
-  //   '.aeth-fiche .af-pkmn-desc{margin:8px 0 0;font-size:12.5px;line-height:1.6;color:#EDE6DD;font-style:italic}' +
-  //   /* derrière l'écran */
-  //   '.aeth-fiche .af-player{background:#F8F5F0;border-top:1px solid #ECE6DD;padding:16px 26px;display:flex;gap:8px 26px;align-items:baseline;flex-wrap:wrap}' +
-  //   '.aeth-fiche .af-player-kick{font-family:' + DISP + ';font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#948B7F;font-weight:600}' +
-  //   '.aeth-fiche .af-plc{font-size:13px;color:#26221D}' +
-  //   '.aeth-fiche .af-plc .l{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#948B7F;font-weight:700;margin-right:5px}' +
-  //   '.aeth-fiche .af-player-note{margin:2px 0 0;font-size:12px;line-height:1.6;color:#4E483F;font-style:italic;width:100%}' +
-  //   '.aeth-fiche .af-empty{font-size:12px;color:#948B7F;font-style:italic}';
+  const FICHE_CSS =
+    "@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');" +
+    '.aeth-fiche{width:650px;max-width:100%;margin:0 auto;font-family:' + BODYF + ';background:#FFFFFF;border:1px solid #E7E2DA;border-radius:16px;overflow:hidden;box-shadow:0 18px 44px -22px rgba(45,38,30,.38);color:#4E483F}' +
+    '.aeth-fiche *{box-sizing:border-box}' +
+    '.aeth-fiche .ph{font-family:monospace;font-size:11px;color:#948B7F}' +
+    /* bannière */
+    '.aeth-fiche .af-banner{position:relative;height:240px;background:' + STRIPE_D + ';overflow:hidden}' +
+    '.aeth-fiche .af-banner-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}' +
+    '.aeth-fiche .af-banner-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:11px;color:#8B837A}' +
+    '.aeth-fiche .af-banner-grad{position:absolute;inset:0;background:linear-gradient(180deg,rgba(33,28,24,.15) 0%,rgba(33,28,24,0) 35%,rgba(33,28,24,.88) 100%)}' +
+    '.aeth-fiche .af-kick{position:absolute;left:26px;top:18px;font-family:' + DISP + ';font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#FFFFFF;font-weight:600;opacity:.85}' +
+    '.aeth-fiche .af-groupchip{position:absolute;right:26px;top:14px;background:var(--gc);border-radius:999px;padding:6px 16px;color:#FFFFFF}' +
+    '.aeth-fiche .af-groupname{font-family:' + DISP + ';letter-spacing:3px;text-transform:uppercase;font-weight:700;font-size:12px}' +
+    '.aeth-fiche .af-headline{position:absolute;left:26px;right:26px;bottom:18px}' +
+    '.aeth-fiche .af-name{font-family:' + DISP + ';font-size:40px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#FFFFFF;line-height:1;text-shadow:0 2px 10px rgba(0,0,0,.5)}' +
+    '.aeth-fiche .af-alias{font-style:italic;color:#EDE6DD;font-size:14px;margin-top:7px;opacity:.95}' +
+    '.aeth-fiche .af-grouptag{font-style:normal;font-weight:600;color:#FFFFFF}' +
+    '.aeth-fiche .af-accentbar{height:4px;background:linear-gradient(90deg,var(--acc) 0 250px,var(--gc) 250px)}' +
+    /* corps : colonne portrait + textes */
+    '.aeth-fiche .af-body{display:flex;align-items:stretch}' +
+    '.aeth-fiche .af-side{width:250px;flex:none;background:#F8F5F0;border-right:1px solid #ECE6DD;display:flex;flex-direction:column}' +
+    '.aeth-fiche .af-portrait{width:250px;height:350px;background:' + STRIPE_L + ';display:flex;align-items:center;justify-content:center;border-bottom:1px solid #ECE6DD;overflow:hidden}' +
+    '.aeth-fiche .af-portrait img{width:100%;height:100%;object-fit:cover;display:block}' +
+    '.aeth-fiche .af-idlist{padding:16px 20px 6px;display:grid;gap:12px}' +
+    '.aeth-fiche .af-idlabel{font-size:9px;letter-spacing:1.4px;text-transform:uppercase;color:#948B7F;font-weight:700}' +
+    '.aeth-fiche .af-idval{font-size:13.5px;font-weight:600;color:#26221D;margin-top:2px}' +
+    '.aeth-fiche .af-sidetraits{padding:14px 20px 20px;margin-top:auto}' +
+    '.aeth-fiche .af-sidetraits .af-idlabel{margin-bottom:8px}' +
+    '.aeth-fiche .af-traits{display:flex;flex-wrap:wrap;gap:6px}' +
+    '.aeth-fiche .af-trait{background:#FFFFFF;border:1px solid #ECE6DD;border-radius:6px;padding:4px 10px;font-size:11.5px;font-weight:600;color:#4E483F}' +
+    '.aeth-fiche .af-main{flex:1;min-width:0;padding:22px 26px;display:grid;gap:22px;align-content:start}' +
+    /* sections */
+    '.aeth-fiche .af-sech{font-family:' + DISP + ';font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--acc);font-weight:600;display:flex;align-items:center;gap:12px;margin-bottom:11px}' +
+    '.aeth-fiche .af-sech::after{content:"";flex:1;height:2px;background:var(--acc);opacity:.28;border-radius:2px}' +
+    '.aeth-fiche .af-scroll{max-height:300px;overflow-y:auto;padding-right:8px}' +
+    '.aeth-fiche .af-txt p{margin:0 0 12px;font-size:13.5px;line-height:1.7}.aeth-fiche .af-txt p:last-child{margin-bottom:0}' +
+    /* histoire : image carrée + texte */
+    '.aeth-fiche .af-histsec{padding:22px 26px;border-top:1px solid #E7E2DA}' +
+    '.aeth-fiche .af-histrow{display:flex;gap:20px;align-items:flex-start}' +
+    '.aeth-fiche .af-photo{width:220px;height:220px;flex:none;border-radius:13px;overflow:hidden;border:1px solid #E7E2DA;background:' + STRIPE_L + ';display:flex;align-items:center;justify-content:center}' +
+    '.aeth-fiche .af-photo img{width:100%;height:100%;object-fit:cover;display:block}' +
+    '.aeth-fiche .af-histtxt{flex:1;min-width:0}' +
+    /* pokémon fétiche */
+    '.aeth-fiche .af-pkmn{background:#211C18;padding:20px 26px;display:flex;gap:18px;align-items:center}' +
+    '.aeth-fiche .af-pkmn-sprite{width:104px;height:104px;flex:none;border-radius:12px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12)}' +
+    '.aeth-fiche .af-pkmn-sprite img{max-width:100%;max-height:100%;object-fit:contain;image-rendering:pixelated}' +
+    '.aeth-fiche .af-pkmn-sprite .ph{font-size:10px;color:#8B837A}' +
+    '.aeth-fiche .af-pkmn-body{flex:1;min-width:0}' +
+    '.aeth-fiche .af-pkmn-kick{font-family:' + DISP + ';font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:#E8B49A;font-weight:600;margin-bottom:5px}' +
+    '.aeth-fiche .af-pkmn-top{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}' +
+    '.aeth-fiche .af-pkmn-name{font-family:' + DISP + ';font-size:22px;font-weight:700;letter-spacing:.5px;color:var(--acc)}' +
+    '.aeth-fiche .af-pkmn-meta{font-size:12px;color:#EDE6DD}' +
+    '.aeth-fiche .af-pkmn-type{color:#fff;font-size:10.5px;font-weight:700;padding:3px 10px;border-radius:6px;letter-spacing:.3px}' +
+    '.aeth-fiche .af-pkmn-desc{margin:8px 0 0;font-size:12.5px;line-height:1.6;color:#EDE6DD;font-style:italic}' +
+    /* derrière l'écran */
+    '.aeth-fiche .af-player{background:#F8F5F0;border-top:1px solid #ECE6DD;padding:16px 26px;display:flex;gap:8px 26px;align-items:baseline;flex-wrap:wrap}' +
+    '.aeth-fiche .af-player-kick{font-family:' + DISP + ';font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#948B7F;font-weight:600}' +
+    '.aeth-fiche .af-plc{font-size:13px;color:#26221D}' +
+    '.aeth-fiche .af-plc .l{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#948B7F;font-weight:700;margin-right:5px}' +
+    '.aeth-fiche .af-player-note{margin:2px 0 0;font-size:12px;line-height:1.6;color:#4E483F;font-style:italic;width:100%}' +
+    '.aeth-fiche .af-empty{font-size:12px;color:#948B7F;font-style:italic}';
 
   function buildFicheHTML(d, inlineCss) {
     d = normalize(d);
@@ -238,7 +238,7 @@
     };
 
     return '<div class="aeth-fiche" data-accent="' + esc(acc) + '" data-group="' + esc(d.group) + '" style="--acc:' + esc(acc) + ';--gc:' + gc + '">' +
-      // (withCss ? '<style>' + FICHE_CSS + '</style>' : '') +
+      (withCss ? '<style>' + FICHE_CSS + '</style>' : '') +
       '<div class="af-banner">' + banner +
         '<div class="af-banner-grad"></div>' +
         '<div class="af-kick">Etherium · Fiche de présentation</div>' +
@@ -335,7 +335,7 @@
     ACCENTS: ACCENTS, TYPE: TYPE, TYPE_LIST: TYPE_LIST, typeColor: typeColor, NATURES: NATURES,
     clone: clone, normalize: normalize, DEFAULT_FICHE: DEFAULT_FICHE,
     buildFicheHTML: buildFicheHTML, 
-     // FICHE_CSS: FICHE_CSS, 
+     FICHE_CSS: FICHE_CSS, 
      scanFiche: scanFiche
   };
 })();
