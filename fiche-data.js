@@ -334,6 +334,8 @@
     GROUPS: GROUPS, GROUP_META: GROUP_META, groupColor: groupColor, groupTag: groupTag,
     ACCENTS: ACCENTS, TYPE: TYPE, TYPE_LIST: TYPE_LIST, typeColor: typeColor, NATURES: NATURES,
     clone: clone, normalize: normalize, DEFAULT_FICHE: DEFAULT_FICHE,
-    buildFicheHTML: buildFicheHTML, FICHE_CSS: FICHE_CSS, scanFiche: scanFiche
+    buildFicheHTML: buildFicheHTML, 
+     // FICHE_CSS: FICHE_CSS, 
+     scanFiche: scanFiche
   };
 })();
