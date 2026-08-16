@@ -598,7 +598,7 @@
   background: transparent;
   border-top: none;
 }
-#FAM-msg-container { display: block; position: relative; width: 100%; }
+#FAM-msg-container { display: block; position: relative; width: 100%; height:100px;}
 #FAM #FAM-msg {
   display: block;
   width: 100%;
@@ -613,6 +613,8 @@
   line-height: 1.55;
   outline: 0;
   resize: none;
+      height: 100px!important;
+    overflow: auto!important;
 }
 #FAM #FAM-msg::placeholder { color: var(--muet, #8A857C); }
 #FAM .FAM-buttons-container {
