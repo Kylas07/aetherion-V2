@@ -575,7 +575,7 @@
 #FAM .FAM-msg-button:hover { color: var(--FAM-buttonHover); }
 #FAM .FAM-edit-button, #FAM .FAM-delete-button { margin: 0; font-size: 13px; }
 
-#FAM blockquote.FAM-codebox { margin: 0 0 10px; }
+#FAM blockquote.FAM-codebox { margin: 0 0 10px;color: var(--FAM-titleClr); }
 #FAM blockquote.FAM-codebox:before { background: var(--FAM-quoteBackground); border-radius: 12px 12px 0 0; }
 #FAM .FAM-codebox dt, #FAM .FAM-spoiler dt { color: var(--FAM-titleClr); font-weight: 700; }
 #FAM .FAM-spoiler_content:after { background: var(--FAM-chatBackground); border-radius: 5px; }
