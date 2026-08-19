@@ -156,9 +156,61 @@
     return { trainer: dec(parts[0]), showNick: parts[1] !== '0', team: team };
   }
 
+  /* ---------- import des anciennes cartes (code TCARD1: en base64) ---------- */
+  var TYPE_BY_KEY = {};
+  TYPE_LIST.forEach(function (t) {
+    TYPE_BY_KEY[t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')] = t;
+  });
+  function normType(t) {
+    var k = String(t || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
+    return TYPE_BY_KEY[k] || 'Normal';
+  }
+
+  function legacy(str) {
+    var raw = String(str || '');
+    var code = '';
+    try {
+      var el = new DOMParser().parseFromString(raw, 'text/html').querySelector('[data-tcard]');
+      if (el) code = el.getAttribute('data-tcard') || '';
+    } catch (e) {}
+    if (code.indexOf('TCARD1:') !== 0) {
+      var m = raw.match(/TCARD1:[A-Za-z0-9+/=]+/);
+      if (!m) throw new Error('pas une ancienne carte');
+      code = m[0];
+    }
+    var o = JSON.parse(decodeURIComponent(escape(atob(code.slice(7)))));
+    if (!o || !Array.isArray(o.team)) throw new Error('format');
+
+    return {
+      trainer: o.trainerName || 'Dresseur',
+      showNick: o.showNicknames !== false,
+      team: o.team.map(function (p) {
+        var types = (Array.isArray(p.types) ? p.types : ['Normal']).filter(Boolean).slice(0, 2).map(normType);
+        return {
+          sprite: p.sprite || '',
+          nickname: p.nickname || '',
+          species: p.species || '',
+          types: types.length ? types : ['Normal'],
+          level: p.level == null ? '' : String(p.level),
+          gender: p.gender || '♂',
+          ball: p.ballName || p.ball || 'Poké Ball',
+          talent: p.talent || '',
+          hidden: p.hidden === true,
+          nature: p.nature || 'Sérieux',
+          desc: p.desc || '',
+          /* l'ancien format ne connaissait pas l'origine : tout passe en "Niveau" */
+          moves: (p.moves || []).filter(function (m2) { return m2 && m2.name; }).map(function (m2) {
+            return { name: m2.name, type: normType(m2.type), src: 'n' };
+          })
+        };
+      })
+    };
+  }
+
   /* relit le HTML d'une carte dont le code aurait disparu */
   function scanTeam(html) {
     try { return decode(html); } catch (e) {}
+    try { return legacy(html); } catch (e) {}
 
     var doc = new DOMParser().parseFromString(String(html || ''), 'text/html');
     var root = doc.querySelector('.tcd');
@@ -276,6 +328,6 @@
     NATURES: NATURES, SOURCES: SOURCES, GENDERS: GENDERS,
     typeColor: typeColor, ballColors: ballColors, genderClass: genderClass, sourceOf: sourceOf,
     blankMon: blankMon, DEFAULT: DEFAULT, clone: clone,
-    encode: encode, decode: decode, scanTeam: scanTeam, buildHTML: buildHTML
+    encode: encode, decode: decode, legacy: legacy, scanTeam: scanTeam, buildHTML: buildHTML
   };
 })();
