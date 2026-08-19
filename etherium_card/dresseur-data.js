@@ -12,6 +12,7 @@
     occupation: 'Sugar Baby',
     money: '999999',
     avatar: 'https://2img.net/i.imgur.com/r9W0oZf.png',
+    motisma: '',
     bio: "Kalei c'est un gars cool.",
     moves: [
       { name: 'Coupe', kind: 'CS' },
@@ -50,13 +51,16 @@
       .replace(/['!~*()]/g, function (c) { return '%' + c.charCodeAt(0).toString(16).toUpperCase(); });
   }
 
+  var TIER_SHORT = { b: 'T1', a: 'T2', o: 'T3' };
+
   function encode(d) {
     var parts = [
       d.firstName, d.lastName, d.age, d.rank, d.group, d.occupation, d.money, d.avatar, d.bio,
       (d.moves || []).filter(function (m) { return m && m.name; })
         .map(function (m) { return m.name + ':' + (m.kind === 'CS' ? 'CS' : 'CT'); }).join(';'),
       (d.inventory || []).filter(Boolean).join(';'),
-      (d.vestiges || []).join(';')
+      (d.vestiges || []).join(';'),
+      d.motisma
     ];
     return 'DR2|' + parts.map(enc).join('|');
   }
@@ -75,7 +79,7 @@
     }
     if (code.indexOf('DR2|') !== 0) throw new Error('format');
     var p = code.slice(4).split('|');
-    if (p.length !== 12) throw new Error('incomplet');
+    if (p.length < 12) throw new Error('incomplet');
     p = p.map(function (x) {
       try { return decodeURIComponent(x); } catch (e) { return x; }
     });
@@ -90,7 +94,8 @@
       avatar: p[7] || '', bio: p[8] || '',
       moves: mv,
       inventory: (p[10] || '').split(';').filter(Boolean),
-      vestiges: (p[11] || '').split(';').filter(Boolean)
+      vestiges: (p[11] || '').split(';').filter(Boolean),
+      motisma: p[12] || ''
     };
   }
 
@@ -147,7 +152,8 @@
       moves: (o.moves || []).filter(function (m3) { return m3 && m3.name; })
         .map(function (m3) { return { name: m3.name, kind: m3.kind === 'CS' ? 'CS' : 'CT' }; }),
       inventory: inv,
-      vestiges: vest
+      vestiges: vest,
+      motisma: o.motisma || ''
     };
   }
 
@@ -206,6 +212,7 @@
     });
 
     var rank = txt(root.querySelector('.drs-rk b')) || 'D';
+    var mot = root.querySelector('.drs-mot img');
 
     return {
       firstName: full[0] || '',
@@ -216,6 +223,7 @@
       occupation: facts['occupation'] || '',
       money: (facts['argent'] || '').replace(/[^\d]/g, ''),
       avatar: img ? img.getAttribute('src') || '' : '',
+      motisma: mot ? mot.getAttribute('src') || '' : '',
       bio: txt(root.querySelector('.drs-bio')),
       moves: moves,
       inventory: inventory,
@@ -233,13 +241,13 @@
       ? '<img src="' + esc(d.avatar) + '" alt="' + esc(full) + '">'
       : '<div class="drs-ph">portrait</div>';
     function fact(label, val) {
-      return '<div class="drs-f"><dt>' + label + '</dt><dd>' + (val ? esc(val) : '—') + '</dd></div>';
+      if (!val) return '';
+      return '<div class="drs-f"><dt>' + label + '</dt><dd>' + esc(val) + '</dd></div>';
     }
 
-    var facts = '<dl class="drs-facts">' +
-      fact('Âge', d.age) + fact('Argent', money(d.money)) +
-      fact('Groupe', d.group) + fact('Occupation', d.occupation) +
-      '</dl>';
+    var factRows = fact('Âge', d.age) + fact('Argent', money(d.money)) +
+      fact('Groupe', d.group) + fact('Occupation', d.occupation);
+    var facts = factRows ? '<dl class="drs-facts">' + factRows + '</dl>' : '';
 
     /* vestiges : seul le maillon le plus haut de chaque chaîne s'affiche,
        mais les paliers inférieurs restent possédés et comptés. */
@@ -284,14 +292,16 @@
       '<b class="drs-nm">' + esc(full) + '</b></span>' +
       '<span class="drs-rk"><span>Rang</span><b>' + esc(rank) + '</b></span></div>' +
       '<div class="drs-body">' +
-      '<div class="drs-por">' + portrait + '</div>' +
+      '<div class="drs-por">' + portrait +
+      '<span class="drs-pill">Rang ' + esc(rank) + '</span></div>' +
       '<div class="drs-main">' + facts +
       '<div class="drs-sec"><h4>Vestiges' + vHead + '</h4>' +
       (vHTML || '<p class="drs-empty">Aucun vestige.</p>') + '</div>' +
       '<div class="drs-sec"><h4>CT / CS connues' + mvHead + '</h4>' + mvHTML + '</div>' +
-      '<div class="drs-sec"><h4>Inventaire</h4>' + invHTML + '</div>' +
-      (d.bio ? '<div class="drs-sec"><h4>Biographie</h4><p class="drs-bio">' + esc(d.bio) + '</p></div>' : '') +
-      '</div></div></div>';
+      '</div>' +
+      '<div class="drs-wide"><div class="drs-sec" style="margin-top:0"><h4>Inventaire</h4>' + invHTML + '</div></div>' +
+      (d.bio ? '<div class="drs-wide"><div class="drs-sec" style="margin-top:0"><h4>Biographie</h4><p class="drs-bio">' + esc(d.bio) + '</p></div></div>' : '') +
+      '</div></div>';
   }
 
   window.DRESSEUR = {
