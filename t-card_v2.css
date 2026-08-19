@@ -22,7 +22,6 @@
     --drs-body: #4E483F;
     --drs-muted: #948B7F;
     --drs-accent: #C25C3A;
-
     --drs-t1: #C58B4E;
     --drs-t2: #8C97A6;
     --drs-t3: #E0A92B;
@@ -44,7 +43,12 @@
     text-align: left;
     box-shadow: 0 18px 44px -22px rgba(45, 38, 30, .38);
 }
-
+[data-color-scheme="dark"] {
+  color-scheme: dark; 
+.drs {
+   --drs-body:white;
+ }
+}
 .drs *,
 .drs *::before,
 .drs *::after { box-sizing: border-box; }
