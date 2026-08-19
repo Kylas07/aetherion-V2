@@ -48,6 +48,10 @@
 .drs {
    --drs-body:white;
  }
+.tcd {
+   --tcd-ink: #ffffff;
+   --tcd-body: #ffffff;
+}
 }
 .drs *,
 .drs *::before,
