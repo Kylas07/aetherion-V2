@@ -44,7 +44,11 @@
     text-align: left;
     box-shadow: 0 18px 44px -22px rgba(45, 38, 30, .38);
 }
-
+[data-color-scheme="dark"] .drs {
+    --drs-ink: white;
+    --drs-body: white;
+    --drs-muted: white;
+}
 .drs *,
 .drs *::before,
 .drs *::after { box-sizing: border-box; }
