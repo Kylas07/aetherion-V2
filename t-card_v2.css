@@ -44,7 +44,7 @@
     text-align: left;
     box-shadow: 0 18px 44px -22px rgba(45, 38, 30, .38);
 }
-[data-color-scheme="dark"] .drs {
+[data-color-scheme="dark"] :root{
     --drs-ink: white;
     --tcd-ink: white;
     --tcd-body: white;
@@ -53,7 +53,7 @@
     --drs-muted: white;
     --pc-ink: white;
     --pc-body: white;
-    --pc-muted:  white;
+    --pc-muted: white;
 }
 .drs *,
 .drs *::before,
