@@ -1169,6 +1169,40 @@ html:not([data-color-scheme="dark"]) .eh-theme .icon.light,
 #main-content #c3.has-tour .tour-hors:empty { display: none; }
 
 
+/* ── tour : étages verrouillés, « en cours », panneau façon maquette ── */
+#main-content .tour-btn.is-locked { cursor: default; background: var(--beige); border-color: var(--bordure); opacity: .75; }
+#main-content .tour-btn.is-locked:hover { border-color: var(--bordure); }
+#main-content .tour-btn.is-locked .tb-num { -webkit-text-stroke-color: var(--muet-clair, var(--muet)); }
+#main-content .tour-btn.is-locked .tb-txt b { color: var(--muet); }
+#main-content .tour-btn.is-locked .tb-txt small { color: var(--accent2, #C99A3B); }
+#main-content .tour-btn .tb-txt small i { display: inline-block; width: 5px; height: 5px; margin-right: 5px; border-radius: 50%; background: currentColor; vertical-align: middle; }
+#main-content .tour-btn.is-active .tb-txt small { color: var(--accent-clair); }
+#main-content #c3 .tour-scene .forum-dernier,
+#main-content #c3 .tour-scene .forum-stats-pill { display: none; }
+#main-content #c3 .tour-scene .etage-cta { margin-top: auto; }
+#main-content #c3 .tour-scene .forum-desc { max-width: 620px; }
+#main-content .ss-liste { display: flex; flex-direction: column; gap: 8px; margin-top: 26px; }
+#main-content .ss-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  padding: 8px 10px 8px 14px; border-radius: 11px;
+  background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  transition: background .2s, border-color .2s;
+}
+#main-content .ss-row:hover { background: rgba(255,255,255,.13); border-color: var(--accent-clair); }
+#main-content .ss-l { display: flex; align-items: center; gap: 9px; min-width: 0; }
+#main-content .ss-l::before { content: ""; flex: none; width: 6px; height: 6px; transform: rotate(45deg); background: var(--accent-clair); }
+#main-content .ss-l b { font-size: 13px; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#main-content .ss-l small { flex: none; font-size: 9px; color: rgba(244,241,236,.5); }
+#main-content .ss-r { display: flex; align-items: center; gap: 9px; min-width: 0; text-align: right; }
+#main-content .ss-txt { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+#main-content .ss-txt b { font-size: 11.5px; font-weight: 600; color: rgba(244,241,236,.88); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 220px; }
+#main-content .ss-txt small { font-size: 8.5px; letter-spacing: .08em; text-transform: uppercase; color: rgba(244,241,236,.5); }
+#main-content .ss-r img {
+  flex: none; width: 30px; height: 30px; border-radius: 50%; object-fit: cover;
+  border: 2px solid rgba(8,11,18,.6); box-shadow: 0 0 0 1.5px var(--accent-clair);
+}
+
 /* ███████████████████████████████████████████████████████████████
    D. PAGE D'ACCUEIL (blocs informatifs .eth-home)
    un grand cadre illustré, les blocs posés dessus avec de l'espace
