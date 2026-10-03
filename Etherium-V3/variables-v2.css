@@ -1,0 +1,107 @@
+/* ════════ 1. VARIABLES — palette Refonte Etherium V2 ════════
+   Remplace ton bloc :root + [data-color-scheme="dark"] par celui-ci.
+   ⚠ Remplace aussi ton @import Google Fonts par :
+   @import url('https://fonts.googleapis.com/css2?family=Karla:wght@200;300;400;500;600;700;800&display=swap');
+*/
+:root {
+  color-scheme: light;
+  --header: url('https://images2.imgbox.com/e5/fb/TTqPoDcu_o.png');
+
+  /* — JOUR : brume bleutée — */
+  --fond: #E4E9F1;
+  --carte: #FFFFFF;
+  --blanc: #FFFFFF;
+  --beige: #EEF2F8;
+  --beige-bordure: #DCE3ED;
+  --beige-band: #F5F7FB;
+  --encre: #161D2A;
+  --encre2: #1F2838;
+  --encre-doux: #4A5568;
+  --titre: #18222E;
+  --texte: #435063;
+  --texte-doux: #5F6B7D;
+  --muet: #7F8EA0;
+  --muet-clair: #A3AEBD;
+  --bordure: #D3DBE6;
+  --filet: #E8ECF3;
+  --accent: #4C6CAD;          /* bleu acier */
+  --accent-clair: #AFC4E8;    /* reflet clair */
+  --accent-fonce: #3A5590;
+  --accent-pale: #E3E9F6;
+  --on-accent: #FFFFFF;       /* texte posé sur --accent */
+  --valide: #5E9E6E;
+  --valide-clair: #8CC49A;
+  --g-killers: #9D2D2D;
+  --g-killers-clair: #D07A7A;
+  --g-ancres: #566F88;
+  --g-eveilles: #C99A3B;
+  --g-pnj: #161D2A;
+  --t1: #B0804A; --t2: #9A948C; --t3: #E0A93B;
+  --groupe: var(--g-killers);
+  --groupe-clair: var(--g-killers-clair);
+
+  /* lueur radiale des conteneurs sombres (0 = aucune, 70 = forte) */
+  --lueur: 34;
+  --glow: radial-gradient(ellipse 65% 120% at 50% 50%,
+          color-mix(in srgb, var(--accent) calc(var(--lueur) * 1%), transparent) 0%,
+          color-mix(in srgb, var(--accent-clair) calc(var(--lueur) * .35%), transparent) 38%,
+          transparent 72%);
+
+  /* remappage BlankTheme (inchangé) */
+  --neutral: var(--carte); --neutralDark: var(--fond); --neutralDarker: var(--beige);
+  --contrast: var(--encre); --contrastLight: var(--titre); --contrastLighter: var(--beige-bordure);
+  --accentClr: var(--accent); --accentClrDark: var(--accent-fonce);
+  --textColor: var(--texte); --textColorAccent: var(--titre);
+  --border: 1px solid var(--bordure);
+  --shadowBox: 0 18px 40px -18px rgba(22, 29, 42, .22);
+  --shadowCard: 0 1px 2px rgba(22,29,42,.04), 0 18px 40px -18px rgba(22,29,42,.2);
+
+  --little-size: 12px; --normal-size: 14px; --medium-size: 16px; --large-size: 18px; --title-size: 22px;
+  --font: 'Karla';
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.43, 0.09, 0.38, 2.56);
+}
+
+/* — NUIT : indigo profond + pervenche — */
+[data-color-scheme="dark"] {
+  color-scheme: dark;
+  --fond: #0A0D14;
+  --carte: #121824;
+  --beige: #182030;
+  --beige-bordure: #232D3E;
+  --beige-band: #141B28;
+  --encre: #070A10;
+  --encre2: #101622;
+  --encre-doux: #9AA6B8;
+  --titre: #E8EEF7;
+  --texte: #B4C0D2;
+  --texte-doux: #97A3B5;
+  --muet: #76849A;
+  --muet-clair: #5B677A;
+  --bordure: #222C3C;
+  --filet: #18202D;
+  --accent: #8FAEE0;
+  --accent-clair: #C9DCEA;
+  --accent-fonce: #6F90C8;
+  --accent-pale: #152036;
+  --on-accent: #0A0D14;
+  --valide: #7FC08E;
+  --valide-clair: #A6DDB2;
+  --g-killers: #D06060;
+  --g-ancres: #8FA9C4;
+  --g-eveilles: #D9AC4E;
+  --g-pnj: #E8EEF7;
+  --lueur: 39;
+  /* redéclaré ici pour qu'il prenne les couleurs de nuit */
+  --glow: radial-gradient(ellipse 65% 120% at 50% 50%,
+          color-mix(in srgb, var(--accent) calc(var(--lueur) * 1%), transparent) 0%,
+          color-mix(in srgb, var(--accent-clair) calc(var(--lueur) * .35%), transparent) 38%,
+          transparent 72%);
+  --shadowBox: 0 18px 40px -18px rgba(0, 0, 0, .6);
+  --shadowCard: 0 1px 2px rgba(0,0,0,.25), 0 18px 40px -18px rgba(0,0,0,.6);
+}
+body { font-family: var(--font), sans-serif; }
+[data-color-scheme="dark"] body {
+  background-color: var(--fond);
+  background-image: radial-gradient(rgba(201, 220, 234, .05) 1px, transparent 1px);
+}
