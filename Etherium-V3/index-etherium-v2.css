@@ -182,8 +182,9 @@ body.eh-on { padding-left: 0 !important; margin: 0; background-color: var(--fond
 /* render : grand à gauche, descend + grossit au scroll, demi-tour la nuit */
 .eh-render {
   position: absolute; z-index: 1; pointer-events: none;
-  left: -12%; top: 52%;
-  width: min(82vw, 125vh, 1360px); aspect-ratio: 1;
+  --rw: min(82vw, 125vh, 1360px);
+  left: max(-12%, calc(33% - var(--rw) / 2)); top: 52%;
+  width: var(--rw); aspect-ratio: 1;
   transform: translateY(calc(-50% + var(--sy) * .4px)) scale(calc(1 + var(--sy) / 5000));
   will-change: transform;
 }
@@ -431,7 +432,7 @@ html:not([data-color-scheme="dark"]) .eh-theme .icon.light,
 }
 @media (max-width: 760px) {
   .eh-hero { position: relative; height: auto; min-height: 100vh; }
-  .eh-render { width: 120vw; left: -40vw; opacity: .45; }
+  .eh-render { --rw: 120vw; width: 120vw; left: -40vw; opacity: .45; }
   .eh-hero__in { align-items: flex-start; text-align: left; padding: 90px 22px 130px; opacity: 1; transform: none; }
   .eh-title { text-align: left !important; }
   .eh-panel { align-items: flex-start; }
@@ -1560,12 +1561,12 @@ html, body { overflow-x: clip; }
 @media (min-width: 2200px) {
   #main-content, .eh-on .navbar.eh-nav, .eh-nav { zoom: 1.25; }
   .eh-hero__in, .eh-foot { zoom: 1.25; }
-  .eh-render { width: min(82vw, 125vh, 1900px); left: -10%; }
+  .eh-render { --rw: min(82vw, 110vh, 1900px); }
 }
 /* ≥ 3200 px (4K) */
 @media (min-width: 3200px) {
   #main-content, .eh-on .navbar.eh-nav, .eh-nav, .eh-hero__in, .eh-foot { zoom: 1.6; }
-  .eh-render { width: min(82vw, 125vh, 2600px); left: -10%; }
+  .eh-render { --rw: min(82vw, 110vh, 2600px); }
 }
 /* écrans larges mais peu hauts (portable, 2K en fenêtre) : le contenu du header se resserre */
 @media (max-height: 900px) and (min-width: 761px) {
@@ -1999,3 +2000,5 @@ body, input, select, textarea, button,
   .eh-hero.is-shift .eh-hero__bg, .eh-hero.is-shift .eh-render, .eh-hero.is-shift::after { animation: none; }
   .eh-hero__bg, .eh-render__rot { transition: none; }
 }
+
+.eh-btn, .eh-btn *, .eh-more, .eh-tab, .eh-cards a, .eh-cards a * { text-decoration: none !important; }
