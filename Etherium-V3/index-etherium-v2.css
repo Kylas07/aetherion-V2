@@ -7,6 +7,7 @@
      D. Page d'accueil (.pa2)
      E. Qui est en ligne + partenaires
      F. Connexion rapide + message d'admin
+     G. Responsive : téléphone, tablette, 2K / 4K
    ⚠ Les @import doivent rester tout en haut de la feuille.
    ═══════════════════════════════════════════════════════════════ */
 @import url('https://fonts.googleapis.com/css2?family=Karla:wght@200;300;400;500;600;700;800&display=swap');
@@ -661,10 +662,6 @@ html:not([data-color-scheme="dark"]) .eh-theme .icon.light,
 #main-content #c1 .forum:nth-child(1 of .forum) .fd-auteur { color: var(--accent-clair); }
 
 /* annonce épinglée (bloc statique, déplacé ici par le script) */
-#main-content #c1 > .adm-epingle {
-  grid-area: pin; display: block; padding: 14px; border-radius: 18px;
-  background-color: var(--encre); background-image: var(--glow);
-}
 #main-content .adm-epingle a {
   display: flex; flex-direction: column; gap: 8px; padding: 16px 18px; border-radius: 14px;
   background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); transition: border-color .2s;
@@ -693,10 +690,6 @@ html:not([data-color-scheme="dark"]) .eh-theme .icon.light,
 #main-content #c1 .forum:nth-child(2 of .forum) .forum-dernier { grid-area: last; border: 0; padding: 12px 0 0; border-top: 1px solid var(--filet); }
 #main-content #c1 .forum:nth-child(2 of .forum) .fd-info::before { content: "Dernière fiche"; }
 
-#main-content #c1 > .adm-etapes {
-  grid-area: steps; display: flex; flex-direction: column; gap: 12px;
-  padding: 20px 22px; border-radius: 18px; background: var(--carte); border: 1px solid var(--bordure);
-}
 #main-content .adm-h { font-size: 20px; font-weight: 800; letter-spacing: .03em; color: var(--titre); }
 #main-content .adm-etapes ol {
   position: relative; list-style: none; margin: 0; padding: 0 0 0 24px;
@@ -1206,25 +1199,26 @@ html:not([data-color-scheme="dark"]) .eh-theme .icon.light,
   border: 2px solid rgba(8,11,18,.6); box-shadow: 0 0 0 1.5px var(--accent-clair);
 }
 
-/* ── Administration : annonce + étapes rangées DANS leurs cartes (script) ── */
-#main-content #c1.adm-ok.categorie { grid-template-areas: "banner banner banner" "pan pres side" "staff pres side"; }
-#main-content #c1 .forum .adm-epingle { grid-area: pin; display: block; padding: 0; background: none; border-radius: 0; }
-#main-content #c1 .forum .adm-etapes { grid-area: steps; display: flex; flex-direction: column; gap: 12px; padding: 0; background: none; border: 0; border-radius: 0; }
-#main-content #c1.adm-ok .forum:nth-child(1 of .forum) { grid-template-areas: "title stats" "pin pin" "texte texte" "subs subs"; }
-#main-content #c1.adm-ok .forum:nth-child(1 of .forum) .forum-dernier { display: none; }
-#main-content #c1.adm-ok .forum:nth-child(2 of .forum) { grid-template-areas: "title stats" "steps steps" "subs subs" "last last"; }
-#main-content #c1.adm-ok .forum:nth-child(2 of .forum) .forum-texte { display: none; }
-#main-content #c1 .forum:nth-child(2 of .forum) .forum-dernier::after {
-  content: "En attente"; margin-left: auto; flex: none; padding: 4px 10px; border-radius: 99px;
-  border: 1px solid var(--accent); font-size: 8.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent);
-}
-@media (max-width: 1100px) { #main-content #c1.adm-ok.categorie { grid-template-areas: "banner banner" "pan pres" "staff pres" "side side"; } }
-@media (max-width: 700px)  { #main-content #c1.adm-ok.categorie { grid-template-areas: "banner" "pan" "pres" "staff" "side"; } }
-
 /* ── liens : pas de soulignement, pseudos lisibles ── */
 #main-content :is(.categorie, .pa2, .qeel, .partenaire_footer, .links_bar, .eh-login-panel, .introduction) a { text-decoration: none !important; }
 #main-content .categorie .fd-auteur :is(a, span, strong) { color: var(--accent) !important; }
 #main-content :is(#c1 .forum:nth-child(1 of .forum), #c3 .tour-scene, .cat-banner-sombre) .fd-auteur :is(a, span, strong) { color: var(--accent-clair) !important; }
+
+/* ── Administration (sans script) : annonce et étapes écrites DANS chaque carte forum
+      de la template, affichées seulement dans la 1re et la 2e carte de #c1 ── */
+#main-content .categorie .forum > :is(.adm-epingle, .adm-etapes) { display: none; }
+#main-content #c1.categorie { grid-template-areas: "banner banner banner" "pan pres side" "staff pres side"; }
+#main-content #c1 .forum:nth-child(1 of .forum) > .adm-epingle { grid-area: pin; display: block; padding: 0; background: none; }
+#main-content #c1 .forum:nth-child(2 of .forum) > .adm-etapes { grid-area: steps; display: flex; flex-direction: column; gap: 12px; padding: 0; margin: 0; background: none; border: 0; min-width: 0; }
+#main-content #c1 .forum:nth-child(2 of .forum) .forum-stats-pill { align-self: center; white-space: nowrap; }
+#main-content #c1 .forum:nth-child(2 of .forum) .sousforums { padding-top: 12px; border-top: 1px solid var(--filet); }
+#main-content #c1 .forum:nth-child(2 of .forum) .forum-dernier { display: flex; align-items: center; }
+#main-content #c1 .forum:nth-child(1 of .forum) { grid-template-areas: "title stats" "pin pin" "texte texte" "subs subs"; }
+#main-content #c1 .forum:nth-child(1 of .forum) .forum-dernier { display: none; }
+#main-content #c1 .forum:nth-child(2 of .forum) { grid-template-areas: "title stats" "steps steps" "subs subs" "last last"; }
+#main-content #c1 .forum:nth-child(2 of .forum) .forum-texte { display: none; }
+@media (max-width: 1100px) { #main-content #c1.categorie { grid-template-areas: "banner banner" "pan pres" "staff pres" "side side"; } }
+@media (max-width: 700px)  { #main-content #c1.categorie { grid-template-areas: "banner" "pan" "pres" "staff" "side"; } }
 
 /* ███████████████████████████████████████████████████████████████
    D. PAGE D'ACCUEIL (.pa2) — un grand bloc illustré, cartes posées dessus
@@ -1537,4 +1531,146 @@ html:not([data-color-scheme="dark"]) .eh-theme .icon.light,
 #main-content .panel.introduction .h3 {
   margin: 0 0 6px; padding: 0; font-family: var(--font), sans-serif; font-size: 13px; font-weight: 800;
   letter-spacing: .14em; text-transform: uppercase; color: var(--titre);
+}
+
+
+/* ███████████████████████████████████████████████████████████████
+   G. RESPONSIVE : téléphone · tablette · grands écrans (2K / 4K)
+   ⚠ nécessite dans le <head> de l'overall_header :
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+   ███████████████████████████████████████████████████████████████ */
+
+/* ── base : rien ne déborde ── */
+html, body { overflow-x: clip; }
+#main-content img, #main-content iframe, #main-content video { max-width: 100%; }
+#main-content .postbody img, #main-content .post-content img { height: auto; }
+#main-content table { max-width: 100%; }
+
+/* ═════════ GRANDS ÉCRANS ═════════ */
+/* ≥ 1700 px : la grille s'élargit un peu */
+@media (min-width: 1700px) {
+  #main-content, .eh-on .navbar.eh-nav, .eh-nav { width: min(1520px, calc(100% - 64px)); }
+  #main-content .pa2-haut { grid-template-columns: 460px minmax(0, 1fr); min-height: 470px; }
+  #main-content .pa2-disc { height: 470px; }
+  .tour-scene { min-height: 700px; }
+}
+/* ≥ 2200 px (2K / 1440p) : tout est agrandi proportionnellement */
+@media (min-width: 2200px) {
+  html { zoom: 1.25; }
+}
+/* ≥ 3200 px (4K) */
+@media (min-width: 3200px) {
+  html { zoom: 1.6; }
+}
+
+/* ═════════ TABLETTE (≤ 1100 px) ═════════ */
+@media (max-width: 1100px) {
+  #main-content .pa2-haut { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  #main-content .pa2-disc { height: 400px; }
+  #main-content .pa2-fenetre { min-height: 360px; }
+  #main-content .pa2-bas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #main-content .pa2-bas > :last-child { grid-column: 1 / -1; }
+  .eh-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .eh-cards a { height: 150px; }
+}
+
+/* ═════════ TÉLÉPHONE (≤ 700 px) ═════════ */
+@media (max-width: 700px) {
+  #main-content, .eh-on .navbar.eh-nav, .eh-nav { width: calc(100% - 20px); }
+
+  /* nav : défile horizontalement, gros doigts */
+  .eh-on .navbar.eh-nav, .eh-nav {
+    height: auto; min-height: 52px; margin: -26px auto 18px; padding: 4px 6px; border-radius: 14px;
+    overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  }
+  .eh-nav::-webkit-scrollbar { display: none; }
+  .eh-nav__links, .eh-nav__links li { flex: none; }
+  .eh-on .eh-nav a.mainmenu { padding: 14px 12px; white-space: nowrap; }
+  .eh-nav__fill { flex: 0 0 8px; }
+  .eh-theme { flex: none; }
+
+  /* header */
+  .eh-hero__in { padding: 80px 18px 120px; gap: 14px; }
+  .eh-title { font-size: clamp(40px, 13vw, 64px) !important; letter-spacing: .08em !important; }
+  .eh-hero:not([data-scene=""]) .eh-title { font-size: clamp(30px, 9vw, 44px) !important; }
+  .eh-sub { font-size: 9.5px; letter-spacing: .22em; flex-wrap: wrap; }
+  .eh-sub__line { width: 32px; }
+  .eh-tabs { max-width: 100%; overflow-x: auto; scrollbar-width: none; }
+  .eh-tab { flex: none; padding: 11px 14px !important; }
+  .eh-pitch { font-size: 13.5px; max-width: none; }
+  .eh-progress { width: 100%; }
+  .eh-btns { flex-direction: column; width: 100%; }
+  .eh-btn { width: 100%; min-height: 56px; }
+  .eh-glass { max-height: none; padding: 16px 18px; }
+  .eh-panel--news { flex-direction: column; }
+  .eh-event { flex: none; min-height: 150px; }
+  .eh-panel--staff { width: 100%; }
+  .eh-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .eh-cards a { height: 140px; }
+  .eh-foot { left: 18px; right: 18px; bottom: 84px; }
+  .eh-spark { display: none; }
+
+  /* barres de liens */
+  #main-content .links_bar { gap: 6px; }
+  #main-content .links_bar a { padding: 10px 12px; }
+  #main-content .links_bar a.right { margin-left: 0; }
+
+  /* page d'accueil */
+  #main-content .pa2 { padding: 12px; gap: 12px; border-radius: 20px; }
+  #main-content .pa2-disc { height: 360px; }
+  #main-content .pa2-fenetre { min-height: 300px; }
+  #main-content .pa2-bas { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  #main-content .pa2-liens a { padding: 12px 11px; }
+  #main-content .pa2-hordes-liste img { width: 40px; height: 40px; }
+
+  /* catégories */
+  #main-content .categorie { margin-top: 26px; }
+  #main-content .categorie .cat-banner-in { flex-wrap: wrap; row-gap: 10px; }
+  #main-content .categorie .cat-banner .barre { display: none; }
+  #main-content .cat-pill { padding: 10px 14px; }
+  #main-content .categorie .forum {
+    grid-template-columns: 44px minmax(0, 1fr); grid-template-areas: "num desc" "num stats" "num last";
+    column-gap: 12px; padding: 14px 14px 14px 0;
+  }
+  #main-content .categorie .forum-num::before { font-size: 22px; }
+  #main-content .categorie .forum-titre { font-size: 14.5px; }
+  #main-content .categorie .sousforums a { font-size: 10px; line-height: 2; }
+
+  /* tour d'Etherium */
+  .tour-btn { flex: 0 0 170px; min-height: 60px; }
+  .tour-scene { min-height: 560px; border-radius: 16px; }
+  #main-content #c3 .tour-scene .forum.is-active { padding: 22px 18px; }
+  #main-content #c3 .tour-scene .forum::before { font-size: 110px; right: 12px; }
+  #main-content #c3 .tour-scene .forum-titre { font-size: 26px; }
+  #main-content #c3 .tour-scene .forum-stats-pill { position: static; align-self: flex-start; }
+  #main-content #c3 .tour-scene .sousforums a { padding: 13px 14px; }
+  #main-content #c3 .cat-banner .echo::after { font-size: 64px; }
+  #main-content #c3 .cat-banner .nom, #main-content #c3 .cat-banner .nom h2 { font-size: 28px; }
+
+  /* qui est en ligne */
+  #main-content .qeel { display: flex; flex-direction: column; gap: 16px; padding: 22px 18px 18px; border-radius: 18px; }
+  #main-content .qeel::before { font-size: 64px; right: 10px; }
+  #main-content .qeel-desc-bar { display: none; }
+  #main-content .qeel-groupes { margin-left: 0; }
+  #main-content .qeel-credits { flex-wrap: wrap; }
+
+  /* partenaires */
+  #main-content .partenaire_footer { flex-wrap: wrap; }
+}
+
+/* ═════════ PETIT TÉLÉPHONE (≤ 420 px) ═════════ */
+@media (max-width: 420px) {
+  .eh-cards { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .eh-cards a { height: 120px; }
+  #main-content .pa2-liens { grid-template-columns: minmax(0, 1fr); }
+  #main-content .categorie .forum { grid-template-columns: minmax(0, 1fr); grid-template-areas: "desc" "stats" "last"; padding: 14px; }
+  #main-content .categorie .forum-num { display: none; }
+  .tour-btn { flex-basis: 150px; }
+}
+
+/* ═════════ ÉCRANS TACTILES : pas de survol ═════════ */
+@media (hover: none) {
+  .eh-btn:hover { background-size: 0% 100%; }
+  #main-content .categorie .forum:hover { border-color: var(--bordure); }
+  #main-content .categorie .forum:active { border-color: var(--accent); }
 }
