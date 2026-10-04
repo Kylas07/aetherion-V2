@@ -2002,3 +2002,57 @@ body, input, select, textarea, button,
 }
 
 .eh-btn, .eh-btn *, .eh-more, .eh-tab, .eh-cards a, .eh-cards a * { text-decoration: none !important; }
+
+
+/* ███████████████████████████████████████████████████████████████
+   J. BOUTONS DU HEADER : menu de jeu (curseur ✦ clignotant)
+   ███████████████████████████████████████████████████████████████ */
+.eh-menu { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; margin-top: 10px; }
+.eh-menu__item {
+  display: flex; align-items: center; justify-content: flex-end; gap: 16px; padding: 8px 0;
+  color: var(--h-ink) !important; text-decoration: none !important; opacity: .62;
+  transition: opacity .25s ease;
+}
+.eh-menu__item small {
+  font-size: 9.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--h-muet); opacity: 0; transform: translateX(8px);
+  transition: opacity .25s ease, transform .35s cubic-bezier(.22,.8,.28,1);
+}
+.eh-menu__lbl {
+  font-size: clamp(17px, 1.5vw, 22px); font-weight: 300; letter-spacing: .18em; text-transform: uppercase;
+  transition: letter-spacing .35s cubic-bezier(.22,.8,.28,1);
+}
+.eh-menu__cur {
+  flex: none; width: 10px; height: 10px; box-sizing: border-box; transform: rotate(45deg);
+  border: 1.5px solid var(--h-muet); background: transparent;
+  transition: background .2s, border-color .2s, box-shadow .2s;
+}
+.eh-menu__sep { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--h-line)); }
+
+/* option sélectionnée : la 1re par défaut, ou celle survolée */
+.eh-menu__item:first-child, .eh-menu:hover .eh-menu__item:hover { opacity: 1; }
+.eh-menu:hover .eh-menu__item:first-child:not(:hover) { opacity: .62; }
+.eh-menu__item:first-child small, .eh-menu__item:hover small { opacity: 1; transform: none; }
+.eh-menu:hover .eh-menu__item:first-child:not(:hover) small { opacity: 0; transform: translateX(8px); }
+.eh-menu__item:hover .eh-menu__lbl { letter-spacing: .24em; }
+.eh-menu__item:first-child .eh-menu__cur, .eh-menu__item:hover .eh-menu__cur {
+  border-color: var(--h-acc); background: var(--h-acc); box-shadow: 0 0 12px var(--h-acc);
+  animation: eh-cur-blink 1.1s steps(1) infinite;
+}
+.eh-menu:hover .eh-menu__item:first-child:not(:hover) .eh-menu__cur {
+  border-color: var(--h-muet); background: transparent; box-shadow: none; animation: none;
+}
+.eh-menu__item:active .eh-menu__lbl { letter-spacing: .3em; }
+@keyframes eh-cur-blink { 0%, 100% { opacity: 1; } 50% { opacity: .2; } }
+
+@media (max-width: 760px) {
+  .eh-menu { align-items: flex-start; width: 100%; }
+  .eh-menu__item { flex-direction: row-reverse; justify-content: flex-end; padding: 12px 0; }
+  .eh-menu__item small { display: none; }
+  .eh-menu__sep { background: linear-gradient(90deg, var(--h-line), transparent); }
+}
+@media (hover: none) {
+  .eh-menu__item { opacity: 1; }
+  .eh-menu__item small { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) { .eh-menu__cur { animation: none !important; } }
