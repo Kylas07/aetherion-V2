@@ -9,6 +9,7 @@
      F. Connexion rapide + message d'admin
      G. Responsive : téléphone, tablette, 2K / 4K
      H. Notiffi · Switcheroo · Monomer
+     I. Typo unique Karla + animations des onglets du header
    ⚠ Les @import doivent rester tout en haut de la feuille.
    ═══════════════════════════════════════════════════════════════ */
 @import url('https://fonts.googleapis.com/css2?family=Karla:wght@200;300;400;500;600;700;800&display=swap');
@@ -1931,4 +1932,70 @@ html, body { overflow-x: clip; }
   .switcheroo__squircles { gap: 8px; }
   .switcheroo__squircle { width: 44px; height: 44px; }
   .switcheroo__popper { display: none; }
+}
+
+
+/* ███████████████████████████████████████████████████████████████
+   I. TYPO UNIQUE (Karla, comme la maquette) + ANIMATIONS DES ONGLETS DU HEADER
+   ███████████████████████████████████████████████████████████████ */
+:root { --font: 'Karla'; }
+/* l'ancien CSS (Archivo / Space Mono) est écrasé partout, sauf les icônes */
+body, input, select, textarea, button,
+#main-content, #main-content :not(i):not([class^="bi"]):not([class*=" bi-"]):not([class^="ion"]):not([class*=" ion-"]):not([class*="fa-"]),
+.eh-hero, .eh-hero :not(i), .eh-nav, .eh-nav :not(i),
+.qeel, .qeel :not(i), .partenaire_footer, .partenaire_footer :not(i),
+#notiffi_panel, #notiffi_panel :not(i), .monomer-modal, .monomer-modal :not(i) {
+  font-family: 'Karla', sans-serif !important;
+}
+#main-content :is(pre, code, .codebox, .code-content) { font-family: ui-monospace, Menlo, Consolas, monospace !important; }
+
+/* ── scènes : le décor bouge selon l'onglet ── */
+.eh-hero__bg { inset: -40px; transition: transform 1.2s cubic-bezier(.62,.02,.24,1), filter 1.2s cubic-bezier(.62,.02,.24,1); }
+.eh-ontop, .eh-lights { transition: transform 1.2s cubic-bezier(.62,.02,.24,1), opacity .8s ease; }
+.eh-render__rot {
+  translate: 0 0; scale: 1; rotate: 0deg;
+  transition: transform 1.4s cubic-bezier(.62,.02,.24,1), translate 1.2s cubic-bezier(.62,.02,.24,1), scale 1.2s cubic-bezier(.62,.02,.24,1), rotate 1.2s cubic-bezier(.62,.02,.24,1), opacity .8s ease, filter .8s ease;
+}
+/* Contexte : rapproché, penché, fond flouté */
+.eh-hero[data-scene="ctx"] .eh-hero__bg { transform: scale(1.08); filter: blur(6px) saturate(1.1); }
+.eh-hero[data-scene="ctx"] .eh-render__rot { translate: -4% 2%; scale: 1.14; rotate: -9deg; }
+.eh-hero[data-scene="ctx"] .eh-ontop { transform: scale(1.06); }
+/* Nouveautés : recul, rotation inverse, lumières fortes */
+.eh-hero[data-scene="news"] .eh-hero__bg { transform: scale(1.14) rotate(-1.5deg); filter: blur(3px) brightness(1.08); }
+.eh-hero[data-scene="news"] .eh-render__rot { translate: 3% -3%; scale: .9; rotate: 8deg; }
+.eh-hero[data-scene="news"] .eh-lights { opacity: .7; transform: scale(1.1); }
+/* Équipe : le render s'efface sur le côté, fond très flou */
+.eh-hero[data-scene="staff"] .eh-hero__bg { transform: scale(1.05); filter: blur(12px) brightness(.85); }
+.eh-hero[data-scene="staff"] .eh-render__rot { translate: -16% 6%; scale: .74; rotate: -4deg; opacity: .55; filter: blur(2px); }
+.eh-hero[data-scene="staff"] .eh-ontop { transform: scale(1.1); opacity: .6; }
+
+/* ── au clic : coup de « téléportation » (flou + zoom éclair) ── */
+.eh-hero.is-shift .eh-hero__bg { animation: eh-warp .9s cubic-bezier(.22,.8,.28,1); }
+.eh-hero.is-shift .eh-render { animation: eh-warp-render .9s cubic-bezier(.22,.8,.28,1); }
+.eh-hero.is-shift::after {
+  content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background: radial-gradient(circle at 70% 50%, color-mix(in srgb, var(--h-acc) 45%, transparent), transparent 60%);
+  animation: eh-flash .9s ease-out forwards;
+}
+@keyframes eh-warp { 0% { filter: blur(0); } 35% { filter: blur(18px) brightness(1.25); } 100% { filter: none; } }
+@keyframes eh-warp-render { 0% { opacity: 1; } 35% { opacity: .35; filter: blur(8px); } 100% { opacity: 1; filter: none; } }
+@keyframes eh-flash { 0% { opacity: 0; } 30% { opacity: 1; } 100% { opacity: 0; } }
+
+/* onglet : petit rebond au clic */
+.eh-tab:active { transform: scale(.94); }
+.eh-tab.is-on { animation: eh-tab-pop .45s var(--ease-bounce); }
+@keyframes eh-tab-pop { 0% { transform: scale(.9); } 100% { transform: scale(1); } }
+
+/* équipe : 6 membres */
+.eh-cards { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.eh-cards a:nth-child(n) { animation: eh-item .55s cubic-bezier(.22,.8,.28,1) both; }
+.eh-cards a:nth-child(2) { animation-delay: .07s; } .eh-cards a:nth-child(3) { animation-delay: .14s; }
+.eh-cards a:nth-child(4) { animation-delay: .21s; } .eh-cards a:nth-child(5) { animation-delay: .28s; }
+.eh-cards a:nth-child(6) { animation-delay: .35s; }
+@media (max-width: 1100px) { .eh-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 700px)  { .eh-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .eh-hero.is-shift .eh-hero__bg, .eh-hero.is-shift .eh-render, .eh-hero.is-shift::after { animation: none; }
+  .eh-hero__bg, .eh-render__rot { transition: none; }
 }
