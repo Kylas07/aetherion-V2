@@ -182,8 +182,8 @@ body.eh-on { padding-left: 0 !important; margin: 0; background-color: var(--fond
 /* render : grand à gauche, descend + grossit au scroll, demi-tour la nuit */
 .eh-render {
   position: absolute; z-index: 1; pointer-events: none;
-  left: max(-6%, calc((100% - 1360px) / 2 - 160px)); top: 50%;
-  width: min(74vw, 118vh, 1180px); aspect-ratio: 1;
+  left: -12%; top: 52%;
+  width: min(82vw, 125vh, 1360px); aspect-ratio: 1;
   transform: translateY(calc(-50% + var(--sy) * .4px)) scale(calc(1 + var(--sy) / 5000));
   will-change: transform;
 }
@@ -206,14 +206,14 @@ body.eh-on { padding-left: 0 !important; margin: 0; background-color: var(--fond
 .eh-hero__in {
   position: relative; z-index: 3; height: 100%; box-sizing: border-box;
   display: flex; flex-direction: column; align-items: flex-end; justify-content: center; gap: 16px;
-  padding: 0 max(56px, calc((100% - 1360px) / 2 + 56px)) 150px;
+  padding: 0 max(56px, calc(7vw - 40px)) 150px;
   text-align: right; color: var(--h-ink);
   opacity: max(0, calc(1 - var(--sy) / 480));
   transform: translateY(calc(var(--sy) * -.25px));
   will-change: transform, opacity;
 }
 .eh-foot {
-  position: absolute; z-index: 3; bottom: 96px; left: max(56px, calc((100% - 1360px) / 2 + 56px));
+  position: absolute; z-index: 3; bottom: 96px; left: max(56px, calc(7vw - 40px));
   font-size: 9px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--h-muet);
   opacity: max(0, calc(1 - var(--sy) / 300));
 }
@@ -1560,12 +1560,12 @@ html, body { overflow-x: clip; }
 @media (min-width: 2200px) {
   #main-content, .eh-on .navbar.eh-nav, .eh-nav { zoom: 1.25; }
   .eh-hero__in, .eh-foot { zoom: 1.25; }
-  .eh-render { width: min(70vw, 112vh, 1700px); }
+  .eh-render { width: min(82vw, 125vh, 1900px); left: -10%; }
 }
 /* ≥ 3200 px (4K) */
 @media (min-width: 3200px) {
   #main-content, .eh-on .navbar.eh-nav, .eh-nav, .eh-hero__in, .eh-foot { zoom: 1.6; }
-  .eh-render { width: min(70vw, 112vh, 2300px); }
+  .eh-render { width: min(82vw, 125vh, 2600px); left: -10%; }
 }
 /* écrans larges mais peu hauts (portable, 2K en fenêtre) : le contenu du header se resserre */
 @media (max-height: 900px) and (min-width: 761px) {
