@@ -2893,3 +2893,38 @@ form[name="jumpbox"] ~ :is(.panel, .topic-review, #topicreview, div:has(> .postb
   #ucp fieldset.submit-buttons .button1, #ucp fieldset.submit-buttons .button2 { flex: 1 1 auto; }
   #ucp dd > label:has(> input[type="radio"]) { padding: 0 12px; }
 }
+
+
+/* ═══ CORRECTIF ALIGNEMENT — annule les floats / marges du thème de base ═══ */
+#ucp dl {
+  display: grid !important; grid-template-columns: 240px minmax(0, 1fr) !important;
+  width: 100% !important; box-sizing: border-box; overflow: visible !important; text-align: left !important;
+}
+#ucp dl::before, #ucp dl::after { content: none !important; display: none !important; }
+#ucp dl > dt, #ucp dl > dd {
+  float: none !important; clear: none !important; width: auto !important; min-width: 0 !important;
+  margin: 0 !important; text-align: left !important; justify-self: stretch; position: static !important;
+}
+#ucp dl > dt { grid-column: 1; padding: 11px 0 0 !important; }
+#ucp dl > dd { grid-column: 2; padding: 0 !important; justify-content: flex-start !important; }
+#ucp dl > dd + dd { grid-column: 2; margin-top: 4px !important; }
+#ucp dd > * { margin-left: 0 !important; }
+#ucp dd input, #ucp dd select, #ucp dd textarea { margin: 0 !important; vertical-align: middle; }
+#ucp dd input[type="text"], #ucp dd input[type="email"], #ucp dd input[type="password"], #ucp dd .inputbox { flex: 0 1 420px; }
+#ucp dd textarea, #ucp dd .sceditor-container { flex: 1 1 100%; }
+/* espaces insécables entre les boutons radio */
+#ucp dd:has(> label > input[type="radio"]) { font-size: 0; }
+#ucp dd:has(> label > input[type="radio"]) > label { font-size: 11px; }
+#ucp dd:has(> label > input[type="radio"]) > .italic { font-size: 11.5px; margin-top: 8px; }
+/* champs de profil générés : libellé + valeur sur la même grille */
+#ucp .panel dl:has(> dd textarea) > dt, #ucp .panel dl:has(.sceditor-container) > dt { padding-top: 4px !important; }
+#ucp fieldset, #ucp .fields2, #ucp .fields1 { width: 100% !important; margin: 0 !important; padding: 0 !important; float: none !important; }
+#ucp .panel > .inner, #ucp .panel .inner { padding: 0 !important; margin: 0 !important; }
+#ucp center { text-align: left; }
+#ucp fieldset.submit-buttons center { text-align: right; }
+@media (max-width: 800px) {
+  #ucp dl { grid-template-columns: minmax(0, 1fr) !important; }
+  #ucp dl > dt, #ucp dl > dd, #ucp dl > dd + dd { grid-column: 1; }
+  #ucp dl > dt { padding-top: 0 !important; }
+  #ucp dd input[type="text"], #ucp dd input[type="email"], #ucp dd input[type="password"], #ucp dd .inputbox { flex-basis: 100%; width: 100% !important; }
+}
