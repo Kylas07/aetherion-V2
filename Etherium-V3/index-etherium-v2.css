@@ -2394,3 +2394,217 @@ body, input, select, textarea, button,
   #main-content .vf_jumpbox { flex-wrap: wrap; }
   #main-content #sort-topics .sort-form { left: 0; right: auto; }
 }
+/* ═════════════════════════════════════════════════════════════
+   PROFIL (profile_view_body) + POP-UP WOMBAT — Etherium V2
+   ═════════════════════════════════════════════════════════════ */
+
+/* ───────── POP-UP WOMBAT ───────── */
+.wombat-overlay {
+  position: fixed; inset: 0; z-index: 990; width: 100%; height: 100%;
+  opacity: 0; visibility: hidden; transition: opacity .3s ease, visibility .3s;
+  background: color-mix(in srgb, var(--encre) 70%, transparent);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+}
+.wombat-overlay.open { opacity: 1; visibility: visible; }
+.wombat-aside {
+  position: fixed; inset: 0; z-index: 999; margin: 60px auto 0;
+  width: 92%; max-width: 1180px; height: max-content; max-height: calc(100vh - 90px);
+  overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin;
+  border-radius: 22px; box-shadow: 0 40px 90px -30px rgba(4,6,14,.75);
+  opacity: 0; visibility: hidden; transform: translateY(24px) scale(.98);
+  transition: opacity .3s ease, transform .35s cubic-bezier(.22,.8,.28,1), visibility .3s;
+}
+.wombat-aside.open { opacity: 1; visibility: visible; transform: none; }
+.wombat-aside #wombat { margin: 0; }
+
+/* ───────── CONTENEUR ───────── */
+#wombat {
+  --groupe: var(--accent);
+  position: relative; display: flex; flex-direction: column; gap: 0; margin: 30px 0;
+  padding: 0 !important; overflow: hidden; border-radius: 22px;
+  background: var(--fond) !important; border: 1px solid var(--bordure);
+  font-family: var(--font), sans-serif; color: var(--texte);
+}
+
+/* ───────── ENTÊTE ───────── */
+#wombat .pr-tete {
+  position: relative; display: flex; align-items: flex-end; justify-content: space-between; gap: 18px;
+  min-height: 150px; padding: 34px 34px 26px; box-sizing: border-box; overflow: hidden;
+  background-color: var(--encre);
+  background-image: radial-gradient(ellipse 60% 130% at 25% 60%, color-mix(in srgb, var(--groupe) 45%, transparent), transparent 70%), var(--glow);
+  border-bottom: 2px solid var(--groupe);
+}
+#wombat .pr-tete::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px); background-size: 22px 22px;
+}
+#wombat .pr-identite { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+#wombat .pr-identite::before { content: ""; width: 8px; height: 8px; transform: rotate(45deg); background: var(--groupe); box-shadow: 0 0 12px var(--groupe); }
+#wombat .page-title {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin: 0; padding: 0;
+  font-family: var(--font), sans-serif; font-weight: 800; font-size: clamp(30px, 4vw, 52px); line-height: .95;
+  letter-spacing: .05em; text-transform: uppercase; color: #fff;
+}
+#wombat .page-title::before, #wombat .page-title::after { content: none; }
+#wombat .page-title * { color: #fff !important; }
+#wombat .pr-statut:empty { display: none; }
+#wombat .pr-statut {
+  display: inline-flex; align-items: center; gap: 6px; padding: 4px 11px; border-radius: 99px;
+  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.2);
+  font-size: 9px; font-weight: 700; letter-spacing: .16em; color: rgba(244,241,236,.75) !important;
+}
+#wombat .pr-statut::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--muet); }
+#wombat .pr-statut.online::before, #wombat .pr-statut:has(.online)::before { background: #6FC27B; box-shadow: 0 0 8px #6FC27B; }
+#wombat .pr-rank, #wombat .pr-rank * {
+  font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--groupe) !important; filter: brightness(1.35);
+}
+#wombat .pr-rank img { filter: none; max-height: 40px; }
+#wombat .profile_contact { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 8px; }
+#wombat .profile_contact:empty { display: none; }
+#wombat .profile_contact a {
+  display: inline-flex; align-items: center; gap: 8px; padding: 9px 18px; border-radius: 99px;
+  background: var(--accent); color: var(--on-accent) !important; text-decoration: none;
+  font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; transition: filter .2s;
+}
+#wombat .profile_contact a:hover { filter: brightness(1.1); }
+#wombat .profile_contact img { max-height: 16px; filter: brightness(0) invert(1); }
+
+/* ───────── CORPS : 2 colonnes ───────── */
+#wombat .user_profile {
+  display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 22px; align-items: start;
+  padding: 24px; box-sizing: border-box; background: none; border: 0;
+}
+
+/* colonne gauche */
+#wombat .pr-gauche { display: flex; flex-direction: column; gap: 12px; position: sticky; top: 16px; }
+#wombat .profile_avatar {
+  position: relative; overflow: hidden; border-radius: 18px; aspect-ratio: 3 / 4;
+  background: var(--encre2); margin-top: -70px; z-index: 2;
+  border: 3px solid var(--fond); box-shadow: 0 22px 40px -22px rgba(4,6,14,.7);
+}
+#wombat .profile_avatar img {
+  width: 100% !important; height: 100% !important; max-width: none !important; max-height: none !important;
+  object-fit: cover; object-position: center top; display: block; border-radius: 0;
+}
+
+#wombat .pr-minis { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+#wombat .pr-minis:empty { display: none; }
+#wombat .pr-minis > * {
+  display: flex; flex-direction: column; gap: 4px; min-width: 0; padding: 12px; box-sizing: border-box;
+  border-radius: 13px; background: var(--carte); border: 1px solid var(--bordure);
+}
+#wombat .pr-minis > * span, #wombat .pr-minis > * small, #wombat .pr-minis > * label {
+  font-size: 8px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--muet);
+}
+#wombat .pr-minis > * strong, #wombat .pr-minis > * b {
+  font-size: 19px; font-weight: 300; line-height: 1.1; color: var(--titre); overflow-wrap: anywhere;
+}
+
+#wombat .pr-liens { flex-wrap: wrap; align-items: center; gap: 6px; }
+#wombat .pr-liens span { display: contents; }
+#wombat .pr-liens a {
+  padding: 7px 13px; border-radius: 99px; border: 1px solid var(--bordure); background: var(--carte);
+  font-size: 9px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--texte); text-decoration: none;
+  transition: border-color .2s, color .2s;
+}
+#wombat .pr-liens a:hover { border-color: var(--accent); color: var(--accent); }
+#wombat .pr-liens span:first-child a { border: 0; background: none; padding-left: 0; color: var(--muet); pointer-events: none; }
+
+/* colonne droite : onglets */
+#wombat .pr-droite { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+#wombat .pr-onglets {
+  display: flex; gap: 6px; padding: 5px; align-self: flex-start; border-radius: 99px;
+  background: var(--carte); border: 1px solid var(--bordure);
+}
+#wombat .pr-onglet {
+  display: inline-flex; align-items: center; gap: 9px; padding: 10px 18px; border: 0; border-radius: 99px; cursor: pointer;
+  background: transparent; color: var(--muet);
+  font-family: var(--font), sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
+  transition: background .25s ease, color .25s ease;
+}
+#wombat .pr-onglet::before { content: ""; width: 6px; height: 6px; transform: rotate(45deg); border: 1.5px solid currentColor; box-sizing: border-box; transition: all .25s ease; }
+#wombat .pr-onglet:hover { color: var(--titre); }
+#wombat .pr-onglet.actif { background: var(--encre); color: #fff; }
+#wombat .pr-onglet.actif::before { background: var(--accent-clair); border-color: var(--accent-clair); box-shadow: 0 0 8px var(--accent-clair); }
+
+#wombat .pr-panneau { display: none; flex-direction: column; gap: 14px; }
+#wombat .pr-panneau.actif { display: flex; animation: eth-panel-in .45s cubic-bezier(.22,.8,.28,1) both; }
+
+/* cartes */
+#wombat .pr-essentiels { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+#wombat .pr-carte {
+  display: flex; flex-direction: column; min-width: 0; overflow: hidden; border-radius: 18px;
+  background: var(--carte); border: 1px solid var(--bordure);
+}
+#wombat .pr-carte-tete { display: flex; align-items: center; gap: 10px; padding: 14px 18px; border-bottom: 1px solid var(--filet); }
+#wombat .pr-carte-tete::before { content: ""; flex: none; width: 7px; height: 7px; transform: rotate(45deg); background: var(--accent); }
+#wombat .pr-carte-tete span { font-size: 12px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--titre); }
+#wombat .pr-carte-tete em { font-style: normal; font-weight: 300; color: var(--accent); }
+#wombat .pr-carte-corps { padding: 16px 18px; font-size: 13.5px; line-height: 1.65; color: var(--texte); min-width: 0; overflow-wrap: anywhere; }
+#wombat .pr-carte-corps:empty::before { content: "—"; color: var(--muet-clair); }
+#wombat .pr-carte-corps img { max-width: 100%; }
+
+/* team : sprites en grille */
+#wombat #pr_team_corps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+#wombat #pr_team_corps img {
+  width: 100%; aspect-ratio: 1; padding: 10px; box-sizing: border-box; object-fit: contain; border-radius: 14px;
+  background: var(--beige); border: 1px solid var(--bordure); transition: transform .2s, border-color .2s;
+}
+#wombat #pr_team_corps img:hover { transform: translateY(-3px); border-color: var(--groupe); }
+
+/* talents : pastilles */
+#wombat #pr_talents_corps table, #wombat #pr_talents_corps tbody { display: flex; flex-direction: column; gap: 7px; width: 100%; border: 0; margin: 0; }
+#wombat #pr_talents_corps tr, #wombat #pr_talents_corps td { display: block; padding: 0; border: 0; background: none; }
+#wombat #pr_talents_corps td {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 9px 9px 9px 14px; border-radius: 12px;
+  background: var(--beige); border: 1px solid var(--bordure); font-size: 12px; font-weight: 700; color: var(--titre);
+}
+#wombat #pr_talents_corps td span { padding: 2px 9px; border-radius: 99px; font-size: 8.5px; font-weight: 800; letter-spacing: .1em; color: #fff; }
+
+/* petites cartes de champs */
+#wombat .pr-champs { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
+#wombat .pr-champs:empty { display: none; }
+#wombat .pr-champs > * {
+  display: flex; flex-direction: column; gap: 5px; min-width: 0; padding: 14px; box-sizing: border-box;
+  border-radius: 14px; background: var(--carte); border: 1px solid var(--bordure); transition: border-color .2s;
+}
+#wombat .pr-champs > *:hover { border-color: var(--accent); }
+#wombat .pr-champs > * span, #wombat .pr-champs > * small, #wombat .pr-champs > * label {
+  font-size: 8px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--muet);
+}
+#wombat .pr-champs > * strong, #wombat .pr-champs > * b { font-size: 14px; font-weight: 700; color: var(--titre); overflow-wrap: anywhere; }
+
+/* onglet Histoire & RP */
+#wombat .pr-apropos .pr-carte-corps { font-size: 14px; line-height: 1.75; text-wrap: pretty; }
+#wombat .pr-rps .pr-carte-corps { display: flex; flex-direction: column; gap: 6px; }
+#wombat .pr-rps .pr-carte-corps a {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 14px; border-radius: 11px;
+  background: var(--beige); border: 1px solid var(--bordure); font-weight: 700; color: var(--titre); text-decoration: none;
+  transition: border-color .2s, color .2s;
+}
+#wombat .pr-rps .pr-carte-corps a::after { content: "→"; color: var(--accent); }
+#wombat .pr-rps .pr-carte-corps a:hover { border-color: var(--accent); color: var(--accent); }
+
+/* admin + données brutes (lues par le script, pas affichées) */
+#wombat .profile_admin:empty { display: none; }
+#wombat .profile_admin { margin: 0 24px 24px; padding: 12px 16px; border-radius: 12px; border: 1px dashed var(--bordure); font-size: 11px; color: var(--muet); }
+#wombat .profile_admin a { color: var(--accent); font-weight: 700; }
+#wombat .profile-infos { display: none; }
+
+/* ───────── RESPONSIVE ───────── */
+@media (max-width: 900px) {
+  #wombat .user_profile { grid-template-columns: minmax(0, 1fr); padding: 18px; }
+  #wombat .pr-gauche { position: static; display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 12px; align-items: start; }
+  #wombat .profile_avatar { grid-row: span 2; margin-top: -60px; }
+  #wombat .pr-tete { padding: 28px 20px 22px; flex-wrap: wrap; }
+  .wombat-aside { width: 96%; margin-top: 20px; max-height: calc(100vh - 40px); }
+}
+@media (max-width: 560px) {
+  #wombat .pr-gauche { grid-template-columns: minmax(0, 1fr); }
+  #wombat .profile_avatar { width: 60%; margin: -60px auto 0; }
+  #wombat .pr-essentiels { grid-template-columns: minmax(0, 1fr); }
+  #wombat .pr-onglets { align-self: stretch; }
+  #wombat .pr-onglet { flex: 1; justify-content: center; padding: 10px; }
+}
+
