@@ -2693,3 +2693,203 @@ form[name="jumpbox"] ~ :is(.panel, .topic-review, #topicreview, div:has(> .postb
   form[name="post"] .page-title { font-size: 22px; }
 }
 
+/* ═════════════════════════════════════════════════════════════
+   ÉDITION DU PROFIL (profile_add_body) + onglets UCP — Etherium V2
+   À coller dans la feuille de style, après etherium-v2.css.
+   Le template reste inchangé (scripts mot de passe, récompenses, profil-edit.js).
+   ═════════════════════════════════════════════════════════════ */
+
+/* ───────── onglets du panneau (UCP_TABS) ───────── */
+#tabs, .ucp-tabs, #cp-menu {
+  margin: 24px 0 18px; padding: 0; background: none; border: 0;
+}
+#tabs ul {
+  display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 5px; list-style: none;
+  border-radius: 99px; background: var(--carte); border: 1px solid var(--bordure); width: fit-content; max-width: 100%;
+}
+#tabs li { margin: 0; padding: 0; float: none; background: none; border: 0; }
+#tabs li a {
+  display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 99px; border: 0;
+  background: transparent; color: var(--muet) !important; text-decoration: none;
+  font-family: var(--font), sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  transition: background .2s, color .2s;
+}
+#tabs li a span { background: none; padding: 0; color: inherit; }
+#tabs li a:hover { color: var(--titre) !important; }
+#tabs li.activetab a, #tabs li a.activetab, #tabs li.active a {
+  background: var(--encre); color: #fff !important;
+}
+#tabs li.activetab a::before, #tabs li a.activetab::before, #tabs li.active a::before {
+  content: ""; width: 6px; height: 6px; transform: rotate(45deg); background: var(--accent-clair); box-shadow: 0 0 8px var(--accent-clair);
+}
+
+/* ───────── structure ───────── */
+#ucp { display: flex; flex-direction: column; gap: 16px; margin: 0; font-family: var(--font), sans-serif; color: var(--texte); }
+#cp-main.ucp-main { width: auto; float: none; margin: 0; padding: 0; background: none; border: 0; }
+#ucp .page-title {
+  display: flex; align-items: center; gap: 14px; margin: 18px 0 0; padding: 0;
+  font-family: var(--font), sans-serif; font-size: 22px; font-weight: 800; line-height: 1;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--titre);
+}
+#ucp .page-title:first-child { margin-top: 0; font-size: 30px; }
+#ucp .page-title::before { content: ""; flex: none; width: 9px; height: 9px; transform: rotate(45deg); background: var(--accent); }
+#ucp .page-title::after { content: ""; flex: 1; height: 1px; background: var(--bordure); }
+#ucp .page-title:empty { display: none; }
+
+#ucp .panel {
+  margin: 0; padding: 22px 24px; box-sizing: border-box; border-radius: 18px;
+  background: var(--carte); border: 1px solid var(--bordure); box-shadow: none;
+}
+#ucp .panel > p {
+  margin: 0 0 16px; padding: 10px 14px; border-radius: 10px; background: var(--beige);
+  font-size: 12px; line-height: 1.55; color: var(--texte);
+}
+#ucp fieldset { display: flex; flex-direction: column; margin: 0; padding: 0; border: 0; min-width: 0; }
+#ucp fieldset > p { margin: 0; font-size: 13px; }
+
+/* lignes libellé / champ */
+#ucp dl {
+  display: grid; grid-template-columns: 240px minmax(0, 1fr); align-items: start; gap: 8px 22px;
+  margin: 0; padding: 16px 0; border-bottom: 1px solid var(--filet);
+}
+#ucp dl:first-child { padding-top: 0; }
+#ucp dl:last-child { border-bottom: 0; padding-bottom: 0; }
+#ucp dt {
+  width: auto; float: none; margin: 0; padding: 10px 0 0;
+  font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--titre); line-height: 1.5;
+}
+#ucp dt label { font: inherit; color: inherit; }
+#ucp dt span, #ucp dt strong { display: block; }
+#ucp dt span { margin-top: 6px; font-size: 11px; font-weight: 500; letter-spacing: 0; text-transform: none; color: var(--muet); }
+#ucp dd { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0; padding: 0; min-width: 0; font-size: 13px; color: var(--titre); }
+#ucp dd br { display: none; }
+#ucp dd .italic, #ucp dd span.italic {
+  flex: 1 1 100%; display: block; margin-top: 2px; font-style: normal; font-size: 11.5px; line-height: 1.5; color: var(--muet);
+}
+#ucp dd .italic:empty { display: none; }
+#ucp dd > strong { font-size: 15px; font-weight: 800; }
+
+/* champs */
+#ucp .inputbox, #ucp input[type="text"], #ucp input[type="email"], #ucp input[type="password"], #ucp input[type="url"], #ucp input[type="number"], #ucp select, #ucp textarea {
+  box-sizing: border-box; max-width: 100%; height: 42px; padding: 0 14px; border-radius: 11px;
+  border: 1px solid var(--bordure); background: var(--beige); color: var(--titre);
+  font-family: var(--font), sans-serif; font-size: 13px; font-weight: 500; outline: none;
+  transition: border-color .2s, box-shadow .2s, background .2s;
+}
+#ucp input[type="text"], #ucp input[type="email"], #ucp input[type="password"], #ucp .inputbox { width: min(420px, 100%); }
+#ucp textarea { width: 100%; height: auto; min-height: 140px; padding: 12px 14px; line-height: 1.65; resize: vertical; }
+#ucp select { padding-right: 30px; cursor: pointer; }
+#ucp .inputbox:focus, #ucp input:focus, #ucp select:focus, #ucp textarea:focus {
+  border-color: var(--accent); background: var(--carte); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent);
+}
+#ucp input[type="file"] { height: auto; padding: 8px; background: var(--beige); cursor: pointer; }
+#ucp input[type="file"]::file-selector-button {
+  margin-right: 12px; padding: 8px 14px; border: 0; border-radius: 8px; cursor: pointer;
+  background: var(--encre); color: #fff; font-family: var(--font), sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+}
+
+/* indicateur force du mot de passe */
+#pwd_bad, #pwd_middle, #pwd_good { font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: 4px 10px; border-radius: 99px; }
+#pwd_bad { color: var(--g-killers); background: color-mix(in srgb, var(--g-killers) 12%, transparent); }
+#pwd_middle { color: var(--g-eveilles); background: color-mix(in srgb, var(--g-eveilles) 14%, transparent); }
+#pwd_good { color: var(--valide); background: color-mix(in srgb, var(--valide) 14%, transparent); }
+
+/* lien « < Modifier > » du mot de passe → bouton */
+#ucp dd a[href*="passwd"], #ucp dd a[target="_blank"]:has(b) {
+  display: inline-flex; align-items: center; height: 38px; padding: 0 16px; border-radius: 10px;
+  border: 1px solid var(--bordure); background: var(--beige); color: var(--titre) !important; text-decoration: none;
+  font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; transition: border-color .2s, color .2s;
+}
+#ucp dd a[href*="passwd"]:hover { border-color: var(--accent); color: var(--accent) !important; }
+#ucp dd a[href*="passwd"] b { font-weight: 700; }
+
+/* ───────── choix Oui / Non : segments ───────── */
+#ucp dd:has(> label > input[type="radio"]) { gap: 0; }
+#ucp dd > label:has(> input[type="radio"]) {
+  position: relative; display: inline-flex; align-items: center; height: 38px; padding: 0 16px; margin: 0 -1px 0 0; cursor: pointer;
+  border: 1px solid var(--bordure); background: var(--beige); color: var(--texte);
+  font-size: 11px; font-weight: 700; letter-spacing: .06em; transition: background .2s, color .2s, border-color .2s;
+}
+#ucp dd > label:has(> input[type="radio"]):first-of-type { border-radius: 10px 0 0 10px; }
+#ucp dd > label:has(> input[type="radio"]):last-of-type { border-radius: 0 10px 10px 0; margin-right: 0; }
+#ucp dd > label:has(> input[type="radio"]):only-of-type { border-radius: 10px; }
+#ucp dd > label > input[type="radio"] { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; pointer-events: none; }
+#ucp dd > label:has(> input[type="radio"]):hover { color: var(--titre); }
+#ucp dd > label:has(> input[type="radio"]:checked) { z-index: 1; background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+#ucp dd > label:has(> input[type="radio"]:focus-visible) { box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent); }
+
+/* cases à cocher (supprimer avatar / compte) */
+#ucp input[type="checkbox"] {
+  appearance: none; -webkit-appearance: none; flex: none; position: relative; width: 36px; height: 20px; margin: 0 8px 0 0;
+  border-radius: 99px; background: var(--bordure); cursor: pointer; vertical-align: middle; transition: background .25s;
+}
+#ucp input[type="checkbox"]::after {
+  content: ""; position: absolute; top: 3px; left: 3px; width: 14px; height: 14px; border-radius: 50%;
+  background: var(--carte); box-shadow: 0 1px 3px rgba(0,0,0,.25); transition: transform .25s cubic-bezier(.4,1.4,.5,1);
+}
+#ucp input[type="checkbox"]:checked { background: var(--accent); }
+#ucp input[type="checkbox"]:checked::after { transform: translateX(16px); }
+#ucp input[name="delete_user"]:checked, #ucp input[name="avatardel"]:checked { background: var(--g-killers); }
+
+/* ───────── champs de profil (Team, Talents, RP, À propos…) ───────── */
+#ucp .panel:has(dl dd textarea) dl, #ucp .panel:has(.sceditor-container) dl { grid-template-columns: 200px minmax(0, 1fr); }
+#ucp .sceditor-container {
+  width: 100% !important; box-sizing: border-box; overflow: hidden; border-radius: 13px !important;
+  border: 1px solid var(--bordure) !important; background: var(--carte) !important;
+}
+#ucp .sceditor-toolbar { padding: 6px 8px !important; border: 0 !important; border-bottom: 1px solid var(--filet) !important; background: var(--beige) !important; }
+#ucp .sceditor-group { margin: 0 4px 0 0 !important; border: 0 !important; border-radius: 8px !important; background: var(--carte) !important; box-shadow: 0 0 0 1px var(--bordure); }
+#ucp .sceditor-container iframe, #ucp .sceditor-container textarea { background: var(--carte) !important; color: var(--titre) !important; border: 0 !important; }
+
+/* ───────── avatar ───────── */
+.profil_editavatar dl:first-child dd { gap: 16px; }
+.profil_editavatar dl:first-child dd img {
+  width: 120px; height: 160px; object-fit: cover; object-position: center top; border-radius: 16px;
+  border: 3px solid var(--carte); box-shadow: 0 0 0 1.5px var(--accent), 0 18px 34px -18px rgba(4,6,14,.6);
+}
+.profil_editavatar dl:first-child dd { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muet); }
+
+/* ───────── récompenses ───────── */
+#list_awards { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; text-align: center; }
+#list_awards img { border-radius: 10px; }
+#ucp .panel center { display: flex; justify-content: center; gap: 10px; margin-top: 14px; }
+
+/* préférences : un peu plus serré */
+.profil_preferences dl { padding: 13px 0; }
+
+/* ───────── boutons ───────── */
+#ucp .button1, #ucp .button2, #ucp input[type="submit"], #ucp input[type="reset"], #ucp a.button1 {
+  display: inline-flex; align-items: center; justify-content: center; height: 42px; padding: 0 20px !important; border-radius: 11px; cursor: pointer;
+  font-family: var(--font), sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; text-decoration: none;
+  transition: background .2s, border-color .2s, color .2s, filter .2s;
+}
+#ucp .button1, #ucp a.button1 { border: 0; background: var(--accent); color: var(--on-accent) !important; }
+#ucp .button1:hover { filter: brightness(1.08); }
+#ucp .button2 { border: 1px solid var(--bordure); background: var(--beige); color: var(--titre); }
+#ucp .button2:hover { border-color: var(--accent); color: var(--accent); }
+
+#ucp fieldset.submit-buttons {
+  position: sticky; bottom: 14px; z-index: 5; flex-direction: row; justify-content: flex-end;
+  margin: 4px 0 0; padding: 14px 18px; border-radius: 16px;
+  background: color-mix(in srgb, var(--carte) 88%, transparent); border: 1px solid var(--bordure);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 18px 40px -22px rgba(4,6,14,.5);
+}
+#ucp fieldset.submit-buttons center { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 10px; width: 100%; font-size: 0; }
+#ucp fieldset.submit-buttons .button1 { min-width: 180px; box-shadow: 0 12px 24px -14px color-mix(in srgb, var(--accent) 80%, transparent); }
+#ucp fieldset.submit-buttons .button1 { order: 2; }
+#ucp fieldset.submit-buttons .button2 { order: 1; }
+
+/* ───────── responsive ───────── */
+@media (max-width: 800px) {
+  #ucp dl, #ucp .panel:has(dl dd textarea) dl { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  #ucp dt { padding-top: 0; }
+  #ucp .panel { padding: 18px 16px; }
+  #tabs ul { border-radius: 16px; width: 100%; }
+  #tabs li { flex: 1 1 auto; }
+  #tabs li a { justify-content: center; width: 100%; box-sizing: border-box; }
+}
+@media (max-width: 560px) {
+  #ucp .page-title:first-child { font-size: 22px; }
+  #ucp fieldset.submit-buttons .button1, #ucp fieldset.submit-buttons .button2 { flex: 1 1 auto; }
+  #ucp dd > label:has(> input[type="radio"]) { padding: 0 12px; }
+}
