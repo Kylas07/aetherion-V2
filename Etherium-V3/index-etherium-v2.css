@@ -2250,12 +2250,32 @@ body, input, select, textarea, button,
 /* — sous-forums d'une page ordinaire : cartes claires sur 2 colonnes — */
 #main-content .categorie[id^="f"]:not(.cat--etage) .cat-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
 #main-content .categorie[id^="f"]:not(.cat--etage) .forum {
-  grid-template-columns: 48px minmax(0, 1fr) auto; grid-template-areas: "num desc stats" "num desc last";
-  padding: 14px 18px 14px 0; column-gap: 14px; min-height: 0;
+  grid-template-columns: 48px minmax(0, 1fr) auto; grid-template-areas: "num desc stats" "num last last";
+  align-items: start; row-gap: 12px; padding: 16px 20px 14px 0; column-gap: 14px; min-height: 0;
 }
 #main-content .categorie[id^="f"]:not(.cat--etage) .forum-num::before { font-size: 22px; -webkit-text-stroke-width: 1.2px; }
 #main-content .categorie[id^="f"]:not(.cat--etage) .forum-titre { font-size: 14px; }
-#main-content .categorie[id^="f"]:not(.cat--etage) :is(.forum-stats-pill, .forum-dernier) { border-left: 0; padding-left: 0; justify-self: end; text-align: right; }
+#main-content .categorie[id^="f"]:not(.cat--etage) .forum-num { align-self: center; grid-row: 1 / -1; }
+#main-content .categorie[id^="f"]:not(.cat--etage) .forum-desc { align-self: center; }
+#main-content .categorie[id^="f"]:not(.cat--etage) .forum-stats-pill { border-left: 0; padding: 3px 0 0; justify-self: end; align-self: start; text-align: right; }
+#main-content .categorie[id^="f"]:not(.cat--etage) .forum-dernier {
+  grid-area: last; justify-self: stretch; align-self: end; width: auto; text-align: left;
+  margin: 0; padding: 11px 0 0; border-left: 0; border-top: 1px solid var(--filet);
+  display: flex; align-items: center; gap: 10px;
+}
+#main-content .categorie[id^="f"]:not(.cat--etage) .forum-dernier .fd-info {
+  flex: 1; min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: "k d" "t d" "a d"; column-gap: 14px; row-gap: 1px;
+}
+#main-content .categorie[id^="f"]:not(.cat--etage) .forum-dernier .fd-info::before { grid-area: k; }
+#main-content .categorie[id^="f"]:not(.cat--etage) .forum-dernier .fd-titre { grid-area: t; }
+#main-content .categorie[id^="f"]:not(.cat--etage) .forum-dernier .fd-auteur { grid-area: a; }
+#main-content .categorie[id^="f"]:not(.cat--etage) .forum-dernier .fd-date { grid-area: d; align-self: center; white-space: nowrap; text-align: right; }
+@media (max-width: 700px) {
+  #main-content .categorie[id^="f"]:not(.cat--etage) .forum { grid-template-columns: 40px minmax(0, 1fr); grid-template-areas: "num desc" "num stats" "num last"; }
+  #main-content .categorie[id^="f"]:not(.cat--etage) .forum-stats-pill { justify-self: start; }
+  #main-content .categorie[id^="f"]:not(.cat--etage) .forum-dernier .fd-info { grid-template-areas: "k k" "t t" "a d"; }
+}
 #main-content .categorie[id^="f"]:not(.cat--etage) .forum-dernier.is-vide,
 #main-content .categorie[id^="f"]:not(.cat--etage) .forum-dernier:not(:has(.fd-titre:not(:empty))) { display: none; }
 
