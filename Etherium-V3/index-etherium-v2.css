@@ -2602,6 +2602,7 @@ form[name="post"] .submit-buttons {
   display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 10px;
   margin: 0; padding: 16px 20px; border-radius: 16px; background: var(--carte); border: 1px solid var(--bordure);
   font-size: 0; text-align: right;
+  margin-bottom: 16px;
 }
 form[name="post"] .submit-buttons br { display: none; }
 form[name="post"] .button1, form[name="post"] .button2,
