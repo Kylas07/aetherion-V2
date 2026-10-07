@@ -2464,3 +2464,231 @@ body, input, select, textarea, button,
 #main-content #c3 .tour-scene .ss-subs { justify-content: flex-start; width: 100%; }
 #main-content #c3 .tour-scene .ss-subs a::before, #main-content #c3 .tour-scene .ss-subs a::after { content: none !important; }
 #main-content #c3 .tour-scene .etage-cta { flex: none; margin-top: 14px; }
+/* ═════════════════════════════════════════════════════════════
+   POSTER UN MESSAGE (posting_body) — Etherium V2
+   À coller dans la feuille de style, après etherium-v2.css.
+   Le template posting_body reste inchangé.
+   ═════════════════════════════════════════════════════════════ */
+
+/* ───────── conteneur + titre ───────── */
+form[name="post"] { margin: 0; }
+form[name="post"] > .container {
+  display: flex; flex-direction: column; gap: 16px; margin: 24px 0 0; padding: 0;
+  font-family: var(--font), sans-serif; color: var(--texte); background: none; border: 0;
+}
+form[name="post"] .page-title {
+  display: flex; align-items: center; gap: 14px; margin: 0; padding: 0;
+  font-family: var(--font), sans-serif; font-size: 30px; font-weight: 800; line-height: 1;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--titre);
+}
+form[name="post"] .page-title::before { content: ""; flex: none; width: 9px; height: 9px; transform: rotate(45deg); background: var(--accent); }
+form[name="post"] .page-title::after { content: ""; flex: 1; height: 1px; background: var(--bordure); }
+form[name="post"] ~ br, form[name="post"] > br { display: none; }
+
+/* ───────── panneaux ───────── */
+form[name="post"] .panel {
+  margin: 0 0 16px; padding: 22px 24px; box-sizing: border-box; border-radius: 18px;
+  background: var(--carte); border: 1px solid var(--bordure); box-shadow: none;
+  font-family: var(--font), sans-serif; color: var(--texte);
+}
+form[name="post"] > .container > .panel { margin: 0; }
+form[name="post"] .panel > h3 {
+  display: flex; align-items: center; gap: 10px; margin: 0 0 18px; padding: 0 0 14px; border-bottom: 1px solid var(--filet);
+  font-family: var(--font), sans-serif; font-size: 12px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--titre);
+}
+form[name="post"] .panel > h3::before { content: ""; flex: none; width: 7px; height: 7px; transform: rotate(45deg); background: var(--accent); }
+form[name="post"] fieldset { margin: 0; padding: 0; border: 0; min-width: 0 !important; }
+form[name="post"] hr.dashed { margin: 16px 0; border: 0; border-top: 1px dashed var(--bordure); }
+
+/* règlement du forum : carte sombre */
+#forum_rules { background-color: var(--encre) !important; background-image: var(--glow) !important; border-color: transparent !important; color: rgba(244,241,236,.78) !important; }
+#forum_rules > h3 { color: #fff !important; border-bottom-color: rgba(255,255,255,.12) !important; }
+#forum_rules > h3::before { background: var(--accent-clair) !important; }
+#forum_rules .postbody { font-size: 13px; line-height: 1.65; color: rgba(244,241,236,.78); }
+#forum_rules .postbody a { color: var(--accent-clair); }
+#forum_rules .logo { float: left; max-width: 90px; margin: 0 16px 8px 0; border-radius: 12px; }
+
+/* avertissement citations */
+form[name="post"] .post:has(> .center) { padding: 12px 16px; border-radius: 12px; background: color-mix(in srgb, var(--g-killers) 12%, transparent); border: 1px solid color-mix(in srgb, var(--g-killers) 40%, transparent); }
+form[name="post"] .post:has(> .center) br { display: none; }
+form[name="post"] .post .center { margin: 0; font-size: 12px; font-weight: 700; color: var(--g-killers) !important; }
+
+/* ───────── champs ───────── */
+#postingbox .fields1 { display: flex; flex-direction: column; gap: 14px; }
+form[name="post"] dl {
+  display: grid; grid-template-columns: 170px minmax(0, 1fr); align-items: center; gap: 8px 16px; margin: 0; padding: 0;
+}
+form[name="post"] dt, form[name="post"] dl > label {
+  margin: 0; padding: 0; width: auto; float: none;
+  font-family: var(--font), sans-serif; font-size: 9.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muet);
+}
+form[name="post"] dt label { font: inherit; color: inherit; }
+form[name="post"] dd { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0; padding: 0; min-width: 0; }
+form[name="post"] dd br { display: none; }
+
+form[name="post"] .inputbox, form[name="post"] select, form[name="post"] input[type="text"]:not(.sceditor-container *) {
+  box-sizing: border-box; height: 40px; padding: 0 14px; border-radius: 11px;
+  border: 1px solid var(--bordure); background: var(--beige); color: var(--titre);
+  font-family: var(--font), sans-serif; font-size: 13px; font-weight: 500; outline: none;
+  transition: border-color .2s, box-shadow .2s, background .2s;
+}
+form[name="post"] .inputbox.medium { flex: 1 1 320px; width: auto; max-width: 620px; }
+form[name="post"] input[name="username[]"], form[name="post"] input[name="username"] { width: 220px !important; }
+form[name="post"] .inputbox:focus, form[name="post"] select:focus, form[name="post"] input[type="text"]:focus {
+  border-color: var(--accent); background: var(--carte); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent);
+}
+form[name="post"] select { padding-right: 30px; cursor: pointer; margin-left: 0 !important; }
+form[name="post"] select[name="topic_color"] { width: 130px; }
+form[name="post"] #add_username { cursor: pointer; opacity: .7; }
+
+/* icônes de sujet */
+form[name="post"] dd label { display: inline-flex; align-items: center; gap: 4px; padding: 5px 8px; border-radius: 9px; border: 1px solid var(--bordure); background: var(--beige); cursor: pointer; }
+form[name="post"] dd label:has(input:checked) { border-color: var(--accent); background: var(--accent-pale); }
+form[name="post"] dd label input[type="radio"] { margin: 0; accent-color: var(--accent); }
+
+/* ───────── éditeur + smileys ───────── */
+#postingbox .message-edition {
+  display: grid; grid-template-columns: minmax(0, 1fr) 230px; grid-template-areas: "edit smile"; gap: 16px; align-items: start; margin-top: 6px;
+}
+#postingbox #message-box { grid-area: edit; min-width: 0; width: auto; float: none; margin: 0; }
+#postingbox #message-box .left-box:has(.helpline:empty) { display: none; }
+#postingbox .helpline { font-size: 11px; color: var(--muet); }
+#postingbox #smiley-box {
+  grid-area: smile; width: auto; float: none; margin: 0; position: sticky; top: 80px;
+  max-height: 420px; overflow-y: auto; padding: 14px; box-sizing: border-box; border-radius: 14px;
+  background: var(--beige); border: 1px solid var(--bordure); scrollbar-width: thin;
+}
+#postingbox #smiley-box::before {
+  content: "Smileys"; display: block; margin: 0 0 10px;
+  font-size: 9px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--muet);
+}
+#postingbox #smileyContainer { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
+#postingbox #smileyContainer select { width: 100%; height: 34px; margin: 0 0 8px; font-size: 11.5px; }
+#postingbox #smileyContainer img { cursor: pointer; padding: 3px; border-radius: 6px; transition: background .15s, transform .15s; }
+#postingbox #smileyContainer img:hover { background: var(--carte); transform: scale(1.15); }
+#postingbox #smileyContainer br { display: none; }
+
+/* SCEditor */
+form[name="post"] .sceditor-container {
+  width: 100% !important; box-sizing: border-box; overflow: hidden; border-radius: 14px !important;
+  border: 1px solid var(--bordure) !important; background: var(--carte) !important;
+}
+form[name="post"] .sceditor-container:focus-within { border-color: var(--accent) !important; box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 15%, transparent); }
+form[name="post"] .sceditor-toolbar {
+  display: flex; flex-wrap: wrap; gap: 6px; padding: 8px 10px !important; border: 0 !important;
+  border-bottom: 1px solid var(--filet) !important; background: var(--beige) !important; border-radius: 0 !important;
+}
+form[name="post"] .sceditor-group {
+  display: inline-flex; margin: 0 !important; padding: 2px !important; border: 0 !important; border-radius: 9px !important;
+  background: var(--carte) !important; box-shadow: 0 0 0 1px var(--bordure);
+}
+form[name="post"] .sceditor-button { border-radius: 7px !important; transition: background .15s; }
+form[name="post"] .sceditor-button:hover, form[name="post"] .sceditor-button.active { background: var(--accent-pale) !important; box-shadow: none !important; }
+[data-color-scheme="dark"] form[name="post"] .sceditor-button div { filter: invert(.85) hue-rotate(180deg); }
+form[name="post"] .sceditor-container iframe, form[name="post"] .sceditor-container textarea {
+  box-sizing: border-box; min-height: 340px; padding: 14px 16px !important; border: 0 !important;
+  background: var(--carte) !important; color: var(--titre) !important;
+  font-family: var(--font), sans-serif !important; font-size: 14px !important; line-height: 1.7 !important;
+}
+form[name="post"] .sceditor-grip { opacity: .4; }
+#text_editor_textarea:not(.sceditor-container *) {
+  width: 100%; min-height: 340px; box-sizing: border-box; padding: 14px 16px; border-radius: 14px;
+  border: 1px solid var(--bordure); background: var(--carte); color: var(--titre);
+  font-family: var(--font), sans-serif; font-size: 14px; line-height: 1.7; resize: vertical;
+}
+
+/* ───────── boutons d'envoi ───────── */
+form[name="post"] .submit-buttons {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 10px;
+  margin: 0; padding: 16px 20px; border-radius: 16px; background: var(--carte); border: 1px solid var(--bordure);
+  font-size: 0; text-align: right;
+}
+form[name="post"] .submit-buttons br { display: none; }
+form[name="post"] .button1, form[name="post"] .button2,
+form[name="post"] .submit-buttons input[type="submit"] {
+  height: 42px; padding: 0 20px !important; border-radius: 11px; cursor: pointer;
+  font-family: var(--font), sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  transition: background .2s, border-color .2s, color .2s, filter .2s;
+}
+form[name="post"] .button2 { border: 1px solid var(--bordure); background: var(--beige); color: var(--titre); }
+form[name="post"] .button2:hover { border-color: var(--accent); color: var(--accent); }
+form[name="post"] .submit-buttons .button1 {
+  min-width: 170px; border: 0; background: var(--accent); color: var(--on-accent);
+  box-shadow: 0 12px 24px -14px color-mix(in srgb, var(--accent) 80%, transparent);
+}
+form[name="post"] .submit-buttons .button1::after { content: " →"; }
+form[name="post"] .submit-buttons .button1:hover { filter: brightness(1.08); }
+form[name="post"] .submit-buttons .button1:disabled { opacity: .45; cursor: not-allowed; }
+form[name="post"] .submit-buttons .info {
+  flex: 1 1 100%; order: -1; display: block; padding: 10px 14px; border-radius: 10px; text-align: left;
+  background: var(--accent-pale); font-size: 12px; color: var(--texte);
+}
+
+/* ───────── dés ───────── */
+#list_dice { width: 100%; border: 0; border-collapse: separate; border-spacing: 0 8px; }
+#list_dice td { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 0; font-size: 12px; font-weight: 700; color: var(--titre); }
+#list_dice input#nb_rolls, #list_dice input[name^="nb_rolls"] { width: 60px; text-align: center; }
+#list_dice #dice_to_del a, #list_dice span a {
+  display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 9px;
+  background: var(--accent); color: var(--on-accent) !important; font-size: 17px; font-weight: 800; text-decoration: none;
+}
+
+/* ───────── options (cases à cocher en interrupteurs) ───────── */
+form[name="post"] .panel > .fields1:last-child { display: flex; flex-direction: column; gap: 8px; }
+form[name="post"] .panel > .fields1:last-child > br { display: none; }
+form[name="post"] .panel > .fields1 > label {
+  display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-radius: 11px; cursor: pointer;
+  border: 1px solid var(--bordure); background: var(--beige); font-size: 12.5px; font-weight: 600; color: var(--titre);
+  transition: border-color .2s, background .2s;
+}
+form[name="post"] .panel > .fields1 > label:hover { border-color: var(--accent); }
+form[name="post"] .panel > .fields1 > label input[type="checkbox"] {
+  appearance: none; -webkit-appearance: none; flex: none; position: relative; width: 36px; height: 20px; margin: 0;
+  border-radius: 99px; background: var(--bordure); cursor: pointer; transition: background .25s;
+}
+form[name="post"] .panel > .fields1 > label input[type="checkbox"]::after {
+  content: ""; position: absolute; top: 3px; left: 3px; width: 14px; height: 14px; border-radius: 50%;
+  background: var(--carte); box-shadow: 0 1px 3px rgba(0,0,0,.25); transition: transform .25s cubic-bezier(.4,1.4,.5,1);
+}
+form[name="post"] .panel > .fields1 > label input[type="checkbox"]:checked { background: var(--accent); }
+form[name="post"] .panel > .fields1 > label input[type="checkbox"]:checked::after { transform: translateX(16px); }
+form[name="post"] .panel > .fields1 > label:has(input[name="delete"]:checked) { border-color: var(--g-killers); background: color-mix(in srgb, var(--g-killers) 10%, transparent); }
+form[name="post"] .panel > .fields1 > label:has(input[name="delete"]) input:checked { background: var(--g-killers); }
+/* type de sujet (normal / post-it / annonce) */
+form[name="post"] .panel > .fields1 > label ~ input[type="radio"] { accent-color: var(--accent); }
+
+/* ───────── sauter vers un forum ───────── */
+form[name="jumpbox"] p.right {
+  display: flex; align-items: center; justify-content: flex-end; gap: 10px; margin: 16px 0;
+  font-family: var(--font), sans-serif; font-size: 9.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muet);
+}
+form[name="jumpbox"] select {
+  height: 38px; padding: 0 30px 0 12px; border-radius: 10px; border: 1px solid var(--bordure); background: var(--carte);
+  color: var(--titre); font-family: var(--font), sans-serif; font-size: 12px; letter-spacing: 0; text-transform: none;
+}
+form[name="jumpbox"] .button2 {
+  height: 38px; padding: 0 16px; border-radius: 10px; border: 1px solid var(--bordure); background: var(--beige); cursor: pointer;
+  color: var(--titre); font-family: var(--font), sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+}
+form[name="jumpbox"] .button2:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ───────── revue du sujet (posting_topic_review) ───────── */
+form[name="jumpbox"] ~ :is(.panel, .topic-review, #topicreview, div:has(> .postbody)) {
+  margin: 0 0 16px; padding: 20px 22px; border-radius: 18px; background: var(--carte); border: 1px solid var(--bordure);
+  font-family: var(--font), sans-serif; font-size: 13px; line-height: 1.65; color: var(--texte);
+}
+
+/* ───────── responsive ───────── */
+@media (max-width: 1000px) {
+  #postingbox .message-edition { grid-template-columns: minmax(0, 1fr); grid-template-areas: "edit" "smile"; }
+  #postingbox #smiley-box { position: static; max-height: 180px; }
+}
+@media (max-width: 700px) {
+  form[name="post"] .panel { padding: 18px 16px; }
+  form[name="post"] dl { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  form[name="post"] .inputbox.medium { flex-basis: 100%; max-width: none; }
+  form[name="post"] .submit-buttons { justify-content: stretch; }
+  form[name="post"] .submit-buttons input { flex: 1 1 auto; }
+  form[name="post"] .page-title { font-size: 22px; }
+}
+
