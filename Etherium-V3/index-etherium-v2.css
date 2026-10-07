@@ -2440,3 +2440,27 @@ body, input, select, textarea, button,
   #main-content #c3 .tour-scene .ss-row { grid-template-columns: minmax(0, 1fr) 42px; height: 78px; }
   #main-content #c3 .tour-scene .ss-txt { display: none; }
 }
+
+
+/* ── tour : lignes fixes + défilement si trop de sous-forums ── */
+#main-content #c3 .tour-scene .forum.is-active { overflow: hidden; }
+#main-content #c3 .tour-scene .forum-desc { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
+#main-content #c3 .tour-scene .ss-liste {
+  flex: 1 1 auto; min-height: 0; max-height: 100%; overflow-y: auto; overscroll-behavior: contain;
+  padding-right: 6px; margin-right: -6px; scrollbar-width: thin; scrollbar-color: rgba(201,220,234,.4) transparent;
+  -webkit-mask-image: linear-gradient(180deg, #000 calc(100% - 28px), transparent);
+          mask-image: linear-gradient(180deg, #000 calc(100% - 28px), transparent);
+  padding-bottom: 24px;
+}
+#main-content #c3 .tour-scene .ss-liste::-webkit-scrollbar { width: 5px; }
+#main-content #c3 .tour-scene .ss-liste::-webkit-scrollbar-thumb { background: rgba(201,220,234,.4); border-radius: 3px; }
+#main-content #c3 .tour-scene .ss-row {
+  flex: none; height: 84px; min-height: 84px; max-height: 84px; margin: 0; text-align: left;
+}
+#main-content #c3 .tour-scene .ss-row::before, #main-content #c3 .tour-scene .ss-row::after,
+#main-content #c3 .tour-scene .ss-l::before, #main-content #c3 .tour-scene .ss-l::after { content: none !important; display: none !important; }
+#main-content #c3 .tour-scene .ss-l { align-items: flex-start; justify-content: center; text-align: left; }
+#main-content #c3 .tour-scene .ss-nom { justify-content: flex-start; width: 100%; }
+#main-content #c3 .tour-scene .ss-subs { justify-content: flex-start; width: 100%; }
+#main-content #c3 .tour-scene .ss-subs a::before, #main-content #c3 .tour-scene .ss-subs a::after { content: none !important; }
+#main-content #c3 .tour-scene .etage-cta { flex: none; margin-top: 14px; }
