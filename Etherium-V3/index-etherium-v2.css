@@ -3,7 +3,7 @@
    Contenu :
      A. Variables jour / nuit (palette V2 + police Karla)
      B. Header : héros pleine largeur, onglets, nav vitrée, jour/nuit
-     C. Index : catégories (#c1 admin, #c2 gestion, #c3 tour), images des forums
+     C. Index : catégories (#c1 admin, #c2 gestion, #c4 tour), images des forums
      D. Page d'accueil (.pa2)
      E. Qui est en ligne + partenaires
      F. Connexion rapide + message d'admin
@@ -102,7 +102,7 @@
   --texte-doux: #97A3B5;
   --muet: #76849A;
   --muet-clair: #5B677A;
-  --bordure: #222C3C;
+  --bordure: #222c4C;
   --filet: #18202D;
   --accent: #8FAEE0;
   --accent-clair: #C9DCEA;
@@ -457,10 +457,10 @@ html:not([data-color-scheme="dark"]) .eh-theme .icon.light,
 /* ═══ CATÉGORIES : affichage spécifique par ID (à adapter au vrai forum) ═══
    #c1 = Administration  (panneau, annonce épinglée, étapes, zone staff, classement des groupes)
    #c2 = Gestion         (2 colonnes + bouton T-Card)
-   #c3 = Etherium        (bandeau sombre + tour interactive)
+   #c4 = Etherium        (bandeau sombre + tour interactive)
    Les blocs statiques de la template (annonce, étapes, aside, pastilles, sous-titre)
    sont cachés partout et ne s'affichent que dans leur catégorie.
-   Pour changer de catégorie : rechercher/remplacer #c1, #c2 ou #c3 dans cette section. */
+   Pour changer de catégorie : rechercher/remplacer #c1, #c2 ou #c4 dans cette section. */
 
 /* ═════════════════════════════════════════════════════════════
    ETHERIUM — CSS COMPLET DE L'INDEX (Refonte V2)
@@ -526,7 +526,7 @@ html:not([data-color-scheme="dark"]) .eh-theme .icon.light,
   transition: background .2s, color .2s;
 }
 #main-content .cat-pill:hover { background: var(--accent); color: var(--on-accent) !important; }
-#main-content #c3 .pill-c4, #main-content #c2 .pill-c5 { display: inline-flex; }
+#main-content #c4 .pill-c4, #main-content #c2 .pill-c5 { display: inline-flex; }
 
 /* ───────── 2. FORUM : carte par défaut ───────── */
 #main-content .cat-grid { display: flex; flex-direction: column; gap: 10px; counter-reset: forum; }
@@ -814,35 +814,35 @@ html:not([data-color-scheme="dark"]) .eh-theme .icon.light,
 #main-content #c2 .forum-dernier { grid-area: last; border: 0; padding: 10px 0 0; margin-top: 3px; border-top: 1px solid var(--filet); }
 #main-content #c2 .fd-avatar { width: 30px; height: 30px; }
 
-/* ═════════════ 5. #c3 — ETHERIUM : bandeau + tour interactive ═════════════ */
-#main-content #c3 .cat-banner, .cat-banner-sombre .cat-banner {
+/* ═════════════ 5. #c4 — ETHERIUM : bandeau + tour interactive ═════════════ */
+#main-content #c4 .cat-banner, .cat-banner-sombre .cat-banner {
   height: 130px; padding: 0 36px; border-radius: 20px; overflow: hidden;
   background-color: var(--encre) !important; background-image: var(--glow) !important;
 }
-#main-content #c3 .cat-banner::before, .cat-banner-sombre .cat-banner::before {
+#main-content #c4 .cat-banner::before, .cat-banner-sombre .cat-banner::before {
   content: ""; position: absolute; inset: 0; pointer-events: none;
   background-image: radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px); background-size: 22px 22px;
 }
-#main-content #c3 .cat-banner .echo, .cat-banner-sombre .cat-banner .echo {
+#main-content #c4 .cat-banner .echo, .cat-banner-sombre .cat-banner .echo {
   display: block; position: absolute; right: -10px; bottom: -34px; z-index: 0; pointer-events: none;
   font-family: var(--font), sans-serif; font-weight: 700; font-size: 132px; line-height: 1;
   letter-spacing: .02em; text-transform: uppercase; white-space: nowrap;
   color: transparent; -webkit-text-stroke: 1.5px color-mix(in srgb, var(--accent-clair) 14%, transparent);
 }
-#main-content #c3 .cat-banner .echo { font-size: 0; }
-#main-content #c3 .cat-banner .echo::after { content: "RÉGION"; font-size: 132px; }
-#main-content #c3 .cat-banner-in::before, .cat-banner-sombre .cat-banner-in::before { background: var(--accent-clair); }
-#main-content #c3 .cat-banner .nom, #main-content #c3 .cat-banner .nom h2,
+#main-content #c4 .cat-banner .echo { font-size: 0; }
+#main-content #c4 .cat-banner .echo::after { content: "RÉGION"; font-size: 132px; }
+#main-content #c4 .cat-banner-in::before, .cat-banner-sombre .cat-banner-in::before { background: var(--accent-clair); }
+#main-content #c4 .cat-banner .nom, #main-content #c4 .cat-banner .nom h2,
 .cat-banner-sombre .cat-banner .nom, .cat-banner-sombre .cat-banner .nom h2 { font-size: 40px; color: #fff; }
-#main-content #c3 .cat-sous {
+#main-content #c4 .cat-sous {
   display: block; font-size: 9.5px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-clair);
 }
-#main-content #c3 .cat-banner .barre, .cat-banner-sombre .cat-banner .barre { background: transparent; }
-#main-content #c3 .pill-c4 { color: var(--on-accent) !important; background: var(--accent); border-color: var(--accent); border-radius: 9px; padding: 11px 16px; }
-#main-content #c3 .pill-c4:hover { filter: brightness(1.08); }
+#main-content #c4 .cat-banner .barre, .cat-banner-sombre .cat-banner .barre { background: transparent; }
+#main-content #c4 .pill-c4 { color: var(--on-accent) !important; background: var(--accent); border-color: var(--accent); border-radius: 9px; padding: 11px 16px; }
+#main-content #c4 .pill-c4:hover { filter: brightness(1.08); }
 
 /* — la tour (construite par le script) — */
-#main-content #c3.has-tour .cat-grid { display: grid; grid-template-columns: 290px minmax(0, 1fr); gap: 16px; align-items: stretch; }
+#main-content #c4.has-tour .cat-grid { display: grid; grid-template-columns: 290px minmax(0, 1fr); gap: 16px; align-items: stretch; }
 #main-content .tour { position: relative; display: flex; flex-direction: column; gap: 6px; padding-left: 26px; }
 #main-content .tour::before {
   content: ""; position: absolute; left: 8px; top: 26px; bottom: 26px; width: 2px; border-radius: 2px;
@@ -887,30 +887,30 @@ html:not([data-color-scheme="dark"]) .eh-theme .icon.light,
   position: relative; min-height: 640px; border-radius: 20px; overflow: hidden;
   background-color: var(--encre2); background-image: var(--glow);
 }
-#main-content #c3 .tour-scene .forum { display: none; }
-#main-content #c3 .tour-scene .forum.is-active {
+#main-content #c4 .tour-scene .forum { display: none; }
+#main-content #c4 .tour-scene .forum.is-active {
   display: flex; flex-direction: column; justify-content: flex-start; gap: 14px;
   position: absolute; inset: 0; min-height: 0; padding: 40px 44px; box-sizing: border-box;
   background: transparent; border: 0; border-radius: 0; box-shadow: none;
   animation: eth-panel-in .5s cubic-bezier(.22,.8,.28,1) both;
 }
-#main-content #c3 .tour-scene .forum-img {
+#main-content #c4 .tour-scene .forum-img {
   display: block; position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0;
   border: 0; border-radius: 0; background-color: var(--encre2);
   background-size: cover; background-position: center; background-repeat: no-repeat; transform: none;
 }
-#main-content #c3 .tour-scene .forum::after {
+#main-content #c4 .tour-scene .forum::after {
   content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
   background: linear-gradient(90deg, var(--encre) 14%, color-mix(in srgb, var(--encre) 78%, transparent) 46%, color-mix(in srgb, var(--encre) 20%, transparent) 100%);
 }
-#main-content #c3 .tour-scene .forum::before {
+#main-content #c4 .tour-scene .forum::before {
   content: attr(data-num); position: absolute; right: 30px; top: 14px; z-index: 1; pointer-events: none;
   font-family: var(--font), sans-serif; font-weight: 800; font-size: 220px; line-height: 1;
   color: transparent; -webkit-text-stroke: 1.5px rgba(255,255,255,.18);
 }
-#main-content #c3 .tour-scene .forum > :not(.forum-img) { position: relative; z-index: 2; }
-#main-content #c3 .tour-scene .forum-num { display: none; }
-#main-content #c3 .tour-scene .forum-desc { display: flex; flex-direction: column; gap: 14px; max-width: 700px; padding: 0; }
+#main-content #c4 .tour-scene .forum > :not(.forum-img) { position: relative; z-index: 2; }
+#main-content #c4 .tour-scene .forum-num { display: none; }
+#main-content #c4 .tour-scene .forum-desc { display: flex; flex-direction: column; gap: 14px; max-width: 700px; padding: 0; }
 #main-content .etage-kicker { display: flex; align-items: center; gap: 10px; }
 #main-content .etage-kicker b { font-size: 10px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--accent-clair); }
 #main-content .etage-kicker i {
@@ -919,38 +919,38 @@ html:not([data-color-scheme="dark"]) .eh-theme .icon.light,
   color: var(--on-accent); background: var(--accent); padding: 4px 9px; border-radius: 99px;
 }
 #main-content .etage-kicker i::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
-#main-content #c3 .tour-scene :is(.forum-titre, a.forum-titre:link, a.forum-titre:visited) {
+#main-content #c4 .tour-scene :is(.forum-titre, a.forum-titre:link, a.forum-titre:visited) {
   font-size: 34px; font-weight: 800; line-height: 1; letter-spacing: .04em; color: #fff;
 }
-#main-content #c3 .tour-scene a.forum-titre:hover { color: var(--accent-clair); }
-#main-content #c3 .tour-scene .forum-texte {
+#main-content #c4 .tour-scene a.forum-titre:hover { color: var(--accent-clair); }
+#main-content #c4 .tour-scene .forum-texte {
   font-size: 13px; line-height: 1.6; color: rgba(244,241,236,.75); text-wrap: pretty;
   display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; height: auto;
 }
-#main-content #c3 .tour-scene .sousforums { flex-direction: column; flex-wrap: nowrap; align-items: stretch; gap: 7px; margin-top: 8px; }
-#main-content #c3 .tour-scene .sousforums a {
+#main-content #c4 .tour-scene .sousforums { flex-direction: column; flex-wrap: nowrap; align-items: stretch; gap: 7px; margin-top: 8px; }
+#main-content #c4 .tour-scene .sousforums a {
   display: flex; align-items: center; gap: 10px; padding: 11px 14px; border-radius: 11px;
   background: rgba(255,255,255,.07) !important; border: 1px solid rgba(255,255,255,.12);
   backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
   font-size: 13px; font-weight: 700; letter-spacing: 0; text-transform: none; color: #fff;
   transition: background .2s, border-color .2s;
 }
-#main-content #c3 .tour-scene .sousforums a::before { content: ""; flex: none; width: 6px; height: 6px; margin: 0; transform: rotate(45deg); background: var(--accent-clair); }
-#main-content #c3 .tour-scene .sousforums a::after { content: "→"; margin-left: auto; color: var(--accent-clair); }
-#main-content #c3 .tour-scene .sousforums a:hover { background: rgba(255,255,255,.13) !important; border-color: var(--accent-clair); }
-#main-content #c3 .tour-scene .forum-stats-pill {
+#main-content #c4 .tour-scene .sousforums a::before { content: ""; flex: none; width: 6px; height: 6px; margin: 0; transform: rotate(45deg); background: var(--accent-clair); }
+#main-content #c4 .tour-scene .sousforums a::after { content: "→"; margin-left: auto; color: var(--accent-clair); }
+#main-content #c4 .tour-scene .sousforums a:hover { background: rgba(255,255,255,.13) !important; border-color: var(--accent-clair); }
+#main-content #c4 .tour-scene .forum-stats-pill {
   position: absolute; top: 40px; right: 44px; z-index: 3; border: 1px solid rgba(255,255,255,.18);
   border-radius: 99px; padding: 6px 12px; background: rgba(8,11,18,.45); color: rgba(244,241,236,.75);
   backdrop-filter: blur(6px);
 }
-#main-content #c3 .tour-scene .forum-dernier {
+#main-content #c4 .tour-scene .forum-dernier {
   margin-top: auto; align-self: flex-start; max-width: 460px; border: 0; padding: 12px 16px; border-radius: 12px;
   background: rgba(8,11,18,.5); border: 1px solid rgba(255,255,255,.1); backdrop-filter: blur(8px);
 }
-#main-content #c3 .tour-scene .fd-avatar { border-color: rgba(8,11,18,.6); box-shadow: 0 0 0 1.5px var(--accent-clair); }
-#main-content #c3 .tour-scene .fd-titre { color: #fff; }
-#main-content #c3 .tour-scene .fd-auteur { color: var(--accent-clair); }
-#main-content #c3 .tour-scene .fd-info::before, #main-content #c3 .tour-scene .fd-date { color: rgba(244,241,236,.55); }
+#main-content #c4 .tour-scene .fd-avatar { border-color: rgba(8,11,18,.6); box-shadow: 0 0 0 1.5px var(--accent-clair); }
+#main-content #c4 .tour-scene .fd-titre { color: #fff; }
+#main-content #c4 .tour-scene .fd-auteur { color: var(--accent-clair); }
+#main-content #c4 .tour-scene .fd-info::before, #main-content #c4 .tour-scene .fd-date { color: rgba(244,241,236,.55); }
 #main-content .etage-cta {
   align-self: flex-start; display: inline-flex; align-items: center; gap: 8px;
   font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
@@ -959,62 +959,62 @@ html:not([data-color-scheme="dark"]) .eh-theme .icon.light,
 }
 #main-content .etage-cta:hover { filter: brightness(1.08); }
 
-/* ═════════════ 6. PAGES D'ÉTAGE (.cat--etage, posée par etherium-pages.js) + secours #c3 sans script
+/* ═════════════ 6. PAGES D'ÉTAGE (.cat--etage, posée par etherium-pages.js) + secours #c4 sans script
    cartes illustrées 2 colonnes ═════════════ */
 .categorie.cat--etage .cat-grid,
-#main-content #c3:not(.has-tour) .cat-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+#main-content #c4:not(.has-tour) .cat-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
 .categorie.cat--etage .forum,
-#main-content #c3:not(.has-tour) .forum {
+#main-content #c4:not(.has-tour) .forum {
   display: flex; flex-direction: column; justify-content: flex-end; min-height: 300px;
   padding: 0; overflow: hidden; border: 0; background: var(--encre);
 }
 .categorie.cat--etage .forum:last-child:nth-child(odd of .forum) { grid-column: 1 / -1; }
-:is(.categorie.cat--etage, #main-content #c3) .forum .forum-num { display: none; }
+:is(.categorie.cat--etage, #main-content #c4) .forum .forum-num { display: none; }
 .categorie.cat--etage .forum-img,
-#main-content #c3:not(.has-tour) .forum-img {
+#main-content #c4:not(.has-tour) .forum-img {
   display: block; position: absolute; inset: 0; width: 100%; height: 100%; border: 0; border-radius: 0;
   background-color: var(--encre2); background-size: cover; background-position: center; transition: transform .45s ease;
 }
 .categorie.cat--etage .forum:hover .forum-img,
-#main-content #c3:not(.has-tour) .forum:hover .forum-img { transform: scale(1.04); }
+#main-content #c4:not(.has-tour) .forum:hover .forum-img { transform: scale(1.04); }
 .categorie.cat--etage .forum::after,
-#main-content #c3:not(.has-tour) .forum::after {
+#main-content #c4:not(.has-tour) .forum::after {
   content: ""; position: absolute; inset: 0; pointer-events: none;
   background: linear-gradient(0deg, rgba(7,10,16,.95) 0%, rgba(7,10,16,.55) 45%, rgba(7,10,16,.08) 100%);
 }
 .categorie.cat--etage :is(.forum-desc, .forum-dernier, .forum-stats-pill),
-#main-content #c3:not(.has-tour) :is(.forum-desc, .forum-dernier, .forum-stats-pill) { position: relative; z-index: 2; }
+#main-content #c4:not(.has-tour) :is(.forum-desc, .forum-dernier, .forum-stats-pill) { position: relative; z-index: 2; }
 .categorie.cat--etage .forum-desc,
-#main-content #c3:not(.has-tour) .forum-desc { padding: 0 24px 14px; gap: 8px; }
+#main-content #c4:not(.has-tour) .forum-desc { padding: 0 24px 14px; gap: 8px; }
 .categorie.cat--etage :is(.forum-titre, a.forum-titre:link, a.forum-titre:visited),
-#main-content #c3:not(.has-tour) :is(.forum-titre, a.forum-titre:link, a.forum-titre:visited) { font-size: 22px; font-weight: 800; color: #fff; }
+#main-content #c4:not(.has-tour) :is(.forum-titre, a.forum-titre:link, a.forum-titre:visited) { font-size: 22px; font-weight: 800; color: #fff; }
 .categorie.cat--etage a.forum-titre:hover { color: var(--accent-clair); }
 .categorie.cat--etage .forum-texte,
-#main-content #c3:not(.has-tour) .forum-texte {
+#main-content #c4:not(.has-tour) .forum-texte {
   color: rgba(244,241,236,.75); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
 }
 .categorie.cat--etage .sousforums,
-#main-content #c3:not(.has-tour) .sousforums { gap: 6px; }
+#main-content #c4:not(.has-tour) .sousforums { gap: 6px; }
 .categorie.cat--etage .sousforums a,
-#main-content #c3:not(.has-tour) .sousforums a {
+#main-content #c4:not(.has-tour) .sousforums a {
   padding: 5px 10px; border-radius: 99px; color: #fff; background: rgba(255,255,255,.12) !important;
   border: 1px solid rgba(255,255,255,.16); backdrop-filter: blur(6px);
 }
 .categorie.cat--etage .sousforums a::before,
-#main-content #c3:not(.has-tour) .sousforums a::before { content: none; }
+#main-content #c4:not(.has-tour) .sousforums a::before { content: none; }
 .categorie.cat--etage .sousforums a:first-of-type,
-#main-content #c3:not(.has-tour) .sousforums a:first-of-type { background: var(--accent) !important; border-color: var(--accent); color: var(--on-accent); }
+#main-content #c4:not(.has-tour) .sousforums a:first-of-type { background: var(--accent) !important; border-color: var(--accent); color: var(--on-accent); }
 .categorie.cat--etage .forum-dernier,
-#main-content #c3:not(.has-tour) .forum-dernier { border: 0; border-top: 1px solid rgba(255,255,255,.12); padding: 12px 24px 16px; }
+#main-content #c4:not(.has-tour) .forum-dernier { border: 0; border-top: 1px solid rgba(255,255,255,.12); padding: 12px 24px 16px; }
 .categorie.cat--etage .fd-avatar,
-#main-content #c3:not(.has-tour) .fd-avatar { border-color: var(--encre); box-shadow: 0 0 0 1.5px var(--accent-clair); }
+#main-content #c4:not(.has-tour) .fd-avatar { border-color: var(--encre); box-shadow: 0 0 0 1.5px var(--accent-clair); }
 .categorie.cat--etage .fd-titre,
-#main-content #c3:not(.has-tour) .fd-titre { color: #fff; }
+#main-content #c4:not(.has-tour) .fd-titre { color: #fff; }
 .categorie.cat--etage .fd-auteur { color: var(--accent-clair); }
 .categorie.cat--etage .fd-info::before, .categorie.cat--etage .fd-date,
-#main-content #c3:not(.has-tour) .fd-info::before, #main-content #c3:not(.has-tour) .fd-date { color: rgba(244,241,236,.55); }
+#main-content #c4:not(.has-tour) .fd-info::before, #main-content #c4:not(.has-tour) .fd-date { color: rgba(244,241,236,.55); }
 .categorie.cat--etage .forum-stats-pill,
-#main-content #c3:not(.has-tour) .forum-stats-pill {
+#main-content #c4:not(.has-tour) .forum-stats-pill {
   position: absolute; top: 16px; right: 16px; border: 1px solid rgba(255,255,255,.18); border-radius: 99px;
   padding: 6px 12px; background: rgba(8,11,18,.5); color: rgba(244,241,236,.75); backdrop-filter: blur(6px);
 }
@@ -1044,38 +1044,38 @@ html:not([data-color-scheme="dark"]) .eh-theme .icon.light,
   #main-content .categorie .forum-stats-pill, #main-content .categorie .forum-dernier { border-left: 0; padding-left: 0; }
 }
 @media (max-width: 900px) {
-  #main-content #c3.has-tour .cat-grid { grid-template-columns: 1fr; }
+  #main-content #c4.has-tour .cat-grid { grid-template-columns: 1fr; }
   #main-content .tour { padding-left: 0; }
   #main-content .tour::before, #main-content .tour-cap, #main-content .tour-btn::before { display: none; }
   #main-content .tour-liste { flex-direction: row; overflow-x: auto; gap: 8px; padding-bottom: 4px; }
   #main-content .tour-btn { flex: 0 0 200px; min-height: 64px; }
   #main-content .tour-scene { min-height: 600px; }
-  #main-content #c3 .tour-scene .forum.is-active { padding: 28px; }
-  #main-content #c3 .tour-scene .forum::before { font-size: 140px; }
-  #main-content #c3 .cat-banner .echo::after { font-size: 90px; }
+  #main-content #c4 .tour-scene .forum.is-active { padding: 28px; }
+  #main-content #c4 .tour-scene .forum::before { font-size: 140px; }
+  #main-content #c4 .cat-banner .echo::after { font-size: 90px; }
   #main-content #c2 .cat-grid, #main-content .cat-duo,
   #main-content .categorie.cat--etage .cat-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 700px) {
   #main-content #c1.categorie { grid-template-columns: 1fr; grid-template-areas: "banner" "pan" "pin" "pres" "steps" "staff" "side"; }
   #main-content .categorie .cat-banner .nom, #main-content .categorie .cat-banner .nom h2 { font-size: 22px; }
-  #main-content #c3 .cat-banner { height: auto; padding: 24px; }
-  #main-content #c3 .cat-banner-in { flex-wrap: wrap; }
-  #main-content #c3 .cat-banner .nom { font-size: 30px; }
+  #main-content #c4 .cat-banner { height: auto; padding: 24px; }
+  #main-content #c4 .cat-banner-in { flex-wrap: wrap; }
+  #main-content #c4 .cat-banner .nom { font-size: 30px; }
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   9. IMAGES DES FORUMS (tour #c3 + pages d'étage)
+   9. IMAGES DES FORUMS (tour #c4 + pages d'étage)
    ajouter un forum : #PARENT .forum:has(.forum-titre[href^="/fXX-"]) .forum-img { background-image:url('…'); }
    ═══════════════════════════════════════════════════════════════ */
-:is(#c3, .categorie.cat--etage) .forum-img {
+:is(#c4, .categorie.cat--etage) .forum-img {
   background-size: cover; background-position: center; background-repeat: no-repeat;
 }
 .image_cate2 img { display: none; }
 
 /* ── ÉTAGE 00 — ELYVERN ── */
 /* Elyvern */
-#main-content #c3 .forum:has(.forum-titre[href^="/f4-"]) .forum-img { background-image: url('https://2img.net/i.imgur.com/KqJWPIF.jpeg'); }
+#main-content #c4 .forum:has(.forum-titre[href^="/f4-"]) .forum-img { background-image: url('https://2img.net/i.imgur.com/KqJWPIF.jpeg'); }
 /* Zones sauvages */
 #f4 .forum:has(.forum-titre[href^="/f14-"]) .forum-img { background-image: url('https://2img.net/i.imgur.com/DZ1owM9.png'); }
 /* Domaine d'Aulne */
@@ -1093,7 +1093,7 @@ html:not([data-color-scheme="dark"]) .eh-theme .icon.light,
 
 /* ── ÉTAGE 01 — NODALIS ── */
 /* Nodalis */
-#main-content #c3 .forum:has(.forum-titre[href^="/f5-"]) .forum-img { background-image: url('https://2img.net/i.imgur.com/qaWwhcX.jpeg'); }
+#main-content #c4 .forum:has(.forum-titre[href^="/f5-"]) .forum-img { background-image: url('https://2img.net/i.imgur.com/qaWwhcX.jpeg'); }
 /* Espaces sauvages */
 #f5 .forum:has(.forum-titre[href^="/f11-"]) .forum-img { background-image: url('https://2img.net/i.imgur.com/UyHmTys.png'); }
 /* Quartier Hélios */
@@ -1111,7 +1111,7 @@ html:not([data-color-scheme="dark"]) .eh-theme .icon.light,
 
 /* ── ÉTAGE 02 — PIC NÖRUM ── */
 /* Pic Nörum */
-#main-content #c3 .forum:has(.forum-titre[href^="/f6-"]) .forum-img { background-image: url('https://cdna.artstation.com/p/assets/images/images/027/887/450/4k/david-frasheski-entrance.jpg?1592857240'); }
+#main-content #c4 .forum:has(.forum-titre[href^="/f6-"]) .forum-img { background-image: url('https://cdna.artstation.com/p/assets/images/images/027/887/450/4k/david-frasheski-entrance.jpg?1592857240'); }
 /* Espaces sauvages */
 #f6 .forum:has(.forum-titre[href^="/f35-"]) .forum-img { background-image: url('https://2img.net/i.imgur.com/1O1F8ds.jpeg'); }
 /* Kar-Dûm */
@@ -1129,7 +1129,7 @@ html:not([data-color-scheme="dark"]) .eh-theme .icon.light,
 
 /* ── ÉTAGE 03 — ATOLL LYSSANDRE ── */
 /* Atoll Lyssandre */
-#main-content #c3 .forum:has(.forum-titre[href^="/f41-"]) .forum-img { background-image: url('https://2img.net/i.imgur.com/UDllktL.jpeg'); }
+#main-content #c4 .forum:has(.forum-titre[href^="/f41-"]) .forum-img { background-image: url('https://2img.net/i.imgur.com/UDllktL.jpeg'); }
 /* Espaces sauvages */
 #f41 .forum:has(.forum-titre[href^="/f42-"]) .forum-img { background-image: url('https://2img.net/i.imgur.com/AQ1fpSN.png'); }
 /* Baie de Néréis */
@@ -1149,7 +1149,7 @@ html:not([data-color-scheme="dark"]) .eh-theme .icon.light,
 
 /* ── ZONE DIVERSE ── */
 /* Zone diverse */
-#main-content #c3 .forum:has(.forum-titre[href^="/f81-"]) .forum-img { background-image: url('https://2img.net/i.imgur.com/L4dgQ8q.png'); }
+#main-content #c4 .forum:has(.forum-titre[href^="/f81-"]) .forum-img { background-image: url('https://2img.net/i.imgur.com/L4dgQ8q.png'); }
 /* Capsule temporelle */
 #f81 .forum:has(.forum-titre[href^="/f80-"]) .forum-img { background-image: url('https://2img.net/i.imgur.com/xwzEGmh.png'); }
 /* Site de fouilles */
@@ -1166,8 +1166,8 @@ html:not([data-color-scheme="dark"]) .eh-theme .icon.light,
   color: var(--on-accent); background: var(--accent);
 }
 /* forums qui ne sont pas des étages (ex. HRP) : restent sous la tour, en carte normale */
-#main-content #c3.has-tour .tour-hors { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 10px; }
-#main-content #c3.has-tour .tour-hors:empty { display: none; }
+#main-content #c4.has-tour .tour-hors { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 10px; }
+#main-content #c4.has-tour .tour-hors:empty { display: none; }
 
 
 /* ── tour : étages verrouillés, « en cours », panneau façon maquette ── */
@@ -1178,16 +1178,16 @@ html:not([data-color-scheme="dark"]) .eh-theme .icon.light,
 #main-content .tour-btn.is-locked .tb-txt small { color: var(--accent2, #C99A3B); }
 #main-content .tour-btn .tb-txt small i { display: inline-block; width: 5px; height: 5px; margin-right: 5px; border-radius: 50%; background: currentColor; vertical-align: middle; }
 #main-content .tour-btn.is-active .tb-txt small { color: var(--accent-clair); }
-#main-content #c3 .tour-scene .forum-dernier,
-#main-content #c3 .tour-scene .forum-stats-pill { display: none; }
-#main-content #c3 .tour-scene .etage-cta { margin-top: auto; }
-#main-content #c3 .tour-scene .forum-desc { max-width: 620px; }
+#main-content #c4 .tour-scene .forum-dernier,
+#main-content #c4 .tour-scene .forum-stats-pill { display: none; }
+#main-content #c4 .tour-scene .etage-cta { margin-top: auto; }
+#main-content #c4 .tour-scene .forum-desc { max-width: 620px; }
 
 
 /* ── liens : pas de soulignement, pseudos lisibles ── */
 #main-content :is(.categorie, .pa2, .qeel, .partenaire_footer, .links_bar, .eh-login-panel, .introduction) a { text-decoration: none !important; }
 #main-content .categorie .fd-auteur :is(a, span, strong) { color: var(--accent) !important; }
-#main-content :is(#c1 .forum:nth-child(1 of .forum), #c3 .tour-scene, .cat-banner-sombre) .fd-auteur :is(a, span, strong) { color: var(--accent-clair) !important; }
+#main-content :is(#c1 .forum:nth-child(1 of .forum), #c4 .tour-scene, .cat-banner-sombre) .fd-auteur :is(a, span, strong) { color: var(--accent-clair) !important; }
 
 /* ── Administration (sans script) : annonce et étapes écrites DANS chaque carte forum
       de la template, affichées seulement dans la 1re et la 2e carte de #c1 ── */
@@ -1635,13 +1635,13 @@ html, body { overflow-x: clip; }
   /* tour d'Etherium */
   .tour-btn { flex: 0 0 170px; min-height: 60px; }
   .tour-scene { min-height: 560px; border-radius: 16px; }
-  #main-content #c3 .tour-scene .forum.is-active { padding: 22px 18px; }
-  #main-content #c3 .tour-scene .forum::before { font-size: 110px; right: 12px; }
-  #main-content #c3 .tour-scene .forum-titre { font-size: 26px; }
-  #main-content #c3 .tour-scene .forum-stats-pill { position: static; align-self: flex-start; }
-  #main-content #c3 .tour-scene .sousforums a { padding: 13px 14px; }
-  #main-content #c3 .cat-banner .echo::after { font-size: 64px; }
-  #main-content #c3 .cat-banner .nom, #main-content #c3 .cat-banner .nom h2 { font-size: 28px; }
+  #main-content #c4 .tour-scene .forum.is-active { padding: 22px 18px; }
+  #main-content #c4 .tour-scene .forum::before { font-size: 110px; right: 12px; }
+  #main-content #c4 .tour-scene .forum-titre { font-size: 26px; }
+  #main-content #c4 .tour-scene .forum-stats-pill { position: static; align-self: flex-start; }
+  #main-content #c4 .tour-scene .sousforums a { padding: 13px 14px; }
+  #main-content #c4 .cat-banner .echo::after { font-size: 64px; }
+  #main-content #c4 .cat-banner .nom, #main-content #c4 .cat-banner .nom h2 { font-size: 28px; }
 
   /* qui est en ligne */
   #main-content .qeel { display: flex; flex-direction: column; gap: 16px; padding: 22px 18px 18px; border-radius: 18px; }
@@ -2135,15 +2135,15 @@ body, input, select, textarea, button,
 /* ── tour : alignements (corrige le décalage avec la maquette) ── */
 #main-content .tour-btn { box-sizing: border-box; max-width: 100%; margin: 0; }
 #main-content .tour-btn.is-locked { display: flex; }
-#main-content #c3 .tour-scene .forum.is-active { align-items: flex-start; text-align: left; }
-#main-content #c3 .tour-scene .forum.is-active > * { margin-left: 0 !important; margin-right: 0 !important; float: none !important; }
-#main-content #c3 .tour-scene .forum-desc {
+#main-content #c4 .tour-scene .forum.is-active { align-items: flex-start; text-align: left; }
+#main-content #c4 .tour-scene .forum.is-active > * { margin-left: 0 !important; margin-right: 0 !important; float: none !important; }
+#main-content #c4 .tour-scene .forum-desc {
   align-self: flex-start; flex: none; width: 100%; max-width: 620px; margin: 0 !important;
   position: relative; left: auto; right: auto; transform: none; text-align: left;
 }
-#main-content #c3 .tour-scene .forum-desc > * { margin-left: 0 !important; text-align: left; }
-#main-content #c3 .tour-scene .ss-liste { width: 100%; max-width: 620px; }
-#main-content #c3 .tour-scene .etage-cta { align-self: flex-start; }
+#main-content #c4 .tour-scene .forum-desc > * { margin-left: 0 !important; text-align: left; }
+#main-content #c4 .tour-scene .ss-liste { width: 100%; max-width: 620px; }
+#main-content #c4 .tour-scene .etage-cta { align-self: flex-start; }
 
 
 /* ── #c2 Gestion de l'aventure (2e forum) : pleine largeur, sous-forums en tuiles ── */
@@ -2401,67 +2401,67 @@ body, input, select, textarea, button,
 
 
 /* ── tour : sous-forums détaillés, hauteur identique vide ou non ── */
-#main-content #c3 .tour-scene .ss-liste { display: flex; flex-direction: column; gap: 8px; width: 100%; max-width: 860px; }
-#main-content #c3 .tour-scene .ss-row {
+#main-content #c4 .tour-scene .ss-liste { display: flex; flex-direction: column; gap: 8px; width: 100%; max-width: 860px; }
+#main-content #c4 .tour-scene .ss-row {
   display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 260px); align-items: center; gap: 16px;
   height: 84px; box-sizing: border-box; padding: 0 12px 0 18px; border-radius: 13px;
   background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12);
   backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: background .2s, border-color .2s;
 }
-#main-content #c3 .tour-scene .ss-row:hover { background: rgba(255,255,255,.12); border-color: var(--accent-clair); }
-#main-content #c3 .tour-scene .ss-l { display: flex; flex-direction: column; gap: 7px; min-width: 0; }
-#main-content #c3 .tour-scene .ss-nom { display: flex; align-items: baseline; gap: 9px; min-width: 0; }
-#main-content #c3 .tour-scene .ss-nom::before { content: ""; flex: none; align-self: center; width: 6px; height: 6px; transform: rotate(45deg); background: var(--accent-clair); }
-#main-content #c3 .tour-scene .ss-lien { font-size: 15px; font-weight: 800; color: #fff !important; text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-#main-content #c3 .tour-scene .ss-lien:hover { color: var(--accent-clair) !important; }
-#main-content #c3 .tour-scene .ss-nom small { flex: none; font-size: 9px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: rgba(244,241,236,.5); }
-#main-content #c3 .tour-scene .ss-subs { display: flex; gap: 6px; min-width: 0; overflow: hidden; height: 22px; padding-left: 15px; }
-#main-content #c3 .tour-scene .ss-subs a {
+#main-content #c4 .tour-scene .ss-row:hover { background: rgba(255,255,255,.12); border-color: var(--accent-clair); }
+#main-content #c4 .tour-scene .ss-l { display: flex; flex-direction: column; gap: 7px; min-width: 0; }
+#main-content #c4 .tour-scene .ss-nom { display: flex; align-items: baseline; gap: 9px; min-width: 0; }
+#main-content #c4 .tour-scene .ss-nom::before { content: ""; flex: none; align-self: center; width: 6px; height: 6px; transform: rotate(45deg); background: var(--accent-clair); }
+#main-content #c4 .tour-scene .ss-lien { font-size: 15px; font-weight: 800; color: #fff !important; text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#main-content #c4 .tour-scene .ss-lien:hover { color: var(--accent-clair) !important; }
+#main-content #c4 .tour-scene .ss-nom small { flex: none; font-size: 9px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: rgba(244,241,236,.5); }
+#main-content #c4 .tour-scene .ss-subs { display: flex; gap: 6px; min-width: 0; overflow: hidden; height: 22px; padding-left: 15px; }
+#main-content #c4 .tour-scene .ss-subs a {
   flex: none; display: inline-flex; align-items: center; height: 22px; padding: 0 9px; border-radius: 99px;
   border: 1px solid rgba(255,255,255,.16); background: rgba(8,11,18,.35);
   font-size: 9.5px; font-weight: 700; letter-spacing: .04em; color: rgba(244,241,236,.85) !important; text-decoration: none; white-space: nowrap;
   transition: border-color .2s, color .2s;
 }
-#main-content #c3 .tour-scene .ss-subs a:hover { border-color: var(--accent-clair); color: #fff !important; }
-#main-content #c3 .tour-scene .ss-subs.is-vide { align-items: center; font-size: 9px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: rgba(244,241,236,.35); }
-#main-content #c3 .tour-scene .ss-r { display: flex; align-items: center; justify-content: flex-end; gap: 11px; min-width: 0; }
-#main-content #c3 .tour-scene .ss-txt { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; min-width: 0; text-align: right; }
-#main-content #c3 .tour-scene .ss-txt b, #main-content #c3 .tour-scene .ss-txt b a { max-width: 100%; font-size: 12px; font-weight: 700; color: #fff !important; text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-#main-content #c3 .tour-scene .ss-txt small { font-size: 8.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: rgba(244,241,236,.5); }
-#main-content #c3 .tour-scene .ss-av {
+#main-content #c4 .tour-scene .ss-subs a:hover { border-color: var(--accent-clair); color: #fff !important; }
+#main-content #c4 .tour-scene .ss-subs.is-vide { align-items: center; font-size: 9px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: rgba(244,241,236,.35); }
+#main-content #c4 .tour-scene .ss-r { display: flex; align-items: center; justify-content: flex-end; gap: 11px; min-width: 0; }
+#main-content #c4 .tour-scene .ss-txt { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; min-width: 0; text-align: right; }
+#main-content #c4 .tour-scene .ss-txt b, #main-content #c4 .tour-scene .ss-txt b a { max-width: 100%; font-size: 12px; font-weight: 700; color: #fff !important; text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#main-content #c4 .tour-scene .ss-txt small { font-size: 8.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: rgba(244,241,236,.5); }
+#main-content #c4 .tour-scene .ss-av {
   flex: none; width: 42px; height: 42px; border-radius: 50%; background: rgba(255,255,255,.08) center top / cover no-repeat;
   border: 2px solid rgba(8,11,18,.6); box-shadow: 0 0 0 1.5px var(--accent-clair);
 }
-#main-content #c3 .tour-scene .ss-row.is-vide .ss-txt b { color: rgba(244,241,236,.4) !important; font-weight: 600; }
-#main-content #c3 .tour-scene .ss-row.is-vide .ss-av { box-shadow: 0 0 0 1.5px rgba(255,255,255,.15); background-image: none; }
+#main-content #c4 .tour-scene .ss-row.is-vide .ss-txt b { color: rgba(244,241,236,.4) !important; font-weight: 600; }
+#main-content #c4 .tour-scene .ss-row.is-vide .ss-av { box-shadow: 0 0 0 1.5px rgba(255,255,255,.15); background-image: none; }
 @media (max-width: 700px) {
-  #main-content #c3 .tour-scene .ss-row { grid-template-columns: minmax(0, 1fr) 42px; height: 78px; }
-  #main-content #c3 .tour-scene .ss-txt { display: none; }
+  #main-content #c4 .tour-scene .ss-row { grid-template-columns: minmax(0, 1fr) 42px; height: 78px; }
+  #main-content #c4 .tour-scene .ss-txt { display: none; }
 }
 
 
 /* ── tour : lignes fixes + défilement si trop de sous-forums ── */
-#main-content #c3 .tour-scene .forum.is-active { overflow: hidden; }
-#main-content #c3 .tour-scene .forum-desc { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
-#main-content #c3 .tour-scene .ss-liste {
+#main-content #c4 .tour-scene .forum.is-active { overflow: hidden; }
+#main-content #c4 .tour-scene .forum-desc { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
+#main-content #c4 .tour-scene .ss-liste {
   flex: 1 1 auto; min-height: 0; max-height: 100%; overflow-y: auto; overscroll-behavior: contain;
   padding-right: 6px; margin-right: -6px; scrollbar-width: thin; scrollbar-color: rgba(201,220,234,.4) transparent;
   -webkit-mask-image: linear-gradient(180deg, #000 calc(100% - 28px), transparent);
           mask-image: linear-gradient(180deg, #000 calc(100% - 28px), transparent);
   padding-bottom: 24px;
 }
-#main-content #c3 .tour-scene .ss-liste::-webkit-scrollbar { width: 5px; }
-#main-content #c3 .tour-scene .ss-liste::-webkit-scrollbar-thumb { background: rgba(201,220,234,.4); border-radius: 3px; }
-#main-content #c3 .tour-scene .ss-row {
+#main-content #c4 .tour-scene .ss-liste::-webkit-scrollbar { width: 5px; }
+#main-content #c4 .tour-scene .ss-liste::-webkit-scrollbar-thumb { background: rgba(201,220,234,.4); border-radius: 3px; }
+#main-content #c4 .tour-scene .ss-row {
   flex: none; height: 84px; min-height: 84px; max-height: 84px; margin: 0; text-align: left;
 }
-#main-content #c3 .tour-scene .ss-row::before, #main-content #c3 .tour-scene .ss-row::after,
-#main-content #c3 .tour-scene .ss-l::before, #main-content #c3 .tour-scene .ss-l::after { content: none !important; display: none !important; }
-#main-content #c3 .tour-scene .ss-l { align-items: flex-start; justify-content: center; text-align: left; }
-#main-content #c3 .tour-scene .ss-nom { justify-content: flex-start; width: 100%; }
-#main-content #c3 .tour-scene .ss-subs { justify-content: flex-start; width: 100%; }
-#main-content #c3 .tour-scene .ss-subs a::before, #main-content #c3 .tour-scene .ss-subs a::after { content: none !important; }
-#main-content #c3 .tour-scene .etage-cta { flex: none; margin-top: 14px; }
+#main-content #c4 .tour-scene .ss-row::before, #main-content #c4 .tour-scene .ss-row::after,
+#main-content #c4 .tour-scene .ss-l::before, #main-content #c4 .tour-scene .ss-l::after { content: none !important; display: none !important; }
+#main-content #c4 .tour-scene .ss-l { align-items: flex-start; justify-content: center; text-align: left; }
+#main-content #c4 .tour-scene .ss-nom { justify-content: flex-start; width: 100%; }
+#main-content #c4 .tour-scene .ss-subs { justify-content: flex-start; width: 100%; }
+#main-content #c4 .tour-scene .ss-subs a::before, #main-content #c4 .tour-scene .ss-subs a::after { content: none !important; }
+#main-content #c4 .tour-scene .etage-cta { flex: none; margin-top: 14px; }
 /* ═════════════════════════════════════════════════════════════
    POSTER UN MESSAGE (posting_body) — Etherium V2
    À coller dans la feuille de style, après etherium-v2.css.
