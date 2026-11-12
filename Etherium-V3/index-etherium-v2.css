@@ -3144,3 +3144,19 @@ form[name="jumpbox"] ~ :is(.panel, .topic-review, #topicreview, div:has(> .postb
   #wombat .pr-onglets { align-self: stretch; }
   #wombat .pr-onglet { flex: 1; justify-content: center; padding: 10px; }
 }
+
+
+#main-content a:is([href*="search_id=egosearch"], [href*="search_id=newposts"], [href*="search_id=unanswered"]):not(.links_bar a, .categorie a) {
+  display: inline-flex; align-items: center; gap: 8px; margin: 0 6px 8px 0; padding: 8px 14px;
+  border-radius: 99px; border: 1px solid var(--bordure); background: var(--carte);
+  font-family: var(--font), sans-serif; font-size: 9.5px; font-weight: 700; line-height: 1.2;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--texte); text-decoration: none !important;
+  transition: border-color .2s, color .2s;
+}
+#main-content a:is([href*="search_id=egosearch"], [href*="search_id=newposts"], [href*="search_id=unanswered"]):not(.links_bar a, .categorie a)::before {
+  content: ""; flex: none; width: 6px; height: 6px; transform: rotate(45deg); background: var(--accent);
+}
+#main-content a:is([href*="search_id=egosearch"], [href*="search_id=newposts"], [href*="search_id=unanswered"]):not(.links_bar a, .categorie a):hover {
+  border-color: var(--accent); color: var(--accent);
+}
+#main-content a:is([href*="search_id=egosearch"], [href*="search_id=newposts"], [href*="search_id=unanswered"]):not(.links_bar a, .categorie a) + br { display: none; }
