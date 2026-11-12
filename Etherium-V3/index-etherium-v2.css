@@ -3160,3 +3160,47 @@ form[name="jumpbox"] ~ :is(.panel, .topic-review, #topicreview, div:has(> .postb
   border-color: var(--accent); color: var(--accent);
 }
 #main-content a:is([href*="search_id=egosearch"], [href*="search_id=newposts"], [href*="search_id=unanswered"]):not(.links_bar a, .categorie a) + br { display: none; }
+
+#page-footer {
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+  margin: 30px auto 24px; padding: 0 16px; box-sizing: border-box;
+  font-family: var(--font), sans-serif; text-align: center;
+}
+
+/* — Panneau d'administration : bouton sombre — */
+#page-footer .adminlink { margin: 0; padding: 0; background: none; border: 0; }
+#page-footer .adminlink br { display: none; }
+#page-footer .adminlink a {
+  display: inline-flex; align-items: center; gap: 8px; padding: 9px 18px; border-radius: 99px;
+  background: var(--encre); color: #fff !important; text-decoration: none !important;
+  font-family: var(--font), sans-serif; font-size: 9.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  transition: filter .2s;
+}
+#page-footer .adminlink a::before { content: ""; width: 6px; height: 6px; transform: rotate(45deg); background: var(--accent-clair); }
+#page-footer .adminlink a:hover { filter: brightness(1.25); }
+
+/* — barre du bas : Accueil + liens de copyright, en une pastille centrée — */
+#page-footer #bottom.links_bar {
+  position: static; float: none; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px 14px;
+  width: fit-content; max-width: 100%; box-sizing: border-box; margin: 0; padding: 12px 24px;
+  border-radius: 99px; border: 1px solid var(--bordure); background: var(--carte); box-shadow: none;
+  font-family: var(--font), sans-serif; font-size: 10px; line-height: 1.5; color: var(--muet-clair);
+}
+#page-footer #bottom > span.right {
+  float: none; margin: 0; display: inline-flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 2px 6px;
+}
+#page-footer #bottom :is(a, strong, .gensmall) {
+  padding: 0; margin: 0; border: 0; background: none; border-radius: 0;
+  font-family: var(--font), sans-serif; font-size: 9.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--muet) !important; text-decoration: none !important; transition: color .2s;
+}
+#page-footer #bottom .gensmall { margin-right: -4px; letter-spacing: 0; }
+#page-footer #bottom a:hover { color: var(--accent) !important; }
+/* « Accueil » séparé du reste par un losange */
+#page-footer #bottom > a.specials_links { display: inline-flex; align-items: center; gap: 14px; color: var(--titre) !important; }
+#page-footer #bottom > a.specials_links::after { content: ""; width: 5px; height: 5px; transform: rotate(45deg); background: var(--accent); }
+
+@media (max-width: 700px) {
+  #page-footer #bottom.links_bar { border-radius: 18px; padding: 12px 16px; }
+}
+
