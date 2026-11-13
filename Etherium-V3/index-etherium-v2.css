@@ -2960,7 +2960,9 @@ form[name="jumpbox"] ~ :is(.panel, .topic-review, #topicreview, div:has(> .postb
 }
 
 /* ███████████████████████████████████████████████████████████████
-   R. PROFIL (profile_view_body) + POP-UP WOMBAT
+   R. PROFIL (profile_view_body) + POP-UP WOMBAT — mise en page V1, couleurs V2
+   Remplace TOUTE l'ancienne section profil (#wombat) de la feuille de style.
+   Les sélecteurs commencent par « body #wombat » pour passer devant d'éventuels restes.
    ███████████████████████████████████████████████████████████████ */
 
 /* ───────── pop-up ───────── */
@@ -2983,7 +2985,7 @@ form[name="jumpbox"] ~ :is(.panel, .topic-review, #topicreview, div:has(> .postb
 .wombat-aside #wombat { margin: 0; }
 
 /* ───────── conteneur ───────── */
-#wombat {
+body #wombat {
   --groupe: var(--accent);
   position: relative; display: flex; flex-direction: column; gap: 0; margin: 30px 0;
   padding: 0 !important; overflow: hidden; border-radius: 22px;
@@ -2991,158 +2993,224 @@ form[name="jumpbox"] ~ :is(.panel, .topic-review, #topicreview, div:has(> .postb
   font-family: var(--font), sans-serif; color: var(--texte);
 }
 
-/* ───────── entête ───────── */
-#wombat .pr-tete {
+/* ───────── entête : bandeau sombre + écho « PROFIL » ───────── */
+body #wombat .pr-tete {
   position: relative; display: flex; align-items: flex-end; justify-content: space-between; gap: 18px;
-  min-height: 150px; padding: 34px 34px 26px; box-sizing: border-box; overflow: hidden;
-  background-color: var(--encre);
-  background-image: radial-gradient(ellipse 60% 130% at 25% 60%, color-mix(in srgb, var(--groupe) 45%, transparent), transparent 70%), var(--glow);
-  border-bottom: 2px solid var(--groupe);
+  min-height: 0; padding: 30px 36px 28px; box-sizing: border-box; overflow: hidden;
+  background-color: var(--encre); background-image: var(--glow);
+  border-bottom: 4px solid var(--groupe);
 }
-#wombat .pr-tete::before {
+body #wombat .pr-tete::before {
   content: ""; position: absolute; inset: 0; pointer-events: none;
-  background-image: radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px); background-size: 22px 22px;
+  background: repeating-linear-gradient(64deg, rgba(255,255,255,.04) 0 2px, transparent 2px 14px);
 }
-#wombat .pr-identite { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
-#wombat .pr-identite::before { content: ""; width: 8px; height: 8px; transform: rotate(45deg); background: var(--groupe); box-shadow: 0 0 12px var(--groupe); }
-#wombat .page-title {
-  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin: 0; padding: 0;
-  font-family: var(--font), sans-serif; font-weight: 800; font-size: clamp(30px, 4vw, 52px); line-height: .95;
-  letter-spacing: .05em; text-transform: uppercase; color: #fff;
+body #wombat .pr-tete::after {
+  content: "PROFIL"; position: absolute; right: -6px; top: -22px; pointer-events: none;
+  font-family: var(--font), sans-serif; font-size: 120px; font-weight: 800; line-height: 1; letter-spacing: .04em;
+  color: transparent; -webkit-text-stroke: 1.5px rgba(255,255,255,.07);
 }
-#wombat .page-title::before, #wombat .page-title::after { content: none; }
-#wombat .page-title * { color: #fff !important; }
-#wombat .pr-statut:empty { display: none; }
-#wombat .pr-statut {
+body #wombat .pr-identite { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+body #wombat .pr-identite::before { content: none; }
+body #wombat .page-title {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin: 0; padding: 0; border: 0; background: none;
+  font-family: var(--font), sans-serif; font-weight: 800; font-size: clamp(30px, 4vw, 46px); line-height: .95;
+  letter-spacing: .04em; text-transform: uppercase; color: #fff;
+}
+body #wombat .page-title::before, body #wombat .page-title::after { content: none; }
+body #wombat .page-title * { color: #fff !important; }
+body #wombat .pr-statut:empty { display: none; }
+body #wombat .pr-statut {
   display: inline-flex; align-items: center; gap: 6px; padding: 4px 11px; border-radius: 99px;
   background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.2);
   font-size: 9px; font-weight: 700; letter-spacing: .16em; color: rgba(244,241,236,.75) !important;
 }
-#wombat .pr-statut::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--muet); }
-#wombat .pr-statut.online::before, #wombat .pr-statut:has(.online)::before { background: #6FC27B; box-shadow: 0 0 8px #6FC27B; }
-#wombat .pr-rank, #wombat .pr-rank * {
-  font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
-  color: var(--groupe) !important; filter: brightness(1.35);
+body #wombat .pr-statut::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--muet); }
+body #wombat .pr-statut.online::before, body #wombat .pr-statut:has(.online)::before { background: #6FC27B; box-shadow: 0 0 8px #6FC27B; }
+body #wombat .pr-rank { display: inline-flex; align-items: center; gap: 10px; }
+body #wombat .pr-rank::before { content: ""; width: 14px; height: 2px; background: var(--groupe); filter: brightness(1.35); }
+body #wombat .pr-rank, body #wombat .pr-rank * {
+  font-size: 11px; font-weight: 800; letter-spacing: .24em; text-transform: uppercase;
+  color: var(--accent-clair) !important;
 }
-#wombat .pr-rank img { filter: none; max-height: 40px; }
-#wombat .profile_contact { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 8px; }
-#wombat .profile_contact:empty { display: none; }
-#wombat .profile_contact a {
+body #wombat .pr-rank img { max-height: 40px; }
+body #wombat .profile_contact { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 8px; }
+body #wombat .profile_contact:empty { display: none; }
+body #wombat .profile_contact a {
   display: inline-flex; align-items: center; gap: 8px; padding: 9px 18px; border-radius: 99px;
   background: var(--accent); color: var(--on-accent) !important; text-decoration: none;
   font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; transition: filter .2s;
 }
-#wombat .profile_contact a:hover { filter: brightness(1.1); }
-#wombat .profile_contact img { max-height: 16px; filter: brightness(0) invert(1); }
+body #wombat .profile_contact a:hover { filter: brightness(1.1); }
+body #wombat .profile_contact img { max-height: 16px; filter: brightness(0) invert(1); }
 
-/* ───────── corps : 2 colonnes ───────── */
-#wombat .user_profile {
-  display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 22px; align-items: start;
-  padding: 24px; box-sizing: border-box; background: none; border: 0;
+/* ───────── corps : colonne sombre pleine hauteur + contenu ───────── */
+body #wombat .user_profile {
+  display: grid; grid-template-columns: 380px minmax(0, 1fr); gap: 0; align-items: stretch;
+  padding: 0; margin: 0; box-sizing: border-box; background: none; border: 0;
 }
-#wombat .pr-gauche { display: flex; flex-direction: column; gap: 12px; position: sticky; top: 16px; }
-#wombat .profile_avatar {
-  position: relative; overflow: hidden; border-radius: 18px; aspect-ratio: 3 / 4;
-  background: var(--encre2); margin-top: -70px; z-index: 2;
-  border: 3px solid var(--fond); box-shadow: 0 22px 40px -22px rgba(4,6,14,.7);
+
+/* — colonne de gauche — */
+body #wombat .pr-gauche {
+  position: static; display: flex; flex-direction: column; gap: 10px; margin: 0;
+  padding: 28px 26px; box-sizing: border-box; background-color: var(--encre); background-image: none; border: 0; border-radius: 0;
 }
-#wombat .profile_avatar img {
+body #wombat .profile_avatar {
+  position: relative; z-index: 1; overflow: hidden; margin: 0 0 6px; aspect-ratio: 5 / 7;
+  border-radius: 16px; border: 1px solid rgba(255,255,255,.12); background: var(--encre2);
+  box-shadow: 0 22px 40px -22px rgba(0,0,0,.8);
+}
+body #wombat .profile_avatar img {
   width: 100% !important; height: 100% !important; max-width: none !important; max-height: none !important;
   object-fit: cover; object-position: center top; display: block; border-radius: 0;
 }
-#wombat .pr-minis { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
-#wombat .pr-minis:empty { display: none; }
-#wombat .pr-minis > * {
-  display: flex; flex-direction: column; gap: 4px; min-width: 0; padding: 12px; box-sizing: border-box;
-  border-radius: 13px; background: var(--carte); border: 1px solid var(--bordure);
-}
-#wombat .pr-minis > * :is(span, small, label) { font-size: 8px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--muet); }
-#wombat .pr-minis > * :is(strong, b) { font-size: 19px; font-weight: 300; line-height: 1.1; color: var(--titre); overflow-wrap: anywhere; }
-#wombat .pr-liens { flex-wrap: wrap; align-items: center; gap: 6px; }
-#wombat .pr-liens span { display: contents; }
-#wombat .pr-liens a {
-  padding: 7px 13px; border-radius: 99px; border: 1px solid var(--bordure); background: var(--carte);
-  font-size: 9px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--texte); text-decoration: none;
-  transition: border-color .2s, color .2s;
-}
-#wombat .pr-liens a:hover { border-color: var(--accent); color: var(--accent); }
-#wombat .pr-liens span:first-child a { border: 0; background: none; padding-left: 0; color: var(--muet); pointer-events: none; }
 
-/* onglets */
-#wombat .pr-droite { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
-#wombat .pr-onglets { display: flex; gap: 6px; padding: 5px; align-self: flex-start; border-radius: 99px; background: var(--carte); border: 1px solid var(--bordure); }
-#wombat .pr-onglet {
-  display: inline-flex; align-items: center; gap: 9px; padding: 10px 18px; border: 0; border-radius: 99px; cursor: pointer;
-  background: transparent; color: var(--muet);
-  font-family: var(--font), sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
-  transition: background .25s ease, color .25s ease;
+/* mini-cartes : 1er enfant = libellé, dernier = valeur (quelle que soit la balise) */
+body #wombat .pr-minis { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+body #wombat .pr-minis:empty { display: none; }
+body #wombat .pr-minis > * {
+  display: flex; flex-direction: column; gap: 4px; min-width: 0; padding: 12px 14px; box-sizing: border-box;
+  border-radius: 12px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1);
 }
-#wombat .pr-onglet::before { content: ""; width: 6px; height: 6px; transform: rotate(45deg); border: 1.5px solid currentColor; box-sizing: border-box; transition: all .25s ease; }
-#wombat .pr-onglet:hover { color: var(--titre); }
-#wombat .pr-onglet.actif { background: var(--encre); color: #fff; }
-#wombat .pr-onglet.actif::before { background: var(--accent-clair); border-color: var(--accent-clair); box-shadow: 0 0 8px var(--accent-clair); }
-#wombat .pr-panneau { display: none; flex-direction: column; gap: 14px; }
-#wombat .pr-panneau.actif { display: flex; animation: eth-panel-in .45s cubic-bezier(.22,.8,.28,1) both; }
+body #wombat .pr-minis > * > * { margin: 0; padding: 0; border: 0; background: none; }
+body #wombat .pr-minis > * > :first-child {
+  font-size: 8.5px !important; font-weight: 700 !important; line-height: 1.3; letter-spacing: .16em !important; text-transform: uppercase !important;
+  color: var(--accent-clair) !important;
+}
+body #wombat .pr-minis > * > :last-child:not(:first-child),
+body #wombat .pr-minis > * > :last-child:not(:first-child) * {
+  font-size: 15px !important; font-weight: 800 !important; line-height: 1.2; letter-spacing: .02em !important; text-transform: none !important;
+  color: #fff !important; overflow-wrap: anywhere;
+}
 
-/* cartes */
-#wombat .pr-essentiels { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-#wombat .pr-carte { display: flex; flex-direction: column; min-width: 0; overflow: hidden; border-radius: 18px; background: var(--carte); border: 1px solid var(--bordure); }
-#wombat .pr-carte-tete { display: flex; align-items: center; gap: 10px; padding: 14px 18px; border-bottom: 1px solid var(--filet); }
-#wombat .pr-carte-tete::before { content: ""; flex: none; width: 7px; height: 7px; transform: rotate(45deg); background: var(--accent); }
-#wombat .pr-carte-tete span { font-size: 12px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--titre); }
-#wombat .pr-carte-tete em { font-style: normal; font-weight: 300; color: var(--accent); }
-#wombat .pr-carte-corps { padding: 16px 18px; font-size: 13.5px; line-height: 1.65; color: var(--texte); min-width: 0; overflow-wrap: anywhere; }
-#wombat .pr-carte-corps:empty::before { content: "—"; color: var(--muet-clair); }
-#wombat .pr-carte-corps img { max-width: 100%; }
-#wombat #pr_team_corps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
-#wombat #pr_team_corps img {
-  width: 100%; aspect-ratio: 1; padding: 10px; box-sizing: border-box; object-fit: contain; border-radius: 14px;
-  background: var(--beige); border: 1px solid var(--bordure); transition: transform .2s, border-color .2s;
+/* liens sujets / messages */
+body #wombat .pr-liens { display: flex !important; flex-direction: column; flex-wrap: nowrap; align-items: stretch; gap: 8px; margin-top: 2px; }
+body #wombat .pr-liens > span { display: block; }
+body #wombat .pr-liens a {
+  display: block; padding: 12px 14px; border-radius: 12px; text-align: center; text-decoration: none;
+  border: 1px solid rgba(255,255,255,.14); background: transparent; color: #fff;
+  font-size: 9.5px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; transition: border-color .2s, color .2s;
 }
-#wombat #pr_team_corps img:hover { transform: translateY(-3px); border-color: var(--groupe); }
-#wombat #pr_talents_corps :is(table, tbody) { display: flex; flex-direction: column; gap: 7px; width: 100%; border: 0; margin: 0; }
-#wombat #pr_talents_corps :is(tr, td) { display: block; padding: 0; border: 0; background: none; }
-#wombat #pr_talents_corps td {
-  display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 9px 9px 9px 14px; border-radius: 12px;
-  background: var(--beige); border: 1px solid var(--bordure); font-size: 12px; font-weight: 700; color: var(--titre);
+body #wombat .pr-liens a:hover { border-color: var(--accent-clair); color: var(--accent-clair); }
+body #wombat .pr-liens > span:first-child a {
+  padding: 12px 18px; line-height: 1.6; pointer-events: none; color: rgba(244,241,236,.7);
+  background: rgba(255,255,255,.03); border-color: rgba(255,255,255,.1);
 }
-#wombat #pr_talents_corps td span { padding: 2px 9px; border-radius: 99px; font-size: 8.5px; font-weight: 800; letter-spacing: .1em; color: #fff; }
-#wombat .pr-champs { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
-#wombat .pr-champs:empty { display: none; }
-#wombat .pr-champs > * {
-  display: flex; flex-direction: column; gap: 5px; min-width: 0; padding: 14px; box-sizing: border-box;
+
+/* — colonne de droite — */
+body #wombat .pr-droite { display: flex; flex-direction: column; gap: 18px; min-width: 0; padding: 30px; box-sizing: border-box; }
+
+/* onglets : deux boutons séparés, trait dessous */
+body #wombat .pr-onglets {
+  display: flex; gap: 8px; align-self: stretch; margin: 0; padding: 0 0 18px;
+  border: 0; border-bottom: 1px solid var(--bordure); border-radius: 0; background: none;
+}
+body #wombat .pr-onglet {
+  display: inline-flex; align-items: center; padding: 12px 22px; margin: 0; border-radius: 10px; cursor: pointer;
+  border: 1px solid var(--bordure); background: var(--carte); color: var(--texte); box-shadow: none;
+  font-family: var(--font), sans-serif; font-size: 10.5px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase;
+  transition: background .25s ease, color .25s ease, border-color .25s ease;
+}
+body #wombat .pr-onglet::before, body #wombat .pr-onglet::after,
+body #wombat .pr-onglet span::before, body #wombat .pr-onglet span::after { content: none !important; display: none !important; }
+body #wombat .pr-onglet:hover { border-color: var(--accent); color: var(--accent); }
+body #wombat .pr-onglet.actif { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+body #wombat .pr-panneau { display: none; flex-direction: column; gap: 16px; }
+body #wombat .pr-panneau.actif { display: flex; animation: eth-panel-in .45s cubic-bezier(.22,.8,.28,1) both; }
+
+/* cartes : en-tête sombre, titre à gauche, trait à droite */
+body #wombat .pr-essentiels { display: grid; grid-template-columns: minmax(0, 290px) minmax(0, 1fr); gap: 16px; align-items: start; }
+body #wombat .pr-carte {
+  display: flex; flex-direction: column; min-width: 0; overflow: hidden; margin: 0;
+  border-radius: 16px; background: var(--carte); border: 1px solid var(--bordure); box-shadow: 0 18px 36px -28px rgba(10,16,30,.45);
+}
+body #wombat .pr-carte-tete {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 0; padding: 15px 22px;
+  background-color: var(--encre); background-image: var(--glow); border: 0; text-align: left;
+}
+body #wombat .pr-carte-tete::before { content: none; }
+body #wombat .pr-carte-tete::after { content: ""; flex: none; width: 24px; height: 3px; border-radius: 2px; background: var(--accent-clair); }
+body #wombat .pr-carte-tete span {
+  font-size: 14px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: #fff !important; opacity: 1;
+}
+body #wombat .pr-carte-tete em { font-style: normal; font-weight: 800; color: var(--accent-clair) !important; }
+body #wombat .pr-carte-corps { padding: 18px 22px; font-size: 13.5px; line-height: 1.65; color: var(--texte); min-width: 0; overflow-wrap: anywhere; }
+body #wombat .pr-carte-corps:empty::before { content: "—"; color: var(--muet-clair); }
+body #wombat .pr-carte-corps img { max-width: 100%; }
+
+/* team : pokémon dans des ronds */
+body #wombat #pr_team_corps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; justify-items: center; }
+body #wombat #pr_team_corps img {
+  width: 100%; max-width: 70px; aspect-ratio: 1; padding: 12px; box-sizing: border-box; object-fit: contain;
+  border-radius: 50%; background: var(--beige); border: 1px solid var(--bordure); transition: transform .2s, border-color .2s;
+}
+body #wombat #pr_team_corps img:hover { transform: translateY(-3px); border-color: var(--accent); }
+
+/* vestiges : pastilles à la suite */
+body #wombat #pr_talents_corps :is(table, tbody) { display: flex; flex-wrap: wrap; gap: 9px; width: 100%; border: 0; margin: 0; background: none; }
+body #wombat #pr_talents_corps tr { display: contents; }
+body #wombat #pr_talents_corps td {
+  display: inline-flex; align-items: center; gap: 8px; width: auto; padding: 8px 14px; border-radius: 99px;
+  background: var(--beige); border: 1px solid var(--bordure);
+  font-size: 12px; font-weight: 600; letter-spacing: .02em; color: var(--titre); white-space: nowrap;
+}
+body #wombat #pr_talents_corps td span {
+  padding: 0; border-radius: 0; background: none !important;
+  font-size: 11px; font-weight: 800; letter-spacing: .06em;
+}
+
+/* petites cartes (faceclaim, métier…) : 1er enfant = libellé, dernier = valeur */
+body #wombat .pr-champs { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+body #wombat .pr-champs:empty { display: none; }
+body #wombat .pr-champs > * {
+  display: flex; flex-direction: column; gap: 6px; min-width: 0; padding: 16px 20px; box-sizing: border-box;
   border-radius: 14px; background: var(--carte); border: 1px solid var(--bordure); transition: border-color .2s;
 }
-#wombat .pr-champs > *:hover { border-color: var(--accent); }
-#wombat .pr-champs > * :is(span, small, label) { font-size: 8px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--muet); }
-#wombat .pr-champs > * :is(strong, b) { font-size: 14px; font-weight: 700; color: var(--titre); overflow-wrap: anywhere; }
-#wombat .pr-apropos .pr-carte-corps { font-size: 14px; line-height: 1.75; text-wrap: pretty; }
-#wombat .pr-rps .pr-carte-corps { display: flex; flex-direction: column; gap: 6px; }
-#wombat .pr-rps .pr-carte-corps a {
+body #wombat .pr-champs > *:hover { border-color: var(--accent); }
+body #wombat .pr-champs > * > * { margin: 0; padding: 0; border: 0; background: none; }
+body #wombat .pr-champs > * > :first-child {
+  font-size: 9px !important; font-weight: 700 !important; line-height: 1.3; letter-spacing: .16em !important; text-transform: uppercase !important;
+  color: var(--accent) !important;
+}
+body #wombat .pr-champs > * > :last-child:not(:first-child),
+body #wombat .pr-champs > * > :last-child:not(:first-child) * {
+  font-size: 15px !important; font-weight: 800 !important; line-height: 1.35; letter-spacing: 0 !important; text-transform: none !important;
+  color: var(--titre) !important; overflow-wrap: anywhere;
+}
+
+/* onglet Histoire & RP */
+body #wombat .pr-apropos .pr-carte-corps { font-size: 14px; line-height: 1.75; text-wrap: pretty; text-align: justify; }
+body #wombat .pr-rps .pr-carte-corps { display: flex; flex-direction: column; gap: 6px; }
+body #wombat .pr-rps .pr-carte-corps a {
   display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 14px; border-radius: 11px;
   background: var(--beige); border: 1px solid var(--bordure); font-weight: 700; color: var(--titre); text-decoration: none;
   transition: border-color .2s, color .2s;
 }
-#wombat .pr-rps .pr-carte-corps a::after { content: "→"; color: var(--accent); }
-#wombat .pr-rps .pr-carte-corps a:hover { border-color: var(--accent); color: var(--accent); }
-#wombat .profile_admin:empty { display: none; }
-#wombat .profile_admin { margin: 0 24px 24px; padding: 12px 16px; border-radius: 12px; border: 1px dashed var(--bordure); font-size: 11px; color: var(--muet); }
-#wombat .profile_admin a { color: var(--accent); font-weight: 700; }
-#wombat .profile-infos { display: none; }
+body #wombat .pr-rps .pr-carte-corps a::after { content: "→"; color: var(--accent); }
+body #wombat .pr-rps .pr-carte-corps a:hover { border-color: var(--accent); color: var(--accent); }
 
-@media (max-width: 900px) {
-  #wombat .user_profile { grid-template-columns: minmax(0, 1fr); padding: 18px; }
-  #wombat .pr-gauche { position: static; display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 12px; align-items: start; }
-  #wombat .profile_avatar { grid-row: span 2; margin-top: -60px; }
-  #wombat .pr-tete { padding: 28px 20px 22px; flex-wrap: wrap; }
+body #wombat .profile_admin:empty { display: none; }
+body #wombat .profile_admin { margin: 0 30px 24px; padding: 12px 16px; border-radius: 12px; border: 1px dashed var(--bordure); font-size: 11px; color: var(--muet); }
+body #wombat .profile_admin a { color: var(--accent); font-weight: 700; }
+body #wombat .profile-infos { display: none; }
+
+@media (max-width: 1000px) {
+  body #wombat .user_profile { grid-template-columns: 300px minmax(0, 1fr); }
+  body #wombat .pr-essentiels { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 760px) {
+  body #wombat .user_profile { grid-template-columns: minmax(0, 1fr); }
+  body #wombat .pr-gauche { display: grid; grid-template-columns: 150px minmax(0, 1fr); align-items: start; padding: 20px; }
+  body #wombat .profile_avatar { grid-row: span 2; margin: 0; }
+  body #wombat .pr-liens { grid-column: 1 / -1; }
+  body #wombat .pr-droite { padding: 20px; }
+  body #wombat .pr-tete { padding: 26px 20px 22px; flex-wrap: wrap; }
+  body #wombat .pr-tete::after { font-size: 80px; }
   .wombat-aside { width: 96%; margin-top: 20px; max-height: calc(100vh - 40px); }
 }
-@media (max-width: 560px) {
-  #wombat .pr-gauche { grid-template-columns: minmax(0, 1fr); }
-  #wombat .profile_avatar { width: 60%; margin: -60px auto 0; }
-  #wombat .pr-essentiels { grid-template-columns: minmax(0, 1fr); }
-  #wombat .pr-onglets { align-self: stretch; }
-  #wombat .pr-onglet { flex: 1; justify-content: center; padding: 10px; }
+@media (max-width: 480px) {
+  body #wombat .pr-gauche { grid-template-columns: minmax(0, 1fr); }
+  body #wombat .profile_avatar { width: 70%; margin: 0 auto; }
+  body #wombat .pr-onglet { flex: 1; justify-content: center; padding: 11px 10px; }
 }
 
 
