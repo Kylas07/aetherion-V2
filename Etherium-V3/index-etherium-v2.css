@@ -1389,7 +1389,7 @@ html:not([data-color-scheme="dark"]) .eh-theme .icon.light,
 #main-content #online_users { display: flex; flex-wrap: wrap; gap: 6px; max-height: 110px; overflow: auto; font-size: 0; }
 #main-content #online_users br { display: none; }
 #main-content #online_users a { font-size: 12px; font-weight: 700; padding: 6px 10px; border-radius: 6px; background: rgba(255,255,255,.07); }
-#main-content .qeel-panneau a span, #main-content .qeel-panneau a strong, #main-content .qeel-panneau .usr_grp_clr { color: inherit !important; }
+#main-content .qeel-panneau a span, #main-content .qeel-panneau a strong { color: inherit !important; }
 #main-content .qeel .separator { height: 1px; margin: 4px 0; padding: 0; border: 0; background: rgba(255,255,255,.08); }
 #main-content #last_connected { font-size: 12px; line-height: 1.9; color: rgba(244,241,236,.72); max-height: 96px; overflow: auto; }
 #main-content #last_connected a { margin-right: 6px; }
