@@ -3140,7 +3140,7 @@ body #wombat .pr-carte-corps img { max-width: 100%; }
 /* team : pokémon dans des ronds */
 body #wombat #pr_team_corps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; justify-items: center; }
 body #wombat #pr_team_corps img {
-  width: 100%; max-width: 70px; aspect-ratio: 1; padding: 12px; box-sizing: border-box; object-fit: contain;
+  max-width: 70px; aspect-ratio: 1; padding: 12px; box-sizing: border-box; object-fit: contain;
   border-radius: 50%; background: var(--beige); border: 1px solid var(--bordure); transition: transform .2s, border-color .2s;
 }
 body #wombat #pr_team_corps img:hover { transform: translateY(-3px); border-color: var(--accent); }
