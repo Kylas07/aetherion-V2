@@ -1208,7 +1208,7 @@ html:not([data-color-scheme="dark"]) .eh-theme .icon.light,
 /* ███████████████████████████████████████████████████████████████
    D. PAGE D'ACCUEIL (.pa2) — un grand bloc illustré, cartes posées dessus
    ███████████████████████████████████████████████████████████████ */
-:root { --pa2-illu: url('https://2img.net/i.imgur.com/QHA6wXe.jpeg'); --pa2-illu-nuit: var(--pa2-illu); }
+:root { --pa2-illu: url('https://i.imgur.com/NgOnbFw.png'); --pa2-illu-nuit: var(--pa2-illu); }
 #main-content .pa2 {
   --pa2-img: var(--pa2-illu);
   position: relative; isolation: isolate; overflow: hidden;
