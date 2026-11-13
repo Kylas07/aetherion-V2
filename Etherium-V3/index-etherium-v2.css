@@ -3,7 +3,7 @@
    Contenu :
      A. Variables jour / nuit (palette V2 + police Karla)
      B. Header : héros pleine largeur, onglets, nav vitrée, jour/nuit
-     C. Index : catégories (#c1 admin, #c2 gestion, #c4 tour), images des forums
+     C. Index : catégories (#c1 admin, #c5 gestion, #c4 tour), images des forums
      D. Page d'accueil (.pa2)
      E. Qui est en ligne + partenaires
      F. Connexion rapide + message d'admin
@@ -456,11 +456,11 @@ html:not([data-color-scheme="dark"]) .eh-theme .icon.light,
 
 /* ═══ CATÉGORIES : affichage spécifique par ID (à adapter au vrai forum) ═══
    #c1 = Administration  (panneau, annonce épinglée, étapes, zone staff, classement des groupes)
-   #c2 = Gestion         (2 colonnes + bouton T-Card)
+   #c5 = Gestion         (2 colonnes + bouton T-Card)
    #c4 = Etherium        (bandeau sombre + tour interactive)
    Les blocs statiques de la template (annonce, étapes, aside, pastilles, sous-titre)
    sont cachés partout et ne s'affichent que dans leur catégorie.
-   Pour changer de catégorie : rechercher/remplacer #c1, #c2 ou #c4 dans cette section. */
+   Pour changer de catégorie : rechercher/remplacer #c1, #c5 ou #c4 dans cette section. */
 
 /* ═════════════════════════════════════════════════════════════
    ETHERIUM — CSS COMPLET DE L'INDEX (Refonte V2)
@@ -526,7 +526,7 @@ html:not([data-color-scheme="dark"]) .eh-theme .icon.light,
   transition: background .2s, color .2s;
 }
 #main-content .cat-pill:hover { background: var(--accent); color: var(--on-accent) !important; }
-#main-content #c4 .pill-c4, #main-content #c2 .pill-c5 { display: inline-flex; }
+#main-content #c4 .pill-c4, #main-content #c5 .pill-c5 { display: inline-flex; }
 
 /* ───────── 2. FORUM : carte par défaut ───────── */
 #main-content .cat-grid { display: flex; flex-direction: column; gap: 10px; counter-reset: forum; }
@@ -798,21 +798,21 @@ html:not([data-color-scheme="dark"]) .eh-theme .icon.light,
 #main-content #c1 .aside-bottin small { font-size: 10.5px; color: rgba(244,241,236,.6); }
 #main-content #c1 .aside-bottin i { font-style: normal; color: var(--accent-clair); }
 
-/* ═════════════ 4. #c2 — GESTION / AVENTURE (2 colonnes) ═════════════ */
-#main-content #c2 .cat-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; align-items: start; }
-#main-content #c2 .forum {
+/* ═════════════ 4. #c5 — GESTION / AVENTURE (2 colonnes) ═════════════ */
+#main-content #c5 .cat-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; align-items: start; }
+#main-content #c5 .forum {
   grid-template-columns: 56px minmax(0, 1fr) auto;
   grid-template-areas: "num title stats" "num texte texte" "num subs subs" "num last last";
   align-items: start; column-gap: 14px; row-gap: 7px; padding: 16px 20px 16px 0;
 }
-#main-content #c2 .forum .forum-desc { display: contents; }
-#main-content #c2 .forum-num { align-self: start; }
-#main-content #c2 .forum-titre { grid-area: title; }
-#main-content #c2 .forum-texte { grid-area: texte; }
-#main-content #c2 .sousforums { grid-area: subs; }
-#main-content #c2 .forum-stats-pill { grid-area: stats; align-self: center; border: 0; padding: 0; }
-#main-content #c2 .forum-dernier { grid-area: last; border: 0; padding: 10px 0 0; margin-top: 3px; border-top: 1px solid var(--filet); }
-#main-content #c2 .fd-avatar { width: 30px; height: 30px; }
+#main-content #c5 .forum .forum-desc { display: contents; }
+#main-content #c5 .forum-num { align-self: start; }
+#main-content #c5 .forum-titre { grid-area: title; }
+#main-content #c5 .forum-texte { grid-area: texte; }
+#main-content #c5 .sousforums { grid-area: subs; }
+#main-content #c5 .forum-stats-pill { grid-area: stats; align-self: center; border: 0; padding: 0; }
+#main-content #c5 .forum-dernier { grid-area: last; border: 0; padding: 10px 0 0; margin-top: 3px; border-top: 1px solid var(--filet); }
+#main-content #c5 .fd-avatar { width: 30px; height: 30px; }
 
 /* ═════════════ 5. #c4 — ETHERIUM : bandeau + tour interactive ═════════════ */
 #main-content #c4 .cat-banner, .cat-banner-sombre .cat-banner {
@@ -1053,7 +1053,7 @@ html:not([data-color-scheme="dark"]) .eh-theme .icon.light,
   #main-content #c4 .tour-scene .forum.is-active { padding: 28px; }
   #main-content #c4 .tour-scene .forum::before { font-size: 140px; }
   #main-content #c4 .cat-banner .echo::after { font-size: 90px; }
-  #main-content #c2 .cat-grid, #main-content .cat-duo,
+  #main-content #c5 .cat-grid, #main-content .cat-duo,
   #main-content .categorie.cat--etage .cat-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 700px) {
@@ -2146,32 +2146,32 @@ body, input, select, textarea, button,
 #main-content #c4 .tour-scene .etage-cta { align-self: flex-start; }
 
 
-/* ── #c2 Gestion de l'aventure (2e forum) : pleine largeur, sous-forums en tuiles ── */
-#main-content #c2 .cat-grid > .forum { grid-column: 1 / -1; }
-#main-content #c2 .forum:nth-child(2 of .forum) .sousforums {
+/* ── #c5 Gestion de l'aventure (2e forum) : pleine largeur, sous-forums en tuiles ── */
+#main-content #c5 .cat-grid > .forum { grid-column: 1 / -1; }
+#main-content #c5 .forum:nth-child(2 of .forum) .sousforums {
   display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 4px;
   font-size: 0; line-height: 0; color: transparent; counter-reset: ss;
 }
-#main-content #c2 .forum:nth-child(2 of .forum) .sousforums a {
+#main-content #c5 .forum:nth-child(2 of .forum) .sousforums a {
   counter-increment: ss; position: relative; display: flex; flex-direction: column; justify-content: flex-end;
   min-height: 92px; padding: 14px; box-sizing: border-box; border-radius: 13px;
   background: var(--fond) !important; border: 1px solid var(--bordure);
   font-size: 12.5px; font-weight: 800; letter-spacing: .05em; line-height: 1.3; color: var(--titre);
   transition: border-color .2s, transform .2s, background .2s;
 }
-#main-content #c2 .forum:nth-child(2 of .forum) .sousforums a::before {
+#main-content #c5 .forum:nth-child(2 of .forum) .sousforums a::before {
   content: "✦"; position: absolute; left: 14px; top: 14px; margin: 0;
   display: grid; place-items: center; width: 30px; height: 30px; border-radius: 9px;
   background: var(--encre); color: var(--accent-clair); font-size: 14px;
 }
-#main-content #c2 .forum:nth-child(2 of .forum) .sousforums a::after {
+#main-content #c5 .forum:nth-child(2 of .forum) .sousforums a::after {
   content: counter(ss, decimal-leading-zero); position: absolute; right: 14px; top: 16px;
   font-size: 20px; font-weight: 700; line-height: 1; color: transparent; -webkit-text-stroke: 1.1px var(--accent); opacity: .6;
 }
-#main-content #c2 .forum:nth-child(2 of .forum) .sousforums a:hover {
+#main-content #c5 .forum:nth-child(2 of .forum) .sousforums a:hover {
   border-color: var(--accent); background: var(--accent-pale) !important; transform: translateY(-2px); color: var(--titre);
 }
-@media (max-width: 700px) { #main-content #c2 .forum:nth-child(2 of .forum) .sousforums { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 700px) { #main-content #c5 .forum:nth-child(2 of .forum) .sousforums { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 
 /* ███████████████████████████████████████████████████████████████
@@ -2394,7 +2394,7 @@ body, input, select, textarea, button,
 }
 
 /* virgules entre sous-forums : invisibles et hors grille */
-#main-content #c2 .forum:nth-child(2 of .forum) .sousforums a { line-height: 1.3; }
+#main-content #c5 .forum:nth-child(2 of .forum) .sousforums a { line-height: 1.3; }
 
 /* virgules résiduelles des sous-forums (si le script n'a pas tourné) */
 #main-content .sousforums { color: transparent; }
